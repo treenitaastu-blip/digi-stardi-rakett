@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useQuiz } from "./QuizContext";
 
 export function StickyCta() {
+  const { openQuiz } = useQuiz();
   const [scrolled, setScrolled] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
 
@@ -37,9 +40,18 @@ export function StickyCta() {
           className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 p-3 backdrop-blur-md md:hidden"
           style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
         >
-          <Button asChild variant="hero" size="xl" className="w-full">
-            <a href="#kontakt">Telli koduleht</a>
+          <Button
+            variant="hero"
+            size="xl"
+            onClick={openQuiz}
+            className="w-full font-semibold"
+          >
+            Võta ühendust <ArrowRight className="h-4 w-4" />
           </Button>
+          <p className="mt-2 text-center text-xs leading-snug text-muted-foreground">
+            Vastamine võtab umbes 1 minuti. Kirjuta, millist lehte või digilahendust sinu
+            ettevõttel vaja on.
+          </p>
         </motion.div>
       )}
     </AnimatePresence>
