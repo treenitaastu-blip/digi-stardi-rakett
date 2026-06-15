@@ -76,8 +76,7 @@ export function Hero() {
             transition={{ duration: 0.65, delay: 0.14 }}
             className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground"
           >
-            Üheleheline veebileht koos müügitekstide ja SEO-ga. Valmis 7 tööpäevaga, fikseeritud
-            hinnaga{" "}
+            Veebileht koos müügitekstide ja SEO-ga. Valmis 7 tööpäevaga, fikseeritud hinnaga{" "}
             <span className="font-semibold text-foreground">400 €.</span>
           </motion.p>
 
