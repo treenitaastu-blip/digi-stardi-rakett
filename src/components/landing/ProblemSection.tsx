@@ -1,80 +1,85 @@
-import { motion } from "framer-motion";
-import { SearchX, ShieldAlert, PointerOff, ArrowRight, CheckCircle2 } from "lucide-react";
+import { SearchX, ShieldAlert, History, CheckCircle2 } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 
 const problems = [
   {
     icon: SearchX,
-    title: "Google ei too kliente",
-    body: "Kui teid otsingust ei leita, valib klient konkurendi — ilma teid kunagi kontakteerimata.",
+    title: "Google ei leia teid",
+    body: "Kui teid otsingust ei leita, valib klient esimese konkurendi, teid nägemata.",
   },
   {
     icon: ShieldAlert,
     title: "Facebook ei asenda kodulehte",
-    body: "Sotsiaalmeedia toob tähelepanu. Koduleht loob usaldust — eriti siis, kui klient enne otsust kontrollib.",
+    body: "Sotsiaalmeedia toob tähelepanu, koduleht toob usalduse. Tõsine klient kontrollib teid enne otsust.",
   },
   {
-    icon: PointerOff,
+    icon: History,
     title: "Vananenud leht kahjustab mainet",
-    body: "Aegunud või poolik veebileht annab signaali: ettevõte pole professionaalselt esindatud.",
+    body: "Poolik või aastatetagune leht jätab mulje, et ettevõte ei tegutse enam.",
   },
 ];
 
 const after = [
-  "Ettevõte on Google'i otsingus leitav",
-  "Teenused, hinnad ja kontakt on ühe klõpsuga käes",
-  "Esmamulje on professionaalne ja usaldusväärne",
-  "Google Maps ja otsingukonsool on seadistatud",
+  "Leitav Google'i otsingus",
+  "Teenused, hinnad ja kontakt ühe pilguga",
+  "Esmamulje, mis tekitab usaldust",
+  "Google Maps ja Search Console seadistatud",
 ];
 
 export function ProblemSection() {
   return (
-    <section id="probleem" className="section-pad bg-secondary/40">
+    <section id="probleem" className="section-pad">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Probleem"
-          title="Puudulik veebikohalolu maksab kliente."
-          subtitle="Suur agentuuriprojekt pole alustamiseks vaja. Vaja on aga kohest vastust kolmele küsimusele: millega tegelete, miks teid valida ja kuidas ühendust võtta."
+          title="Nõrk veebikohalolu maksab teile kliente"
+          subtitle="Suurt agentuuriprojekti pole vaja. Vaja on selget vastust kolmele küsimusele: millega tegelete, miks teid usaldada ja kuidas ühendust võtta."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {problems.map((p) => (
+          {problems.map((p, i) => (
             <RevealItem key={p.title}>
-              <div className="h-full rounded-2xl border border-border bg-card p-6 shadow-soft">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-destructive/8 text-destructive">
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg">
+                <span className="absolute right-5 top-4 font-display text-5xl font-bold text-border/60">
+                  0{i + 1}
+                </span>
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-destructive/10 text-destructive">
                   <p.icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-4 font-semibold">{p.title}</h3>
+                <h3 className="mt-5 text-lg font-bold">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
 
-        {/* Transformation */}
-        <Reveal className="mt-8">
-          <div className="overflow-hidden rounded-2xl border border-brand/25 bg-card shadow-soft">
-            <div className="flex items-center gap-2 border-b border-border bg-accent/50 px-6 py-3.5">
-              <ArrowRight className="h-4 w-4 text-brand" />
-              <span className="text-sm font-semibold text-brand">Tulemus pärast valmimist</span>
-            </div>
-            <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4">
-              {after.map((t, i) => (
-                <motion.div
-                  key={t}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="flex items-start gap-3"
-                >
-                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-brand-foreground">
-                    <CheckCircle2 className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-sm font-medium leading-snug">{t}</span>
-                </motion.div>
-              ))}
+        {/* After — bold brand panel */}
+        <Reveal className="mt-6">
+          <div className="bg-brand-gradient relative overflow-hidden rounded-3xl p-8 shadow-glow md:p-10">
+            <div
+              aria-hidden
+              className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"
+            />
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-widest text-brand-foreground/70">
+                Stardipaketiga
+              </p>
+              <h3 className="mt-2 max-w-xl text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
+                Klient leiab teid, mõistab pakkumist ja võtab ühendust.
+              </h3>
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {after.map((t) => (
+                  <div key={t} className="flex items-start gap-3">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/20">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-brand-foreground" />
+                    </span>
+                    <span className="text-sm font-medium leading-snug text-brand-foreground/95">
+                      {t}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>

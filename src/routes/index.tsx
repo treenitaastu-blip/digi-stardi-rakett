@@ -2,11 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
+import { StatsBand } from "@/components/landing/StatsBand";
 import { ProblemSection } from "@/components/landing/ProblemSection";
 import { SolutionSection } from "@/components/landing/SolutionSection";
-import { PortfolioSection } from "@/components/landing/PortfolioSection";
-import { PricingSection } from "@/components/landing/PricingSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
+import { PortfolioSection } from "@/components/landing/PortfolioSection";
+import { AudienceSection } from "@/components/landing/AudienceSection";
+import { PricingSection } from "@/components/landing/PricingSection";
 import { TrustSection } from "@/components/landing/TrustSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -16,7 +18,7 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Koduleht 7 päevaga — 400 € | Digitaalne Stardipakett" },
+      { title: "Koduleht 7 päevaga, 400 € | Digitaalne Stardipakett" },
       {
         name: "description",
         content:
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Koduleht 7 päevaga — 400 € | Digitaalne Stardipakett",
+        content: "Koduleht 7 päevaga, 400 € | Digitaalne Stardipakett",
       },
       {
         property: "og:description",
@@ -42,11 +44,13 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <StatsBand />
         <ProblemSection />
         <SolutionSection />
-        <PortfolioSection />
-        <PricingSection />
         <ProcessSection />
+        <PortfolioSection />
+        <AudienceSection />
+        <PricingSection />
         <TrustSection />
         <FaqSection />
         <ContactSection />

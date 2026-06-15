@@ -1,90 +1,86 @@
-import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Clock, Search, Star } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { ArrowRight, Check, Search, Star, Code2, Braces, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const included = [
-  "Selgitav struktuur ja professionaalsed tekstid",
-  "Täielikult mobiilisõbralik disain",
-  "Kontaktivorm, Google Maps ja teenuste tutvustus",
-  "SEO põhiseadistus ja Google otsingukonsool",
-];
-
-const badges = [
-  { icon: Clock, text: "Tarne 7 tööpäeva" },
-  { icon: Search, text: "Google-valmis" },
-  { icon: Star, text: "400 € fikseeritud" },
+  "Müügitekstid valmis kirjutatud",
+  "Laitmatu mobiilivaade",
+  "Google'is leitav (SEO)",
+  "Kontaktivorm postkasti",
 ];
 
 export function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const visualY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+
   return (
     <section
+      ref={ref}
       id="top"
-      className="relative flex min-h-[94vh] items-center overflow-hidden pb-24 pt-28 md:pt-40 md:pb-32"
+      className="relative flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32"
     >
-      {/* Ambient gradient */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(65% 55% at 80% -5%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 70%), radial-gradient(45% 40% at -5% 30%, color-mix(in oklab, var(--brand) 6%, transparent) 0%, transparent 65%)",
-        }}
-      />
-      {/* Dot grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.035]"
-        style={{
-          backgroundImage: "radial-gradient(circle, var(--foreground) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
-        }}
-      />
+      <HeroBackground bgY={bgY} />
 
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-5 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        {/* ── Visual (top on mobile) ── */}
+        <motion.div style={{ y: visualY }} className="order-1 lg:order-2">
+          <HeroVisual />
+        </motion.div>
+
         {/* ── Copy ── */}
-        <div>
+        <motion.div style={{ y: copyY }} className="order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3.5 py-1.5 text-xs font-semibold tracking-wide text-muted-foreground"
+            className="eyebrow"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
             </span>
-            Eesti väikeettevõtete stardipakett
+            Veebilehed Eesti ettevõtetele
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.07 }}
-            className="mt-6 text-balance text-[2.5rem] font-extrabold leading-[1.07] tracking-tight md:text-[3.1rem] lg:text-[3.65rem]"
+            className="mt-6 text-balance text-[2.6rem] font-bold leading-[1.03] md:text-[3.25rem] lg:text-[3.7rem]"
           >
-            Koduleht, mis teeb teid{" "}
-            <span className="text-gradient-brand">leitavaks ja usaldusväärseks</span>
+            Koduleht, mis võidab{" "}
+            <span className="text-gradient-brand">kliendi usalduse</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.14 }}
-            className="mt-6 max-w-[520px] text-[1.08rem] leading-relaxed text-muted-foreground"
+            className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground"
           >
-            Ühe-lehe veebileht koos copywriting&apos;u, SEO ja kontaktivormiga. Valmis 7 tööpäevaga.{" "}
-            <span className="font-semibold text-foreground">Fikseeritud hind 400 €.</span>
+            Üheleheline veebileht koos müügitekstide ja SEO-ga. Valmis 7 tööpäevaga, fikseeritud
+            hinnaga{" "}
+            <span className="font-semibold text-foreground">400 €.</span>
           </motion.p>
 
           <motion.ul
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 space-y-2.5"
+            className="mt-7 grid max-w-[480px] grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2"
           >
             {included.map((t) => (
-              <li key={t} className="flex items-center gap-2.5 text-sm text-foreground/75">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-brand" />
+              <li key={t} className="flex items-center gap-2.5 text-sm font-medium text-foreground/80">
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
+                  <Check className="h-3 w-3 text-brand" />
+                </span>
                 {t}
               </li>
             ))}
@@ -98,52 +94,80 @@ export function Hero() {
           >
             <Button asChild variant="hero" size="xl" className="rounded-xl font-semibold tracking-tight">
               <a href="#kontakt">
-                Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                Telli koduleht <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
-            <Button asChild variant="heroOutline" size="xl" className="rounded-xl font-semibold tracking-tight">
-              <a href="#tood">Vaata portfooliot</a>
+            <Button
+              asChild
+              variant="heroOutline"
+              size="xl"
+              className="rounded-xl font-semibold tracking-tight"
+            >
+              <a href="#tood">Vaata töid</a>
             </Button>
           </motion.div>
-
-          {/* Trust badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.34 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            {badges.map((b) => (
-              <span
-                key={b.text}
-                className="flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1.5 text-xs font-semibold text-muted-foreground"
-              >
-                <b.icon className="h-3.5 w-3.5 text-brand" />
-                {b.text}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* ── Visual ── */}
-        <HeroVisual />
+        </motion.div>
       </div>
     </section>
   );
 }
 
+function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
+  return (
+    <motion.div style={{ y: bgY }} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      {/* Ambient orbs */}
+      <motion.div
+        className="absolute -right-20 -top-24 h-[26rem] w-[26rem] rounded-full opacity-50 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in oklab, var(--brand-2) 30%, transparent), transparent 70%)",
+        }}
+        animate={{ x: [0, 30, 0], y: [0, 24, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute -left-24 top-1/3 h-[22rem] w-[22rem] rounded-full opacity-40 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, color-mix(in oklab, var(--brand) 26%, transparent), transparent 70%)",
+        }}
+        animate={{ x: [0, -24, 0], y: [0, -20, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Tech grid */}
+      <div className="bg-grid absolute inset-0 opacity-[0.6] [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
+
+      {/* Floating code glyphs */}
+      {[
+        { Icon: Code2, cls: "left-[8%] top-[24%]", d: 0 },
+        { Icon: Braces, cls: "right-[12%] top-[16%]", d: 1.2 },
+        { Icon: Terminal, cls: "left-[18%] bottom-[18%]", d: 2.1 },
+      ].map(({ Icon, cls, d }, i) => (
+        <motion.div
+          key={i}
+          className={`absolute hidden text-brand/15 lg:block ${cls}`}
+          animate={{ y: [0, -16, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: d }}
+        >
+          <Icon className="h-9 w-9" />
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
 function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[420px] lg:max-w-none">
-      {/* Laptop frame */}
+    <div className="relative mx-auto w-full max-w-[440px] lg:max-w-none">
       <motion.div
         initial={{ opacity: 0, scale: 0.94, y: 28 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
         className="relative"
       >
-        {/* Screen bezel */}
-        <div className="rounded-2xl border border-border bg-card p-3 shadow-soft">
+        {/* Browser frame */}
+        <div className="shadow-glow rounded-2xl border border-border bg-card p-3">
           {/* Browser chrome */}
           <div className="flex items-center gap-1.5 px-2 pb-3 pt-1">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-400/50" />
@@ -151,44 +175,41 @@ function HeroVisual() {
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/50" />
             <div className="ml-3 flex h-5 flex-1 items-center gap-1.5 rounded-md bg-secondary px-2.5">
               <Search className="h-2.5 w-2.5 text-muted-foreground/50" />
-              <span className="text-[10px] text-muted-foreground/60">sinufirma.ee</span>
+              <span className="text-[10px] text-muted-foreground/60">teiefirma.ee</span>
             </div>
           </div>
 
-          {/* Website preview — image + overlay skeleton */}
-          <div className="relative overflow-hidden rounded-xl">
-            <img
-              src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80&auto=format&fit=crop"
-              alt="Professionaalne koduleht"
-              className="h-56 w-full object-cover object-top opacity-80"
-            />
-            {/* Overlay UI elements to make it look like a real website */}
-            <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/60 p-4">
-              {/* Nav overlay */}
-              <div className="flex items-center justify-between">
-                <div className="h-2.5 w-14 rounded-full bg-white/80" />
+          {/* Website preview (pure CSS, no stock photo) */}
+          <div className="relative overflow-hidden rounded-xl border border-border">
+            <div className="bg-brand-gradient relative px-5 py-7">
+              <div
+                aria-hidden
+                className="bg-dots pointer-events-none absolute inset-0 opacity-[0.15]"
+              />
+              <div className="relative flex items-center justify-between">
+                <div className="h-2.5 w-16 rounded-full bg-white/85" />
                 <div className="flex gap-2">
                   {[0, 1, 2].map((i) => (
-                    <div key={i} className="h-1.5 w-8 rounded-full bg-white/50" />
+                    <div key={i} className="h-1.5 w-7 rounded-full bg-white/50" />
                   ))}
                 </div>
               </div>
-              {/* Hero text overlay */}
-              <div>
-                <div className="h-4 w-3/5 rounded bg-white/90" />
-                <div className="mt-1.5 h-2.5 w-2/5 rounded-full bg-white/60" />
-                <div className="mt-3 flex gap-2">
-                  <div className="h-7 w-24 rounded-lg bg-brand" />
+              <div className="relative mt-6">
+                <div className="h-4 w-4/5 rounded bg-white/90" />
+                <div className="mt-2 h-2.5 w-3/5 rounded-full bg-white/55" />
+                <div className="mt-4 flex gap-2">
+                  <div className="h-7 w-28 rounded-lg bg-white" />
+                  <div className="h-7 w-20 rounded-lg border border-white/50" />
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Below-fold skeleton */}
-          <div className="mt-2 space-y-2 rounded-xl bg-secondary/50 p-3">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 bg-card p-3">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="h-10 rounded-lg bg-background shadow-soft" />
+                <div key={i} className="space-y-1.5 rounded-lg border border-border bg-background p-2.5">
+                  <div className="h-4 w-4 rounded-md bg-brand/15" />
+                  <div className="h-1.5 w-full rounded-full bg-foreground/15" />
+                  <div className="h-1.5 w-2/3 rounded-full bg-foreground/10" />
+                </div>
               ))}
             </div>
           </div>
@@ -199,39 +220,37 @@ function HeroVisual() {
           initial={{ opacity: 0, x: 20, y: 16 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -bottom-10 -right-4 w-24 overflow-hidden rounded-[1.1rem] border border-border bg-card shadow-soft sm:-right-7 sm:w-28"
+          className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border border-border bg-card shadow-soft-lg sm:-right-6 sm:w-28"
         >
-          <img
-            src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=200&q=80&auto=format&fit=crop&crop=top"
-            alt=""
-            className="h-16 w-full object-cover object-top opacity-70"
-          />
+          <div className="bg-brand-gradient h-14 w-full" />
           <div className="space-y-1.5 p-2">
-            <div className="h-1.5 w-3/4 rounded-full bg-foreground/50" />
+            <div className="h-1.5 w-3/4 rounded-full bg-foreground/45" />
             <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/30" />
-            <div className="h-5 w-full rounded-md bg-brand" />
+            <div className="bg-brand-gradient h-5 w-full rounded-md" />
           </div>
         </motion.div>
       </motion.div>
 
       {/* Google result chip */}
       <motion.div
-        initial={{ opacity: 0, x: -16, y: 0 }}
+        initial={{ opacity: 0, x: -16 }}
         animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
         transition={{
           opacity: { duration: 0.5, delay: 0.7 },
           x: { duration: 0.5, delay: 0.7 },
           y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.7 },
         }}
-        className="absolute -left-4 top-8 hidden max-w-[180px] rounded-xl border border-border bg-card/95 p-3 shadow-soft backdrop-blur-sm sm:-left-6 sm:flex sm:flex-col sm:gap-1"
+        className="absolute -left-3 top-10 hidden max-w-[185px] rounded-xl border border-border bg-card/95 p-3 shadow-soft-lg backdrop-blur-sm sm:-left-6 sm:flex sm:flex-col sm:gap-1.5"
       >
-        <span className="text-[9px] font-semibold uppercase tracking-widest text-brand">Google otsing</span>
-        <div className="h-1.5 w-full rounded-full bg-foreground/70" />
+        <span className="text-[9px] font-semibold uppercase tracking-widest text-brand">
+          Google otsing
+        </span>
+        <div className="h-1.5 w-full rounded-full bg-brand/70" />
         <div className="h-1.5 w-4/5 rounded-full bg-muted-foreground/40" />
         <div className="h-1.5 w-2/3 rounded-full bg-muted-foreground/25" />
       </motion.div>
 
-      {/* "Valmis" chip */}
+      {/* Rating chip */}
       <motion.div
         initial={{ opacity: 0, scale: 0.82 }}
         animate={{ opacity: 1, scale: 1, y: [0, -7, 0] }}
@@ -240,12 +259,14 @@ function HeroVisual() {
           scale: { duration: 0.45, delay: 1 },
           y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 },
         }}
-        className="absolute -right-4 top-1/3 hidden items-center gap-2 rounded-xl border border-border bg-card/95 px-3.5 py-2.5 text-xs font-semibold shadow-soft backdrop-blur-sm lg:-right-7 lg:flex"
+        className="absolute -right-3 top-1/4 hidden items-center gap-2 rounded-xl border border-border bg-card/95 px-3.5 py-2.5 shadow-soft-lg backdrop-blur-sm lg:-right-7 lg:flex"
       >
-        <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-emerald-50">
-          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-        </span>
-        7 tööpäevaga valmis
+        <div className="flex">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+          ))}
+        </div>
+        <span className="text-xs font-semibold">Valmis 7 päevaga</span>
       </motion.div>
     </div>
   );

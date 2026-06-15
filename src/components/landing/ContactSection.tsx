@@ -18,7 +18,7 @@ import {
 const trustLines = [
   "Tarne 7 tööpäevaga",
   "Fikseeritud hind 400 €",
-  "Copywriting ja SEO kaasas",
+  "Müügitekstid ja SEO kaasas",
 ];
 
 export function ContactSection() {
@@ -39,31 +39,21 @@ export function ContactSection() {
         <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
             {/* Left — brand side */}
-            <div
-              className="relative flex flex-col justify-center p-8 md:p-10"
-              style={{
-                background:
-                  "linear-gradient(155deg, var(--brand), color-mix(in oklab, var(--brand) 68%, oklch(0.3 0.1 262)))",
-              }}
-            >
-              {/* Decorative circles */}
+            <div className="bg-brand-gradient relative flex flex-col justify-center p-8 md:p-10">
               <div
                 aria-hidden
-                className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-10"
-                style={{ background: "white" }}
-              />
-              <div
-                aria-hidden
-                className="absolute -bottom-16 -left-8 h-48 w-48 rounded-full opacity-[0.06]"
-                style={{ background: "white" }}
+                className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"
               />
 
               <Reveal>
-                <h2 className="relative text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
+                <span className="relative inline-block rounded-full bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-widest text-brand-foreground">
+                  Telli koduleht
+                </span>
+                <h2 className="relative mt-4 text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
                   Valmis professionaalseks esmamuljeks?
                 </h2>
-                <p className="relative mt-4 text-sm leading-relaxed text-brand-foreground/80">
-                  Saatke lühike kirjeldus ettevõttest. Vastame tavaliselt ühe tööpäeva jooksul.
+                <p className="relative mt-4 text-sm leading-relaxed text-brand-foreground/85">
+                  Saatke lühike kirjeldus oma ettevõttest. Vastame ühe tööpäeva jooksul.
                 </p>
                 <ul className="relative mt-7 space-y-3">
                   {trustLines.map((x) => (

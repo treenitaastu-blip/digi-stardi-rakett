@@ -1,88 +1,116 @@
-import { LayoutTemplate, Smartphone, FileText, MapPin, Search, Mail } from "lucide-react";
+import { Smartphone, Search, Mail, FileText, LayoutTemplate, ArrowRight, Check } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
+import { Button } from "@/components/ui/button";
 
-const features = [
-  {
-    icon: LayoutTemplate,
-    title: "Selge struktuur",
-    body: "Klient saab esimese kümne sekundiga aru, millega tegelete ja miks valida just teid.",
-  },
-  {
-    icon: FileText,
-    title: "Professionaalne copywriting",
-    body: "Ettevõtte info muudetakse selgeks ja veenvaks tekstiks. Tekstid on paketi sees — eraldi copywriterit pole vaja.",
-  },
+const structurePoints = [
+  "Pakkumine ja pealkiri kohe ekraani ülaosas",
+  "Teenused ja hinnainfo arusaadavalt esitatud",
+  "Selge tegevuskutse, mis suunab kontakti võtma",
+];
+
+const smallFeatures = [
   {
     icon: Smartphone,
-    title: "Mobiilisõbralik disain",
-    body: "Enamik kliente tuleb telefonist. Leht töötab igas seadmes laitmatult.",
+    title: "Laitmatu mobiilivaade",
+    body: "Enamik külastajaid tuleb telefonist. Leht töötab veatult igas seadmes.",
+  },
+  {
+    icon: Search,
+    title: "Google'is leitav",
+    body: "SEO baasseadistus ja Search Console, et kliendid teid otsingust leiaksid.",
   },
   {
     icon: Mail,
     title: "Kontaktivorm",
-    body: "Päringud jõuavad otse teie postkasti. Lihtne kliendi jaoks, efektiivne teile.",
-  },
-  {
-    icon: MapPin,
-    title: "Google Maps",
-    body: "Asukoht on kohe näha. Oluline kohalikele teenusepakkujatele ja piirkondlikele ettevõtetele.",
-  },
-  {
-    icon: Search,
-    title: "SEO põhiseadistus",
-    body: "Metaandmed, pealkirjad ja Google otsingukonsool — alus, et leht hakkaks otsingus ilmuma.",
+    body: "Päringud jõuavad otse teie postkasti. Lihtne kliendile, kiire teile.",
   },
 ];
 
 export function SolutionSection() {
   return (
-    <section id="mida-saad" className="section-pad">
+    <section id="mida-saad" className="section-pad bg-secondary/30">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          eyebrow="Stardipakett"
-          title="Kõik, mida alustav ettevõte veebis vajab — ühes paketis"
-          subtitle="Fikseeritud hind 400 €. Varjatud tunnitasusid ega üllatusarveid pole."
+          eyebrow="Pakett"
+          title="Kõik, mida ettevõte veebis vajab, ühes paketis"
+          subtitle="Fikseeritud hind 400 €. Ei tunnitasusid ega üllatusarveid. Paketis on kõik allolev."
         />
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f, i) => (
-            <RevealItem key={f.title}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/35 hover:shadow-brand">
-                <div className="h-0.5 w-full bg-gradient-to-r from-brand/60 to-transparent transition-all duration-300 group-hover:from-brand" />
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/8 text-brand transition-all duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
-                    <f.icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="mt-5 text-base font-bold">{f.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                </div>
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-6">
+          {/* Featured: structure */}
+          <RevealItem className="md:col-span-3">
+            <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg md:p-7">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand">
+                <LayoutTemplate className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-lg font-bold">Selge, müügile suunatud struktuur</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Klient mõistab kümne sekundiga, millega tegelete ja miks valida just teid.
+              </p>
+              <ul className="mt-5 space-y-2.5">
+                {structurePoints.map((p) => (
+                  <li key={p} className="flex items-start gap-2.5 text-sm font-medium text-foreground/85">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
+                      <Check className="h-3 w-3 text-brand" />
+                    </span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </RevealItem>
+
+          {/* Featured: copywriting with real example */}
+          <RevealItem className="md:col-span-3">
+            <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg md:p-7">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand">
+                <FileText className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-lg font-bold">Müügitekstid valmis kirjutatud</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Saadate ettevõtte info, meie kirjutame veenvad tekstid. Eraldi tekstikirjutajat pole
+                vaja.
+              </p>
+              <div className="mt-5 rounded-xl border border-border bg-secondary/40 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand">
+                  Näide valmistekstist
+                </p>
+                <p className="mt-2 font-display text-base font-bold leading-snug">
+                  Usaldusväärne torutööteenus Tallinnas
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  Kiire väljakutse, aus hind ja garantii igale tööle.
+                </p>
               </div>
+            </article>
+          </RevealItem>
+
+          {/* Small tiles */}
+          {smallFeatures.map((f) => (
+            <RevealItem key={f.title} className="md:col-span-2">
+              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-soft-lg">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+                  <f.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-base font-bold">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              </article>
             </RevealItem>
           ))}
         </RevealGroup>
 
-        {/* Image strip */}
-        <Reveal className="mt-14">
-          <div className="overflow-hidden rounded-2xl border border-border shadow-soft">
-            <div className="relative h-64 md:h-80">
-              <img
-                src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1400&q=85&auto=format&fit=crop"
-                alt="Professionaalne koduleht arvutis"
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-12">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">Tulemus</p>
-                <h3 className="mt-2 max-w-sm text-balance text-2xl font-extrabold leading-tight md:text-3xl">
-                  Leitav. Usaldusväärne. Professionaalne.
-                </h3>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                  Kui keegi teie ettevõtet otsib, leiab ta vastuse — mitte tühja lehte ega vananenud
-                  profiili.
-                </p>
-              </div>
-            </div>
+        {/* Closing line */}
+        <Reveal className="mt-6">
+          <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-brand/25 bg-card p-6 shadow-soft sm:flex-row">
+            <p className="text-center text-sm font-medium sm:text-left">
+              Google Maps, domeeni- ja hostinguabi ning kuni kaks parandusringi. Kõik kaasas.
+            </p>
+            <Button asChild variant="hero" className="shrink-0 rounded-xl">
+              <a href="#hind">
+                Vaata hinda <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </Reveal>
       </div>

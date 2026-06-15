@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Logo } from "./Logo";
 
 const links = [
-  { href: "#mida-saad", label: "Stardipakett" },
-  { href: "#tood", label: "Portfoolio" },
-  { href: "#hind", label: "Hind" },
+  { href: "#mida-saad", label: "Pakett" },
+  { href: "#tood", label: "Tööd" },
   { href: "#protsess", label: "Protsess" },
+  { href: "#hind", label: "Hind" },
   { href: "#kkk", label: "KKK" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -26,18 +30,17 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent",
+        scrolled
+          ? "border-b border-border/70 bg-background/80 backdrop-blur-xl"
+          : "bg-transparent",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" className="flex items-center gap-2.5 font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-sm font-extrabold text-brand-foreground">
-            DS
-          </span>
-          <span className="hidden sm:inline text-[0.92rem]">Digitaalne Stardipakett</span>
+        <a href="#top" aria-label="Digitaalne Stardipakett" className="shrink-0">
+          <Logo />
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
@@ -50,35 +53,46 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="hero" size="default" className="hidden rounded-xl md:inline-flex">
-            <a href="#kontakt">Küsi pakkumist</a>
+          <Button
+            asChild
+            variant="hero"
+            size="default"
+            className="hidden rounded-xl md:inline-flex"
+          >
+            <a href="#kontakt">Telli koduleht</a>
           </Button>
           <button
             aria-label="Menüü"
             onClick={() => setOpen((o) => !o)}
-            className="grid h-9 w-9 place-items-center rounded-md border border-border md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-lg border border-border md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
+      {/* Scroll progress bar */}
+      <motion.div
+        className="bg-brand-gradient absolute bottom-0 left-0 h-0.5 w-full origin-left"
+        style={{ scaleX: progress, opacity: scrolled ? 1 : 0 }}
+      />
+
       {open && (
-        <div className="border-t border-border bg-background px-5 py-4 md:hidden">
+        <div className="border-t border-border bg-background/95 px-5 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
+                className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
               >
                 {l.label}
               </a>
             ))}
             <Button asChild variant="hero" className="mt-2 rounded-xl">
               <a href="#kontakt" onClick={() => setOpen(false)}>
-                Küsi pakkumist
+                Telli koduleht
               </a>
             </Button>
           </div>

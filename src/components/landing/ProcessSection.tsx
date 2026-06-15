@@ -3,56 +3,62 @@ import { SectionHeading } from "./SectionHeading";
 
 const steps = [
   {
-    title: "Briefi täitmine",
-    body: "Ettevõtte nimi, teenused, kontakt, piirkond ja olemasolevad materjalid.",
+    title: "Tellimisankeet",
+    body: "Saadate ettevõtte info: nimi, teenused, kontakt ja piirkond.",
   },
   {
-    title: "Struktuur ja sisu",
-    body: "Lehe ülesehitus vastab küsimusele: mida klient peab nägema, et usaldada ja kontakteeruda?",
+    title: "Struktuur ja tekstid",
+    body: "Paneme paika lehe ülesehituse ja kirjutame müügitekstid.",
   },
   {
-    title: "Esimene versioon",
-    body: "Valmib täielik esiversioon — disain, tekstid ja kõik paketi komponendid.",
+    title: "Disain ja esiversioon",
+    body: "Mõne tööpäevaga valmib täielik esiversioon koos disainiga.",
   },
   {
-    title: "Kohendused",
-    body: "Kuni kaks parandusringi on paketi hinnas.",
+    title: "Teie tagasiside",
+    body: "Vaatate lehe üle ja annate märku, mida soovite muuta.",
+  },
+  {
+    title: "Parandused",
+    body: "Teeme soovitud muudatused. Kuni kaks ringi on hinna sees.",
   },
   {
     title: "Avaldamine",
-    body: "Leht on live. Link on valmis klientidele, Google'ile ja reklaamidele.",
+    body: "Leht läheb töösse. Link on valmis klientidele ja reklaamile.",
   },
 ];
 
 export function ProcessSection() {
   return (
-    <section id="protsess" className="section-pad bg-secondary/40">
-      <div className="mx-auto max-w-2xl px-5">
+    <section id="protsess" className="section-pad">
+      <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Protsess"
-          title="Viis sammu tellimusest valmis leheni"
+          title="Tellimusest valmis leheni kuue sammuga"
+          subtitle="Lihtne ja kiire töövoog ilma pikkade koosolekute ja bürokraatiata."
         />
-        <div className="relative mt-14 space-y-0">
-          {/* Vertical line */}
-          <div className="absolute left-[19px] top-6 bottom-6 w-px bg-border" />
 
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, i) => (
             <motion.div
               key={s.title}
-              initial={{ opacity: 0, x: -18 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex gap-6 pb-10 last:pb-0"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-soft-lg"
             >
-              {/* Step bubble */}
-              <div className="relative z-10 mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-brand bg-background">
-                <span className="text-sm font-bold text-brand">{i + 1}</span>
-              </div>
-              <div className="flex-1 pb-2 pt-1.5">
-                <h3 className="text-base font-semibold">{s.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              </div>
+              <span
+                aria-hidden
+                className="absolute -right-2 -top-3 font-display text-7xl font-bold text-brand/[0.07] transition-colors duration-300 group-hover:text-brand/[0.12]"
+              >
+                {i + 1}
+              </span>
+              <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-brand/10 font-display text-base font-bold text-brand">
+                {i + 1}
+              </span>
+              <h3 className="relative mt-5 text-base font-bold">{s.title}</h3>
+              <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
             </motion.div>
           ))}
         </div>

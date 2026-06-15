@@ -24,7 +24,7 @@ export function StickyCta() {
           style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
         >
           <Button asChild variant="hero" size="xl" className="w-full">
-            <a href="#kontakt">Küsi pakkumist</a>
+            <a href="#kontakt">Telli koduleht</a>
           </Button>
         </motion.div>
       )}

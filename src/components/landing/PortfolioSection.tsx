@@ -1,6 +1,14 @@
-import { ExternalLink } from "lucide-react";
+import {
+  ShoppingCart,
+  HeartPulse,
+  AppWindow,
+  HardHat,
+  ExternalLink,
+  ArrowRight,
+} from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
-import { RevealGroup, RevealItem } from "./Reveal";
+import { RevealGroup, RevealItem, Reveal } from "./Reveal";
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
@@ -8,9 +16,9 @@ const projects = [
     domain: "carrypeace.com",
     url: "https://carrypeace.com",
     category: "E-pood",
-    description: "Rahvusvaheline e-pood tracking card tootele.",
-    proof: "Tootelehe usaldus, reklaamidele sobiv landing page ja SEO-põhine sisu.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&auto=format&fit=crop",
+    icon: ShoppingCart,
+    description: "Rahvusvaheline e-pood ühele tootele.",
+    proof: "Usaldust loov tooteleht, reklaamiks sobiv maandumisleht ja SEO-le ehitatud sisu.",
     accentColor: "oklch(0.48 0.2 262)",
     accentBg: "oklch(0.96 0.025 262)",
   },
@@ -18,10 +26,10 @@ const projects = [
     name: "Treenitaastu.ee",
     domain: "treenitaastu.ee",
     url: "https://treenitaastu.ee",
-    category: "Tervise teenus",
+    category: "Terviseteenus",
+    icon: HeartPulse,
     description: "Tervise- ja treeningteenuse koduleht.",
-    proof: "Usalduslik teenusepresentatsioon, selgitav copywriting ja tervisevaldkonna professionaalne esindus.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80&auto=format&fit=crop",
+    proof: "Selge teenuse tutvustus, usaldust loovad tekstid ja professionaalne esmamulje.",
     accentColor: "oklch(0.45 0.18 160)",
     accentBg: "oklch(0.96 0.025 160)",
   },
@@ -30,9 +38,9 @@ const projects = [
     domain: "treenitaastu.app",
     url: "https://treenitaastu.app",
     category: "Veebirakendus",
-    description: "Terviklik veebirakendus lõppkasutajatele.",
-    proof: "Kasutajakontod, programmiloogika ja terviklik app-kogemus.",
-    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80&auto=format&fit=crop",
+    icon: AppWindow,
+    description: "Terviklik veebirakendus kasutajatele.",
+    proof: "Kasutajakontod, treeningloogika ja sujuv kasutuskogemus.",
     accentColor: "oklch(0.48 0.2 280)",
     accentBg: "oklch(0.96 0.025 280)",
   },
@@ -40,23 +48,12 @@ const projects = [
     name: "Centivo.ee",
     domain: "centivo.ee",
     url: "https://centivo.ee",
-    category: "Ehitusettevõte",
-    description: "Ehitus- ja siseviimistlusettevõtte veebileht.",
-    proof: "Teenuste selge esitlus, kohaliku ettevõtte struktuur ja päringule suunatud disain.",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop",
+    category: "Ehitus",
+    icon: HardHat,
+    description: "Ehitus- ja siseviimistlusettevõtte leht.",
+    proof: "Teenuste selge esitlus ja päringule suunatud ülesehitus.",
     accentColor: "oklch(0.48 0.15 55)",
     accentBg: "oklch(0.96 0.025 55)",
-  },
-  {
-    name: "Torutöömees.ee",
-    domain: "torutöömees.ee",
-    url: "https://torutöömees.ee",
-    category: "Kohalik teenus",
-    description: "Kohaliku torutöö teenuse veebileht.",
-    proof: "Kiirelt arusaadav teenuseleht, kontaktile suunatud ülesehitus ja kohaliku ettevõtte usaldus.",
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=80&auto=format&fit=crop",
-    accentColor: "oklch(0.45 0.18 210)",
-    accentBg: "oklch(0.96 0.025 210)",
   },
 ];
 
@@ -65,12 +62,12 @@ export function PortfolioSection() {
     <section id="tood" className="section-pad bg-secondary/30">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          eyebrow="Portfoolio"
-          title="Tööd, mis räägivad enda eest"
-          subtitle="Live-projektid erinevates valdkondades — mitte disainiprototüübid."
+          eyebrow="Tööd"
+          title="Projektid, mis on päriselt töös"
+          subtitle="Avaldatud lehed erinevates valdkondades, mitte näidismaketid."
         />
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((p) => (
             <RevealItem key={p.name}>
               <a
@@ -87,53 +84,71 @@ export function PortfolioSection() {
                   <div className="ml-2 flex h-4 flex-1 items-center rounded-sm bg-background/70 px-2">
                     <span className="text-[9px] text-muted-foreground/55">{p.domain}</span>
                   </div>
+                  <ExternalLink className="h-3 w-3 text-muted-foreground/40 transition-colors group-hover:text-brand" />
                 </div>
 
-                {/* Screenshot */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="h-44 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
+                {/* Icon panel */}
+                <div
+                  className="relative flex items-center gap-4 px-6 py-7"
+                  style={{ background: p.accentBg }}
+                >
                   <span
-                    className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold"
-                    style={{ background: p.accentBg, color: p.accentColor }}
+                    className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-background/70 shadow-soft transition-transform duration-300 group-hover:scale-110"
+                    style={{ color: p.accentColor }}
+                  >
+                    <p.icon className="h-7 w-7" />
+                  </span>
+                  <span
+                    className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide"
+                    style={{ background: "var(--background)", color: p.accentColor }}
                   >
                     {p.category}
                   </span>
-                  <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/8">
-                    <div className="flex items-center gap-1.5 rounded-full bg-background/90 px-3.5 py-2 text-xs font-semibold opacity-0 shadow-soft backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                      <ExternalLink className="h-3.5 w-3.5" />
-                      Vaata lehte
-                    </div>
-                  </div>
                 </div>
 
                 {/* Body */}
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-bold leading-snug transition-colors duration-200 group-hover:text-brand">
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-lg font-bold leading-snug transition-colors duration-200 group-hover:text-brand">
                     {p.name}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.description}</p>
 
-                  <div
-                    className="mt-4 rounded-xl p-3.5"
-                    style={{ background: p.accentBg }}
-                  >
+                  <div className="mt-4 rounded-xl p-3.5" style={{ background: p.accentBg }}>
                     <p
                       className="mb-1 text-[10px] font-bold uppercase tracking-widest"
                       style={{ color: p.accentColor }}
                     >
                       Mida see näitab
                     </p>
-                    <p className="text-xs leading-relaxed text-foreground/72">{p.proof}</p>
+                    <p className="text-xs leading-relaxed text-foreground/75">{p.proof}</p>
                   </div>
                 </div>
               </a>
             </RevealItem>
           ))}
         </RevealGroup>
+
+        {/* CTA band */}
+        <Reveal className="mt-6">
+          <div className="bg-brand-gradient relative flex flex-col items-center justify-between gap-4 overflow-hidden rounded-2xl p-6 shadow-glow sm:flex-row md:p-8">
+            <div
+              aria-hidden
+              className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"
+            />
+            <p className="relative text-balance text-center text-lg font-bold text-brand-foreground sm:text-left">
+              Teie ettevõte võiks olla järgmine projekt.
+            </p>
+            <Button
+              asChild
+              size="xl"
+              className="relative shrink-0 rounded-xl bg-white font-semibold text-brand hover:bg-white/90"
+            >
+              <a href="#kontakt">
+                Telli koduleht <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
