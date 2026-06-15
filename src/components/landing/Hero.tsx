@@ -3,16 +3,16 @@ import { ArrowRight, CheckCircle2, Clock, Search, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const included = [
-  "Selge struktuur ja professionaalne copywriting",
-  "Mobiilisõbralik disain",
-  "Kontaktivorm, Google Maps, teenuste tutvustus",
-  "Basic SEO — Google otsingukonsooli seadistus",
+  "Selgitav struktuur ja professionaalsed tekstid",
+  "Täielikult mobiilisõbralik disain",
+  "Kontaktivorm, Google Maps ja teenuste tutvustus",
+  "SEO põhiseadistus ja Google otsingukonsool",
 ];
 
 const badges = [
-  { icon: Clock, text: "7 päevaga valmis" },
-  { icon: Search, text: "Google-sõbralik" },
-  { icon: Star, text: "400€ — kõik sees" },
+  { icon: Clock, text: "Tarne 7 tööpäeva" },
+  { icon: Search, text: "Google-valmis" },
+  { icon: Star, text: "400 € fikseeritud" },
 ];
 
 export function Hero() {
@@ -53,7 +53,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
             </span>
-            Uutele ja väikestele Eesti ettevõtetele
+            Eesti väikeettevõtete stardipakett
           </motion.div>
 
           <motion.h1
@@ -62,8 +62,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.07 }}
             className="mt-6 text-balance text-[2.5rem] font-extrabold leading-[1.07] tracking-tight md:text-[3.1rem] lg:text-[3.65rem]"
           >
-            7 päevaga professionaalne koduleht,{" "}
-            <span className="text-gradient-brand">mis teeb teie ettevõtte nähtavaks</span>
+            Koduleht, mis teeb teid{" "}
+            <span className="text-gradient-brand">leitavaks ja usaldusväärseks</span>
           </motion.h1>
 
           <motion.p
@@ -72,9 +72,8 @@ export function Hero() {
             transition={{ duration: 0.65, delay: 0.14 }}
             className="mt-6 max-w-[520px] text-[1.08rem] leading-relaxed text-muted-foreground"
           >
-            Teen teile ühe-lehe kodulehe, mis teeb teie ettevõtte Googles ja kliendi silmis
-            usaldusväärseks.{" "}
-            <span className="font-semibold text-foreground">400€, kõik vajalik sees.</span>
+            Ühe-lehe veebileht koos copywriting&apos;u, SEO ja kontaktivormiga. Valmis 7 tööpäevaga.{" "}
+            <span className="font-semibold text-foreground">Fikseeritud hind 400 €.</span>
           </motion.p>
 
           <motion.ul
@@ -103,7 +102,7 @@ export function Hero() {
               </a>
             </Button>
             <Button asChild variant="heroOutline" size="xl" className="rounded-xl font-semibold tracking-tight">
-              <a href="#tood">Vaata tehtud töid</a>
+              <a href="#tood">Vaata portfooliot</a>
             </Button>
           </motion.div>
 
@@ -246,7 +245,7 @@ function HeroVisual() {
         <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-emerald-50">
           <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
         </span>
-        7 päevaga valmis
+        7 tööpäevaga valmis
       </motion.div>
     </div>
   );

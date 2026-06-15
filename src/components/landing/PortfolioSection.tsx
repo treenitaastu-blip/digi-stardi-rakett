@@ -9,7 +9,7 @@ const projects = [
     url: "https://carrypeace.com",
     category: "E-pood",
     description: "Rahvusvaheline e-pood tracking card tootele.",
-    proof: "E-poe ülesehitus, tootelehe usaldus, reklaamidele sobiv landing page ja SEO sisu.",
+    proof: "Tootelehe usaldus, reklaamidele sobiv landing page ja SEO-põhine sisu.",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&auto=format&fit=crop",
     accentColor: "oklch(0.48 0.2 262)",
     accentBg: "oklch(0.96 0.025 262)",
@@ -20,7 +20,7 @@ const projects = [
     url: "https://treenitaastu.ee",
     category: "Tervise teenus",
     description: "Tervise- ja treeningteenuse koduleht.",
-    proof: "Usaldusliku teenuse müük, selgitav copywriting ja professionaalne tervisevaldkonna presentatsioon.",
+    proof: "Usalduslik teenusepresentatsioon, selgitav copywriting ja tervisevaldkonna professionaalne esindus.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80&auto=format&fit=crop",
     accentColor: "oklch(0.45 0.18 160)",
     accentBg: "oklch(0.96 0.025 160)",
@@ -30,8 +30,8 @@ const projects = [
     domain: "treenitaastu.app",
     url: "https://treenitaastu.app",
     category: "Veebirakendus",
-    description: "Veebirakendus kasutajatele.",
-    proof: "Tehniline arendus, kasutajakontod, programmiloogika ja app-kogemus.",
+    description: "Terviklik veebirakendus lõppkasutajatele.",
+    proof: "Kasutajakontod, programmiloogika ja terviklik app-kogemus.",
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80&auto=format&fit=crop",
     accentColor: "oklch(0.48 0.2 280)",
     accentBg: "oklch(0.96 0.025 280)",
@@ -42,7 +42,7 @@ const projects = [
     url: "https://centivo.ee",
     category: "Ehitusettevõte",
     description: "Ehitus- ja siseviimistlusettevõtte veebileht.",
-    proof: "Kohaliku teenuseäri struktuur, teenuste selge esitamine ja päringule suunatud disain.",
+    proof: "Teenuste selge esitlus, kohaliku ettevõtte struktuur ja päringule suunatud disain.",
     image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop",
     accentColor: "oklch(0.48 0.15 55)",
     accentBg: "oklch(0.96 0.025 55)",
@@ -53,7 +53,7 @@ const projects = [
     url: "https://torutöömees.ee",
     category: "Kohalik teenus",
     description: "Kohaliku torutöö teenuse veebileht.",
-    proof: "Kiirelt arusaadav teenuselehekülg, kontaktile suunatud disain ja kohaliku ettevõtte usaldus.",
+    proof: "Kiirelt arusaadav teenuseleht, kontaktile suunatud ülesehitus ja kohaliku ettevõtte usaldus.",
     image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=80&auto=format&fit=crop",
     accentColor: "oklch(0.45 0.18 210)",
     accentBg: "oklch(0.96 0.025 210)",
@@ -66,8 +66,8 @@ export function PortfolioSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Portfoolio"
-          title="Tehtud projektid"
-          subtitle="Reaalsed lehed, mitte näidised. Iga projekt näitab erinevat lahendust."
+          title="Tööd, mis räägivad enda eest"
+          subtitle="Live-projektid erinevates valdkondades — mitte disainiprototüübid."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -125,7 +125,7 @@ export function PortfolioSection() {
                       className="mb-1 text-[10px] font-bold uppercase tracking-widest"
                       style={{ color: p.accentColor }}
                     >
-                      Mida see tõestab
+                      Mida see näitab
                     </p>
                     <p className="text-xs leading-relaxed text-foreground/72">{p.proof}</p>
                   </div>

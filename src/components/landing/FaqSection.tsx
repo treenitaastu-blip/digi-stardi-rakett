@@ -9,32 +9,32 @@ import {
 
 const faqs = [
   {
-    q: "Kas domeen ja hosting on hinna sees?",
-    a: "Domeen ja hosting ei ole 400€ hinna sees, kuna need sõltuvad valitud lahendusest ja kestavad aastast aastasse. Aitan need vajadusel valida ja seadistada — see on tavaliselt 10–20€ aastas.",
+    q: "Mis domeeni ja hostinguga?",
+    a: "Need ei kuulu 400 € paketihinda, kuna kestavad aastast aastasse ja sõltuvad valitud lahendusest. Vajadusel aitame valida ja seadistada — tavaliselt 10–20 € aastas.",
   },
   {
-    q: "Kas tekstid kirjutad sina?",
-    a: "Jah. Sina annad mulle ettevõtte info — nimi, teenused, piirkond, kontakt. Mina vormin sellest veenva, selge ja kliendile arusaadava teksti. Pole vaja ise copywritingut teha.",
+    q: "Kas tekstid tulevad kaasa?",
+    a: "Jah. Copywriting on paketi osa. Piisab ettevõtte infost — nimi, teenused, piirkond, kontakt. Tekstid vormitakse selgeks ja veenvaks sisuks.",
   },
   {
-    q: "Mis täpselt 7 päeva sisse mahub?",
-    a: "7 tööpäeva tähendab: esimesel päeval saad ankeedi täita, 3–4 päevaga valmib esimene versioon, seejärel toimuvad parandusringid. Aeg sõltub ka sellest, kui kiiresti tagasiside tuleb.",
+    q: "Mida 7 päevaga täpselt tehakse?",
+    a: "Esimesel päeval täidetakse brief, 3–4 päevaga valmib esimene versioon, seejärel toimuvad parandusringid. Täpne graafik sõltub tagasiside kiirusest.",
   },
   {
-    q: "Kas mul peavad pildid olemas olema?",
-    a: "Ei pea. Saab kasutada kvaliteetseid stock-visuaale, mis sobivad sinu valdkonnaga. Kui soovid oma fotosid, võib neid hiljem lisada.",
+    q: "Kas peab oma fotosid pakkuma?",
+    a: "Ei. Kasutatakse kvaliteetseid stock-visuaale, mis sobivad valdkonnaga. Oma fotod saab hiljem lisada.",
   },
   {
-    q: "Kas leht ilmub Googles kohe?",
-    a: "Seadistatakse Google otsingukonsooli, meta-andmed ja põhiline SEO struktuur. Google indekseerib uue lehe tavaliselt mõne päeva kuni paari nädalaga. See on alus — edaspidi paraneb positsioon aja ja sisuloome kaudu.",
+    q: "Millal leht Google'is ilmub?",
+    a: "Seadistatakse Google Search Console, metaandmed ja SEO struktuur. Indekseerimine võtab tavaliselt mõne päeva kuni paar nädalat — see on alus, millele saab edasi ehitada.",
   },
   {
-    q: "Kas saan hiljem ise sisu muuta?",
-    a: "Jah, hilisemaid muudatusi ja uuendusi saab teha kokkuleppel eraldi.",
+    q: "Kas saab hiljem sisu muuta?",
+    a: "Jah. Hilisemad muudatused ja uuendused tehakse kokkuleppel eraldi.",
   },
   {
-    q: "Millele see teenus ei sobi?",
-    a: "See pakett on mõeldud ühelehelehistele tutvustuslehtedele. Kui vajad e-poodi, kasutajate sisselogimist, broneerimissüsteemi või mitut alamsaiti, siis on see juba mõnevõrra mahukam projekt.",
+    q: "Kellele see ei sobi?",
+    a: "Pakett on mõeldud ühe-lehelistele tutvustuslehtedele. E-pood, sisselogimine, broneerimissüsteem või mitu alamsaiti — need on juba eraldi, mahukamad projektid.",
   },
 ];
 
@@ -42,7 +42,7 @@ export function FaqSection() {
   return (
     <section id="kkk" className="section-pad bg-secondary/40">
       <div className="mx-auto max-w-3xl px-5">
-        <SectionHeading eyebrow="KKK" title="Korduma kippuvad küsimused" />
+        <SectionHeading eyebrow="KKK" title="Vastused enne tellimist" />
         <Reveal className="mt-12">
           <Accordion type="single" collapsible className="w-full space-y-3">
             {faqs.map((f, i) => (

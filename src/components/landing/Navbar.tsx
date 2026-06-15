@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#mida-saad", label: "Mis on sees" },
-  { href: "#tood", label: "Tööd" },
+  { href: "#mida-saad", label: "Stardipakett" },
+  { href: "#tood", label: "Portfoolio" },
   { href: "#hind", label: "Hind" },
   { href: "#protsess", label: "Protsess" },
   { href: "#kkk", label: "KKK" },

@@ -5,33 +5,33 @@ import { RevealGroup, RevealItem } from "./Reveal";
 const trust = [
   {
     icon: Hammer,
-    title: "Olen ise ehitanud päris projekte",
-    body: "Mitte ainult näidislehti. Olen ehitanud e-poode, teenuslehti ja veebirakendusi, mis on päriselt kasutuses.",
+    title: "Päris projektid, mitte mockup'id",
+    body: "Portfoolios on e-poed, teenuslehed ja rakendused, mis töötavad päriselt — mitte ainult disainiprototüübid.",
   },
   {
     icon: Target,
-    title: "Mõtlen müügile, mitte ainult välimusele",
-    body: "Lehe eesmärk on selgitada pakkumine ära ja viia inimene kontakti võtmiseni — mitte lihtsalt ilus olla.",
+    title: "Disain, mis viib kontaktini",
+    body: "Iga element on mõeldud ühele eesmärgile: selgitada pakkumist ja tuua päring.",
   },
   {
     icon: PenLine,
-    title: "Copywriting on hinna sees",
-    body: "Sa ei pea ise tekste kirjutama. Mina küsin info ja vormin sellest kliendile arusaadava sisu.",
+    title: "Tekstid valmis tehtud",
+    body: "Copywriting on paketis. Ettevõtte infost saab professionaalne sisu — eraldi copywriterit pole vaja.",
   },
   {
     icon: Eye,
-    title: "Avalikud hinnad",
-    body: "400€. Kõik sees. Sa näed kohe, millega arvestada — pole varjatud kulusid.",
+    title: "Hind enne, mitte pärast",
+    body: "400 € fikseeritud. Täpne summa enne tellimist — üllatusi pole.",
   },
   {
     icon: Zap,
-    title: "Kiire protsess",
-    body: "7 tööpäevaga on leht valmis. Alustavale ettevõttele sobiv lihtne töövoog ilma bürokraatiata.",
+    title: "Kiire tarne, lihtne protsess",
+    body: "Seitse tööpäeva tellimusest valmis leheni. Ilma pikkade koosolekute ja bürokraatiata.",
   },
   {
     icon: Wallet,
-    title: "Väikse ettevõtte hind",
-    body: "Korralik esmamulje ilma agentuuri hinnata. Mitte 2000€, vaid 400€.",
+    title: "Agentuuri kvaliteet, väikeettevõtte hind",
+    body: "Professionaalne esmamulje nelja-, mitte neljatuhande euro eest.",
   },
 ];
 
@@ -39,7 +39,11 @@ export function TrustSection() {
   return (
     <section id="usaldus" className="section-pad">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading eyebrow="Miks mina" title="Miks mind usaldada?" />
+        <SectionHeading
+          eyebrow="Miks meie"
+          title="Miks valida Digitaalne Stardipakett?"
+          subtitle="Professionaalne tulemus ilma agentuuri hinnata ja bürokraatiata."
+        />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {trust.map((t) => (
             <RevealItem key={t.title}>

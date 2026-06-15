@@ -77,14 +77,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Digi Stardi Rakett" },
-      { name: "description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
-      { property: "og:title", content: "Digi Stardi Rakett" },
-      { property: "og:description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
+      { title: "Digitaalne Stardipakett" },
+      {
+        name: "description",
+        content:
+          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
+      },
+      { property: "og:title", content: "Digitaalne Stardipakett" },
+      {
+        property: "og:description",
+        content:
+          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Digi Stardi Rakett" },
-      { name: "twitter:description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
+      { name: "twitter:title", content: "Digitaalne Stardipakett" },
+      {
+        name: "twitter:description",
+        content:
+          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
+      },
     ],
     links: [
       {
@@ -107,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="et">
       <head>
         <HeadContent />
       </head>

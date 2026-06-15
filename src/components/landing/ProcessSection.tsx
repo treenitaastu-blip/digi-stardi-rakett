@@ -3,24 +3,24 @@ import { SectionHeading } from "./SectionHeading";
 
 const steps = [
   {
-    title: "Saadad ettevõtte info",
-    body: "Ettevõtte nimi, teenused, kontaktid, piirkond ja olemasolevad materjalid.",
+    title: "Briefi täitmine",
+    body: "Ettevõtte nimi, teenused, kontakt, piirkond ja olemasolevad materjalid.",
   },
   {
-    title: "Panen struktuuri paika",
-    body: "Mõtlen läbi, mida klient peab nägema, et sind usaldada ja ühendust võtta.",
+    title: "Struktuur ja sisu",
+    body: "Lehe ülesehitus vastab küsimusele: mida klient peab nägema, et usaldada ja kontakteeruda?",
   },
   {
-    title: "Teen esimese versiooni",
-    body: "Valmib kodulehe ja valitud lisateenuste esimene versioon.",
+    title: "Esimene versioon",
+    body: "Valmib täielik esiversioon — disain, tekstid ja kõik paketi komponendid.",
   },
   {
-    title: "Teeme parandused",
-    body: "Hinna sees on kuni 2 parandusringi.",
+    title: "Kohendused",
+    body: "Kuni kaks parandusringi on paketi hinnas.",
   },
   {
-    title: "Paneme asja live'i",
-    body: "Sul on link, mida saab klientidele saata ja reklaamides kasutada.",
+    title: "Avaldamine",
+    body: "Leht on live. Link on valmis klientidele, Google'ile ja reklaamidele.",
   },
 ];
 
@@ -28,7 +28,10 @@ export function ProcessSection() {
   return (
     <section id="protsess" className="section-pad bg-secondary/40">
       <div className="mx-auto max-w-2xl px-5">
-        <SectionHeading eyebrow="Protsess" title="Kuidas töö käib" />
+        <SectionHeading
+          eyebrow="Protsess"
+          title="Viis sammu tellimusest valmis leheni"
+        />
         <div className="relative mt-14 space-y-0">
           {/* Vertical line */}
           <div className="absolute left-[19px] top-6 bottom-6 w-px bg-border" />

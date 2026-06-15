@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/select";
 
 const trustLines = [
-  "7 päevaga valmis",
-  "Avalikud hinnad — 400€ kõik sees",
-  "Tekstid kirjutan mina",
+  "Tarne 7 tööpäevaga",
+  "Fikseeritud hind 400 €",
+  "Copywriting ja SEO kaasas",
 ];
 
 export function ContactSection() {
@@ -29,7 +29,7 @@ export function ContactSection() {
     e.preventDefault();
     setSent(true);
     toast.success("Aitäh! Päring on saadetud.", {
-      description: "Võtan sinuga peagi ühendust.",
+      description: "Vastame tavaliselt ühe tööpäeva jooksul.",
     });
   };
 
@@ -60,11 +60,10 @@ export function ContactSection() {
 
               <Reveal>
                 <h2 className="relative text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
-                  Tahad, et sinu ettevõte näeks internetis usaldusväärne välja?
+                  Valmis professionaalseks esmamuljeks?
                 </h2>
                 <p className="relative mt-4 text-sm leading-relaxed text-brand-foreground/80">
-                  Saada oma ettevõtte nimi ja kirjuta lühidalt, millega tegeled. Vastan tavaliselt
-                  ühe tööpäeva jooksul.
+                  Saatke lühike kirjeldus ettevõttest. Vastame tavaliselt ühe tööpäeva jooksul.
                 </p>
                 <ul className="relative mt-7 space-y-3">
                   {trustLines.map((x) => (
@@ -93,8 +92,7 @@ export function ContactSection() {
                   </span>
                   <h3 className="mt-4 text-xl font-semibold">Aitäh! Päring on saadetud.</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Võtan sinuga peagi ühendust ja arutame, milline koduleht sinu ettevõttele
-                    kõige paremini sobib.
+                    Vastame peagi ja aitame valida teie ettevõttele sobiva lahenduse.
                   </p>
                   <Button variant="heroOutline" className="mt-6 rounded-xl" onClick={() => setSent(false)}>
                     Saada uus päring
@@ -111,31 +109,31 @@ export function ContactSection() {
                     <Field id="telefon" label="Telefon" type="tel" />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="teenus">Mis sind huvitab?</Label>
+                    <Label htmlFor="teenus">Mis teid huvitab?</Label>
                     <Select value={service} onValueChange={setService}>
                       <SelectTrigger id="teenus">
                         <SelectValue placeholder="Vali..." />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="koduleht">Koduleht (400€)</SelectItem>
-                        <SelectItem value="vaata">Tahan enne rohkem infot</SelectItem>
+                        <SelectItem value="koduleht">Koduleht (400 €)</SelectItem>
+                        <SelectItem value="vaata">Soovin enne rohkem infot</SelectItem>
                         <SelectItem value="eitea">Ei tea veel täpselt</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="sonum">Kirjelda oma ettevõtet lühidalt</Label>
+                    <Label htmlFor="sonum">Kirjeldage ettevõtet lühidalt</Label>
                     <Textarea
                       id="sonum"
                       rows={4}
-                      placeholder="Ettevõtte nimi, millega tegeled, piirkond..."
+                      placeholder="Näiteks: torutööd Tallinnas, 10 aastat kogemust..."
                     />
                   </div>
                   <Button type="submit" variant="hero" size="xl" className="w-full rounded-xl font-semibold">
                     Saada päring <Send className="h-4 w-4" />
                   </Button>
                   <p className="text-center text-xs text-muted-foreground">
-                    Vormi täitmine ei kohusta sind millekski.
+                    Vormi täitmine ei kohusta teid millegagi.
                   </p>
                 </form>
               )}

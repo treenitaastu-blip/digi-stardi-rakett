@@ -12,7 +12,7 @@ export function Footer() {
           </a>
 
           <p className="text-center text-sm text-muted-foreground">
-            Professionaalne koduleht 7 päevaga. 400€, kõik sees.
+            Digitaalne esmamulje väikeettevõttele. 7 päeva. 400 €.
           </p>
 
           <div className="flex flex-col items-center gap-3 md:items-end">

@@ -4,20 +4,20 @@ import { Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
 
 const included = [
-  "Üheleheline professionaalne koduleht",
-  "Selge struktuur ja teenuste tutvustus",
-  "Professionaalne copywriting — tekstid kirjutan mina",
-  "Mobiilisõbralik disain kõikidele ekraanidele",
-  "Kontaktivorm — päringud otse sinu e-mailile",
-  "Google Maps integratsioon",
-  "Basic SEO — meta andmed, pealkirjad, struktuur",
-  "Google otsingukonsooli seadistus",
-  "1–2 parandusringi",
+  "Professionaalne ühe-lehe koduleht",
+  "Teenuste tutvustus ja selge lehestruktuur",
+  "Copywriting — tekstid paketi sees",
+  "Täielikult responsiivne disain",
+  "Kontaktivorm otse teie e-mailile",
+  "Google Maps asukoha kuvamiseks",
+  "SEO metaandmed ja lehestruktuur",
+  "Google Search Console seadistus",
+  "Kuni kaks parandusringi",
 ];
 
 const guarantees = [
-  { icon: Clock, text: "Valmis 7 tööpäevaga" },
-  { icon: Shield, text: "1–2 parandusringi sees" },
+  { icon: Clock, text: "Tarne 7 tööpäeva" },
+  { icon: Shield, text: "Kuni 2 parandusringi paketis" },
   { icon: Check, text: "Domeen ja hosting eraldi" },
 ];
 
@@ -27,8 +27,8 @@ export function PricingSection() {
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
           eyebrow="Hind"
-          title="Läbipaistev hind. Üks pakett. Kõik sees."
-          subtitle="Sa ei pea ootama kolme müügikõnet, et teada saada, palju koduleht maksab."
+          title="400 €. Üks pakett. Null üllatusi."
+          subtitle="Hind on lehel — müügikõne pole vajalik."
         />
 
         <Reveal className="mt-14">
@@ -54,7 +54,7 @@ export function PricingSection() {
                   <span className="mb-2 text-2xl font-bold text-muted-foreground">€</span>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Ühekordne makse. Peidetud kulusid pole.
+                  Ühekordne makse. Lisakulusid pole.
                 </p>
 
                 <div className="mt-8 space-y-3">
@@ -82,7 +82,8 @@ export function PricingSection() {
 
                 <div className="bg-card p-8 md:p-10">
                   <p className="text-balance text-lg font-semibold leading-snug">
-                    "Eesmärk ei ole lubada garanteeritud kliente — vaid teha nii, et kui inimene teie ettevõtet otsib, leiab ta midagi korralikku."
+                    &ldquo;Garanteeritud kliente ei lubata. Lubatakse see, et kui keegi teid otsib,
+                    leiab ta korraliku esmamulje.&rdquo;
                   </p>
 
                   <div className="mt-5 flex flex-wrap gap-3">
@@ -99,11 +100,11 @@ export function PricingSection() {
 
                   <Button asChild variant="hero" size="xl" className="mt-7 w-full rounded-xl font-semibold">
                     <a href="#kontakt">
-                      Tahan kodulehe <ArrowRight className="h-4 w-4" />
+                      Alusta tellimusega <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
-                  <p className="mt-3 text-center text-xs text-muted-foreground">
-                    Vormi täitmine ei kohusta sind millekski.
+                  <p className="text-center text-xs text-muted-foreground">
+                    Vormi täitmine ei kohusta teid millegagi.
                   </p>
                 </div>
               </div>

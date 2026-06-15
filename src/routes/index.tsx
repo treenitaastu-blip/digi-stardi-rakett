@@ -16,17 +16,20 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Professionaalne koduleht 7 päevaga — 400€" },
+      { title: "Koduleht 7 päevaga — 400 € | Digitaalne Stardipakett" },
       {
         name: "description",
         content:
-          "Teen teile 7 päevaga professionaalse ühe-lehe kodulehe, mis teeb teie ettevõtte Googles ja kliendi silmis usaldusväärseks. 400€, kõik vajalik sees.",
+          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
       },
-      { property: "og:title", content: "Professionaalne koduleht 7 päevaga — 400€" },
+      {
+        property: "og:title",
+        content: "Koduleht 7 päevaga — 400 € | Digitaalne Stardipakett",
+      },
       {
         property: "og:description",
         content:
-          "Teen teile 7 päevaga professionaalse ühe-lehe kodulehe, mis teeb teie ettevõtte Googles ja kliendi silmis usaldusväärseks. 400€, kõik vajalik sees.",
+          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
       },
     ],
   }),

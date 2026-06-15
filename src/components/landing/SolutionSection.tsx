@@ -6,32 +6,32 @@ const features = [
   {
     icon: LayoutTemplate,
     title: "Selge struktuur",
-    body: "Leht on üles ehitatud nii, et klient saab kohe aru, millega sa tegeled ja miks sind valida.",
+    body: "Klient saab esimese kümne sekundiga aru, millega tegelete ja miks valida just teid.",
   },
   {
     icon: FileText,
     title: "Professionaalne copywriting",
-    body: "Sina annad info, mina kirjutan tekstid — selgelt, usaldusväärselt ja kliendile arusaadavalt.",
+    body: "Ettevõtte info muudetakse selgeks ja veenvaks tekstiks. Tekstid on paketi sees — eraldi copywriterit pole vaja.",
   },
   {
     icon: Smartphone,
     title: "Mobiilisõbralik disain",
-    body: "Enamik kliente vaatab lehte telefonist. Leht näeb kõikidel ekraanidel korrektne välja.",
+    body: "Enamik kliente tuleb telefonist. Leht töötab igas seadmes laitmatult.",
   },
   {
     icon: Mail,
     title: "Kontaktivorm",
-    body: "Päringute saatmine on lihtne. Kontaktivorm toimetab sõnumi otse sinu e-mailile.",
+    body: "Päringud jõuavad otse teie postkasti. Lihtne kliendi jaoks, efektiivne teile.",
   },
   {
     icon: MapPin,
     title: "Google Maps",
-    body: "Klient näeb koheselt, kus sa asud. Eriti oluline kohalikele teenusepakkujatele.",
+    body: "Asukoht on kohe näha. Oluline kohalikele teenusepakkujatele ja piirkondlikele ettevõtetele.",
   },
   {
     icon: Search,
-    title: "Basic SEO seadistus",
-    body: "Google otsingukonsooli ja metaandmete seadistus — et leht hakkaks otsingutulemustes ilmuma.",
+    title: "SEO põhiseadistus",
+    body: "Metaandmed, pealkirjad ja Google otsingukonsool — alus, et leht hakkaks otsingus ilmuma.",
   },
 ];
 
@@ -40,9 +40,9 @@ export function SolutionSection() {
     <section id="mida-saad" className="section-pad">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          eyebrow="Mis on sees"
-          title="400€ sees on kõik vajalik valmis tehtud"
-          subtitle="Ei mingeid varjatud kulusid. Koduleht koos kõige sellega, mida alustaval ettevõttel reaalselt vaja on."
+          eyebrow="Stardipakett"
+          title="Kõik, mida alustav ettevõte veebis vajab — ühes paketis"
+          subtitle="Fikseeritud hind 400 €. Varjatud tunnitasusid ega üllatusarveid pole."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -75,10 +75,11 @@ export function SolutionSection() {
               <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-12">
                 <p className="text-xs font-semibold uppercase tracking-widest text-brand">Tulemus</p>
                 <h3 className="mt-2 max-w-sm text-balance text-2xl font-extrabold leading-tight md:text-3xl">
-                  Nähtav, usaldusväärne, leitav.
+                  Leitav. Usaldusväärne. Professionaalne.
                 </h3>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                  Kui inimene teie ettevõtet otsib, leiab ta korraliku kodulehe — mitte ainult Facebooki lehe või pooliku vana veebilehe.
+                  Kui keegi teie ettevõtet otsib, leiab ta vastuse — mitte tühja lehte ega vananenud
+                  profiili.
                 </p>
               </div>
             </div>
