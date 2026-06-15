@@ -24,10 +24,16 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <span className="text-sm font-semibold uppercase tracking-wider text-brand">{eyebrow}</span>
+        <span className="inline-block rounded-full border border-brand/20 bg-brand/8 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand">
+          {eyebrow}
+        </span>
       )}
-      <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-lg text-muted-foreground">{subtitle}</p>}
+      <h2 className="mt-3 text-balance text-[1.9rem] font-extrabold tracking-tight leading-[1.12] md:text-[2.35rem]">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="mt-4 text-[1.05rem] leading-relaxed text-muted-foreground">{subtitle}</p>
+      )}
     </Reveal>
   );
 }

@@ -158,7 +158,11 @@
 }
 
 @utility section-pad {
-  padding-block: 5rem;
+  padding-block: 5.5rem;
+}
+
+@utility section-pad-sm {
+  padding-block: 4rem;
 }
 
 @utility shadow-soft {
@@ -173,11 +177,17 @@
 
 @utility text-gradient-brand {
   background: linear-gradient(
-    100deg,
+    105deg,
     var(--brand),
-    color-mix(in oklab, var(--brand) 65%, oklch(0.6 0.18 200))
+    color-mix(in oklab, var(--brand) 60%, oklch(0.6 0.18 200))
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+@utility shadow-soft-lg {
+  box-shadow:
+    0 2px 4px -1px color-mix(in oklab, var(--foreground) 6%, transparent),
+    0 20px 48px -16px color-mix(in oklab, var(--foreground) 18%, transparent);
 }

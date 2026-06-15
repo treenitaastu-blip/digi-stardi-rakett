@@ -1,22 +1,33 @@
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-border py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-center sm:flex-row sm:text-left">
-        <div className="flex items-center gap-2 font-semibold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-brand-foreground">
-            DS
-          </span>
-          Digitaalne Stardipakett
+    <footer className="border-t border-border bg-secondary/30 py-12">
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-4">
+          {/* Brand */}
+          <a href="#top" className="flex items-center gap-2.5 font-bold tracking-tight">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-sm font-extrabold text-brand-foreground">
+              DS
+            </span>
+            <span className="text-[0.95rem]">Digitaalne Stardipakett</span>
+          </a>
+
+          {/* Tagline */}
+          <p className="text-center text-sm text-muted-foreground">
+            Korralik esimene mulje ilma agentuuri hinnata.
+          </p>
+
+          {/* CTA + copyright */}
+          <div className="flex flex-col items-center gap-3 md:items-end">
+            <a
+              href="#kontakt"
+              className="text-sm font-semibold text-brand transition-colors hover:text-brand/80"
+            >
+              Küsi pakkumist →
+            </a>
+            <p className="text-xs text-muted-foreground">© {year} Digitaalne Stardipakett</p>
+          </div>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Korralik esimene mulje ilma agentuuri hinnata.
-        </p>
-        <a
-          href="#kontakt"
-          className="text-sm font-medium text-brand hover:underline"
-        >
-          Küsi pakkumist
-        </a>
       </div>
     </footer>
   );
