@@ -13,6 +13,7 @@ import {
   Tag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useQuiz } from "./QuizContext";
 
 const included = [
   "Müügitekstid valmis kirjutatud",
@@ -22,6 +23,7 @@ const included = [
 ];
 
 export function Hero() {
+  const { openQuiz } = useQuiz();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -102,10 +104,13 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.26 }}
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
-            <Button asChild variant="hero" size="xl" className="rounded-xl font-semibold tracking-tight">
-              <a href="#kontakt">
-                Telli koduleht <ArrowRight className="h-4 w-4" />
-              </a>
+            <Button
+              variant="hero"
+              size="xl"
+              onClick={openQuiz}
+              className="rounded-xl font-semibold tracking-tight"
+            >
+              Telli koduleht <ArrowRight className="h-4 w-4" />
             </Button>
             <Button
               asChild

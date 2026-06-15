@@ -8,12 +8,15 @@ import { SolutionSection } from "@/components/landing/SolutionSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
 import { PortfolioSection } from "@/components/landing/PortfolioSection";
 import { AudienceSection } from "@/components/landing/AudienceSection";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { PricingSection } from "@/components/landing/PricingSection";
 import { TrustSection } from "@/components/landing/TrustSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { ContactSection } from "@/components/landing/ContactSection";
 import { StickyCta } from "@/components/landing/StickyCta";
 import { Footer } from "@/components/landing/Footer";
+import { QuizProvider } from "@/components/landing/QuizContext";
+import { QuizModal } from "@/components/landing/QuizModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,24 +43,28 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <Hero />
-        <StatsBand />
-        <ProblemSection />
-        <SolutionSection />
-        <ProcessSection />
-        <PortfolioSection />
-        <AudienceSection />
-        <PricingSection />
-        <TrustSection />
-        <FaqSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <StickyCta />
-      <Toaster />
-    </div>
+    <QuizProvider>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main>
+          <Hero />
+          <StatsBand />
+          <ProblemSection />
+          <SolutionSection />
+          <ProcessSection />
+          <PortfolioSection />
+          <AudienceSection />
+          <TestimonialsSection />
+          <PricingSection />
+          <TrustSection />
+          <FaqSection />
+          <ContactSection />
+        </main>
+        <Footer />
+        <StickyCta />
+        <QuizModal />
+        <Toaster />
+      </div>
+    </QuizProvider>
   );
 }

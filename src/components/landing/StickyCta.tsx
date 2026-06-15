@@ -3,14 +3,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 export function StickyCta() {
-  const [show, setShow] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [contactVisible, setContactVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
+    const onScroll = () => setScrolled(window.scrollY > 600);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const section = document.getElementById("kontakt");
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setContactVisible(entry.isIntersecting),
+      { rootMargin: "0px 0px -20% 0px" },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const show = scrolled && !contactVisible;
 
   return (
     <AnimatePresence>
