@@ -1,6 +1,17 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { ArrowRight, Check, Search, Star, Code2, Braces, Terminal } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Search,
+  Star,
+  Code2,
+  Braces,
+  Terminal,
+  ShieldCheck,
+  Zap,
+  Tag,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const included = [
@@ -179,36 +190,60 @@ function HeroVisual() {
             </div>
           </div>
 
-          {/* Website preview (pure CSS, no stock photo) */}
+          {/* Website preview — sample landing hero with real copy */}
           <div className="relative overflow-hidden rounded-xl border border-border">
-            <div className="bg-brand-gradient relative px-5 py-7">
+            <div className="bg-brand-gradient relative px-5 py-6">
               <div
                 aria-hidden
                 className="bg-dots pointer-events-none absolute inset-0 opacity-[0.15]"
               />
+              {/* Sample site nav */}
               <div className="relative flex items-center justify-between">
-                <div className="h-2.5 w-16 rounded-full bg-white/85" />
-                <div className="flex gap-2">
-                  {[0, 1, 2].map((i) => (
-                    <div key={i} className="h-1.5 w-7 rounded-full bg-white/50" />
-                  ))}
+                <span className="font-display text-[11px] font-bold text-white">Mardi Ehitus</span>
+                <div className="flex items-center gap-2.5 text-[8px] font-medium text-white/75">
+                  <span>Teenused</span>
+                  <span>Tööd</span>
+                  <span>Kontakt</span>
                 </div>
               </div>
-              <div className="relative mt-6">
-                <div className="h-4 w-4/5 rounded bg-white/90" />
-                <div className="mt-2 h-2.5 w-3/5 rounded-full bg-white/55" />
-                <div className="mt-4 flex gap-2">
-                  <div className="h-7 w-28 rounded-lg bg-white" />
-                  <div className="h-7 w-20 rounded-lg border border-white/50" />
+              {/* Sample hero copy */}
+              <div className="relative mt-5">
+                <p className="font-display text-[15px] font-bold leading-tight text-white">
+                  Ehitus ja remont,
+                  <br />
+                  mis kestab.
+                </p>
+                <p className="mt-1.5 text-[9px] leading-snug text-white/80">
+                  Tallinn ja Harjumaa. 12 aastat kogemust.
+                </p>
+                <div className="mt-3 flex items-center gap-2.5">
+                  <span className="rounded-md bg-white px-2.5 py-1 text-[8px] font-bold text-brand">
+                    Küsi pakkumist
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <div className="flex">
+                      {[0, 1, 2, 3, 4].map((i) => (
+                        <Star key={i} className="h-2 w-2 fill-amber-300 text-amber-300" />
+                      ))}
+                    </div>
+                    <span className="text-[8px] font-semibold text-white/85">4.9 · 40+ klienti</span>
+                  </div>
                 </div>
               </div>
             </div>
+            {/* Sample feature row */}
             <div className="grid grid-cols-3 gap-2 bg-card p-3">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="space-y-1.5 rounded-lg border border-border bg-background p-2.5">
-                  <div className="h-4 w-4 rounded-md bg-brand/15" />
-                  <div className="h-1.5 w-full rounded-full bg-foreground/15" />
-                  <div className="h-1.5 w-2/3 rounded-full bg-foreground/10" />
+              {[
+                { t: "Garantii", s: "igale tööle", Icon: ShieldCheck },
+                { t: "Kiire algus", s: "1 nädalaga", Icon: Zap },
+                { t: "Tasuta", s: "hinnapakkumine", Icon: Tag },
+              ].map((c) => (
+                <div key={c.t} className="rounded-lg border border-border bg-background p-2">
+                  <span className="grid h-3.5 w-3.5 place-items-center rounded-md bg-brand/15 text-brand">
+                    <c.Icon className="h-2.5 w-2.5" />
+                  </span>
+                  <p className="mt-1.5 text-[9px] font-bold leading-none text-foreground">{c.t}</p>
+                  <p className="mt-1 text-[8px] leading-none text-muted-foreground">{c.s}</p>
                 </div>
               ))}
             </div>
@@ -222,11 +257,16 @@ function HeroVisual() {
           transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border border-border bg-card shadow-soft-lg sm:-right-6 sm:w-28"
         >
-          <div className="bg-brand-gradient h-14 w-full" />
+          <div className="bg-brand-gradient px-2 py-2.5">
+            <p className="font-display text-[7px] font-bold text-white">Mardi Ehitus</p>
+            <p className="mt-1 text-[8px] font-bold leading-tight text-white">Ehitus ja remont</p>
+          </div>
           <div className="space-y-1.5 p-2">
-            <div className="h-1.5 w-3/4 rounded-full bg-foreground/45" />
-            <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/30" />
-            <div className="bg-brand-gradient h-5 w-full rounded-md" />
+            <div className="h-1.5 w-3/4 rounded-full bg-foreground/30" />
+            <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/25" />
+            <div className="bg-brand-gradient grid h-5 w-full place-items-center rounded-md">
+              <span className="text-[6px] font-bold text-white">Küsi pakkumist</span>
+            </div>
           </div>
         </motion.div>
       </motion.div>
@@ -240,7 +280,7 @@ function HeroVisual() {
           x: { duration: 0.5, delay: 0.7 },
           y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.7 },
         }}
-        className="absolute -left-3 top-10 hidden max-w-[185px] rounded-xl border border-border bg-card/95 p-3 shadow-soft-lg backdrop-blur-sm sm:-left-6 sm:flex sm:flex-col sm:gap-1.5"
+        className="absolute top-10 hidden max-w-[170px] rounded-xl border border-border bg-card/95 p-3 shadow-soft-lg backdrop-blur-sm lg:-left-10 lg:flex lg:flex-col lg:gap-1.5"
       >
         <span className="text-[9px] font-semibold uppercase tracking-widest text-brand">
           Google otsing
