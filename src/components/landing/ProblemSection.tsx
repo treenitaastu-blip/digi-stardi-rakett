@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SearchX, ShieldAlert, MousePointerX, ArrowRight, CheckCircle2 } from "lucide-react";
+import { SearchX, ShieldAlert, PointerOff, ArrowRight, CheckCircle2 } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 
@@ -15,7 +15,7 @@ const problems = [
     body: "Sotsiaalmeedias olemine on hea, aga koduleht annab ettevõttele usaldusväärsuse ja professionaalse mulje.",
   },
   {
-    icon: MousePointerX,
+    icon: PointerOff,
     title: "Vana või poolik leht kahjustab mainet",
     body: "Aegunud, kiiruga tehtud või tühi koduleht ütleb kliendile: see firma ei ole päriselt tegutsenud.",
   },
