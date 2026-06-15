@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { reportError } from "../lib/error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -38,7 +38,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    reportError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
@@ -77,18 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "Digi Stardi Rakett" },
       { name: "description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
+      { property: "og:title", content: "Digi Stardi Rakett" },
       { property: "og:description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Digi Stardi Rakett" },
       { name: "twitter:description", content: "Digitaalne Start offers Estonian businesses a professional online presence, including websites, social media, and marketing." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/677aa42f-d9cd-4e21-ba52-923f7a7bf732/id-preview-fae3933c--723c24a9-fe01-400e-a432-6f0fbcae7f68.lovable.app-1781520327434.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/677aa42f-d9cd-4e21-ba52-923f7a7bf732/id-preview-fae3933c--723c24a9-fe01-400e-a432-6f0fbcae7f68.lovable.app-1781520327434.png" },
     ],
     links: [
       {
