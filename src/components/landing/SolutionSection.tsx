@@ -1,84 +1,89 @@
-import { Globe, Share2, Video, Megaphone } from "lucide-react";
+import { LayoutTemplate, Smartphone, FileText, MapPin, Search, Mail } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
-import { RevealGroup, RevealItem } from "./Reveal";
+import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 
 const features = [
   {
-    icon: Globe,
-    title: "Koduleht",
-    body: "Selge struktuur, teenuste tutvustus, kontakt ja mobiilisõbralik disain.",
-    price: "alates 300€",
-    hue: 262,
+    icon: LayoutTemplate,
+    title: "Selge struktuur",
+    body: "Leht on üles ehitatud nii, et klient saab kohe aru, millega sa tegeled ja miks sind valida.",
   },
   {
-    icon: Share2,
-    title: "Sotsiaalmeedia",
-    body: "Kontod, profiilipildid, kaanepildid ja esimesed postitused, et ettevõte ei näeks tühi välja.",
-    price: "alates 50€",
-    hue: 220,
+    icon: FileText,
+    title: "Professionaalne copywriting",
+    body: "Sina annad info, mina kirjutan tekstid — selgelt, usaldusväärselt ja kliendile arusaadavalt.",
   },
   {
-    icon: Video,
-    title: "Turundusvideod",
-    body: "Lühikesed videod stock footage'i, visuaalide ja voiceoveriga. Soovi korral tulen kohale ja filmin originaalkaadrid.",
-    price: "30€ – 90€ / video",
-    hue: 280,
+    icon: Smartphone,
+    title: "Mobiilisõbralik disain",
+    body: "Enamik kliente vaatab lehte telefonist. Leht näeb kõikidel ekraanidel korrektne välja.",
   },
   {
-    icon: Megaphone,
-    title: "Reklaamid",
-    body: "Reklaamikonto seadistus, esimesed loovmaterjalid ja kampaania käivitamine.",
-    price: "100€",
-    hue: 200,
+    icon: Mail,
+    title: "Kontaktivorm",
+    body: "Päringute saatmine on lihtne. Kontaktivorm toimetab sõnumi otse sinu e-mailile.",
+  },
+  {
+    icon: MapPin,
+    title: "Google Maps",
+    body: "Klient näeb koheselt, kus sa asud. Eriti oluline kohalikele teenusepakkujatele.",
+  },
+  {
+    icon: Search,
+    title: "Basic SEO seadistus",
+    body: "Google otsingukonsooli ja metaandmete seadistus — et leht hakkaks otsingutulemustes ilmuma.",
   },
 ];
 
 export function SolutionSection() {
   return (
-    <section id="lahendus" className="section-pad">
+    <section id="mida-saad" className="section-pad">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          eyebrow="Lahendus"
-          title="Teen sinu ettevõttele esimese professionaalse digitaalse kohalolu."
+          eyebrow="Mis on sees"
+          title="400€ sees on kõik vajalik valmis tehtud"
+          subtitle="Ei mingeid varjatud kulusid. Koduleht koos kõige sellega, mida alustaval ettevõttel reaalselt vaja on."
         />
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((f) => (
+
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => (
             <RevealItem key={f.title}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-brand">
-                {/* Top accent stripe */}
-                <div
-                  className="h-1 w-full transition-all duration-300 group-hover:h-1.5"
-                  style={{
-                    background: `linear-gradient(90deg, oklch(0.52 0.2 ${f.hue}), oklch(0.62 0.18 ${(f.hue + 30) % 360}))`,
-                  }}
-                />
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/35 hover:shadow-brand">
+                <div className="h-0.5 w-full bg-gradient-to-r from-brand/60 to-transparent transition-all duration-300 group-hover:from-brand" />
                 <div className="flex flex-1 flex-col p-6">
-                  <span
-                    className="grid h-12 w-12 place-items-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      background: `oklch(0.96 0.03 ${f.hue})`,
-                      color: `oklch(0.48 0.2 ${f.hue})`,
-                    }}
-                  >
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/8 text-brand transition-all duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
                     <f.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-5 text-[1.05rem] font-bold">{f.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {f.body}
-                  </p>
-                  <div className="mt-5 border-t border-border pt-4">
-                    <span
-                      className="text-xs font-semibold"
-                      style={{ color: `oklch(0.5 0.18 ${f.hue})` }}
-                    >
-                      {f.price}
-                    </span>
-                  </div>
+                  <h3 className="mt-5 text-base font-bold">{f.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                 </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
+        {/* Image strip */}
+        <Reveal className="mt-14">
+          <div className="overflow-hidden rounded-2xl border border-border shadow-soft">
+            <div className="relative h-64 md:h-80">
+              <img
+                src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1400&q=85&auto=format&fit=crop"
+                alt="Professionaalne koduleht arvutis"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-12">
+                <p className="text-xs font-semibold uppercase tracking-widest text-brand">Tulemus</p>
+                <h3 className="mt-2 max-w-sm text-balance text-2xl font-extrabold leading-tight md:text-3xl">
+                  Nähtav, usaldusväärne, leitav.
+                </h3>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  Kui inimene teie ettevõtet otsib, leiab ta korraliku kodulehe — mitte ainult Facebooki lehe või pooliku vana veebilehe.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

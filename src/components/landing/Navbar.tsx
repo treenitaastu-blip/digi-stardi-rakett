@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#lahendus", label: "Teenused" },
+  { href: "#mida-saad", label: "Mis on sees" },
   { href: "#tood", label: "Tööd" },
-  { href: "#hinnad", label: "Hinnad" },
+  { href: "#hind", label: "Hind" },
   { href: "#protsess", label: "Protsess" },
   { href: "#kkk", label: "KKK" },
 ];
@@ -26,15 +26,15 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "border-b border-border bg-background/80 backdrop-blur-md" : "bg-transparent",
+        scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-brand-foreground">
+        <a href="#top" className="flex items-center gap-2.5 font-bold tracking-tight">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand text-sm font-extrabold text-brand-foreground">
             DS
           </span>
-          <span className="hidden sm:inline">Digitaalne Stardipakett</span>
+          <span className="hidden sm:inline text-[0.92rem]">Digitaalne Stardipakett</span>
         </a>
 
         <div className="hidden items-center gap-7 md:flex">
@@ -50,7 +50,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="hero" size="default" className="hidden md:inline-flex">
+          <Button asChild variant="hero" size="default" className="hidden rounded-xl md:inline-flex">
             <a href="#kontakt">Küsi pakkumist</a>
           </Button>
           <button
@@ -76,7 +76,7 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Button asChild variant="hero" className="mt-2">
+            <Button asChild variant="hero" className="mt-2 rounded-xl">
               <a href="#kontakt" onClick={() => setOpen(false)}>
                 Küsi pakkumist
               </a>

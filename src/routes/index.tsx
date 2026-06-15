@@ -6,9 +6,7 @@ import { ProblemSection } from "@/components/landing/ProblemSection";
 import { SolutionSection } from "@/components/landing/SolutionSection";
 import { PortfolioSection } from "@/components/landing/PortfolioSection";
 import { PricingSection } from "@/components/landing/PricingSection";
-import { CalculatorSection } from "@/components/landing/CalculatorSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
-import { AudienceSection } from "@/components/landing/AudienceSection";
 import { TrustSection } from "@/components/landing/TrustSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -18,17 +16,17 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Digitaalne Stardipakett — koduleht alates 300€" },
+      { title: "Professionaalne koduleht 7 päevaga — 400€" },
       {
         name: "description",
         content:
-          "Tee oma uus ettevõte internetis usaldusväärseks. Koduleht, sotsiaalmeedia, turundusvideod ja reklaamid - kõik ühest kohast, ilma agentuuri hinnata.",
+          "Teen teile 7 päevaga professionaalse ühe-lehe kodulehe, mis teeb teie ettevõtte Googles ja kliendi silmis usaldusväärseks. 400€, kõik vajalik sees.",
       },
-      { property: "og:title", content: "Digitaalne Stardipakett — koduleht alates 300€" },
+      { property: "og:title", content: "Professionaalne koduleht 7 päevaga — 400€" },
       {
         property: "og:description",
         content:
-          "Korralik esimene mulje alustavale Eesti ettevõttele: koduleht, sotsiaalmeedia, videod ja reklaamid.",
+          "Teen teile 7 päevaga professionaalse ühe-lehe kodulehe, mis teeb teie ettevõtte Googles ja kliendi silmis usaldusväärseks. 400€, kõik vajalik sees.",
       },
     ],
   }),
@@ -45,9 +43,7 @@ function Index() {
         <SolutionSection />
         <PortfolioSection />
         <PricingSection />
-        <CalculatorSection />
         <ProcessSection />
-        <AudienceSection />
         <TrustSection />
         <FaqSection />
         <ContactSection />

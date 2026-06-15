@@ -1,111 +1,136 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem } from "./Reveal";
-import { Button } from "@/components/ui/button";
 
 const projects = [
   {
     name: "CarryPeace.com",
     domain: "carrypeace.com",
     url: "https://carrypeace.com",
+    category: "E-pood",
     description: "Rahvusvaheline e-pood tracking card tootele.",
-    proof: "Näitab e-poe ülesehitust, tootelehe usaldust, reklaamidele sobivat landing page'i ja SEO sisu.",
-    hue: 210,
+    proof: "E-poe ülesehitus, tootelehe usaldus, reklaamidele sobiv landing page ja SEO sisu.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&auto=format&fit=crop",
+    accentColor: "oklch(0.48 0.2 262)",
+    accentBg: "oklch(0.96 0.025 262)",
   },
   {
     name: "Treenitaastu.ee",
     domain: "treenitaastu.ee",
     url: "https://treenitaastu.ee",
+    category: "Tervise teenus",
     description: "Tervise- ja treeningteenuse koduleht.",
-    proof: "Näitab usaldusliku teenuse müüki, selgitavat copywritingut ja professionaalset tervisevaldkonna presentatsiooni.",
-    hue: 160,
+    proof: "Usaldusliku teenuse müük, selgitav copywriting ja professionaalne tervisevaldkonna presentatsioon.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80&auto=format&fit=crop",
+    accentColor: "oklch(0.45 0.18 160)",
+    accentBg: "oklch(0.96 0.025 160)",
   },
   {
     name: "Treenitaastu.app",
     domain: "treenitaastu.app",
     url: "https://treenitaastu.app",
+    category: "Veebirakendus",
     description: "Veebirakendus kasutajatele.",
-    proof: "Näitab tehnilisemat arendust, kasutajakontosid, programmiloogikat ja app'i kogemust.",
-    hue: 280,
+    proof: "Tehniline arendus, kasutajakontod, programmiloogika ja app-kogemus.",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80&auto=format&fit=crop",
+    accentColor: "oklch(0.48 0.2 280)",
+    accentBg: "oklch(0.96 0.025 280)",
   },
   {
     name: "Centivo.ee",
     domain: "centivo.ee",
     url: "https://centivo.ee",
+    category: "Ehitusettevõte",
     description: "Ehitus- ja siseviimistlusettevõtte veebileht.",
-    proof: "Näitab kohaliku teenuseäri struktuuri, teenuste selget esitamist ja päringule suunatud disaini.",
-    hue: 25,
+    proof: "Kohaliku teenuseäri struktuur, teenuste selge esitamine ja päringule suunatud disain.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80&auto=format&fit=crop",
+    accentColor: "oklch(0.48 0.15 55)",
+    accentBg: "oklch(0.96 0.025 55)",
   },
   {
     name: "Torutöömees.ee",
     domain: "torutöömees.ee",
     url: "https://torutöömees.ee",
+    category: "Kohalik teenus",
     description: "Kohaliku torutöö teenuse veebileht.",
-    proof: "Näitab kiirelt arusaadavat teenuselehte, kontaktile suunatud disaini ja kohaliku ettevõtte usaldust.",
-    hue: 200,
+    proof: "Kiirelt arusaadav teenuselehekülg, kontaktile suunatud disain ja kohaliku ettevõtte usaldus.",
+    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=700&q=80&auto=format&fit=crop",
+    accentColor: "oklch(0.45 0.18 210)",
+    accentBg: "oklch(0.96 0.025 210)",
   },
 ];
 
-function Mockup({ name, hue }: { name: string; hue: number }) {
-  return (
-    <div
-      className="relative overflow-hidden rounded-xl border border-border p-4"
-      style={{
-        background: `linear-gradient(135deg, oklch(0.97 0.03 ${hue}), oklch(0.93 0.05 ${hue}))`,
-      }}
-    >
-      <div className="flex items-center gap-1.5 pb-3">
-        <span className="h-2 w-2 rounded-full bg-foreground/20" />
-        <span className="h-2 w-2 rounded-full bg-foreground/20" />
-        <span className="h-2 w-2 rounded-full bg-foreground/20" />
-      </div>
-      <div className="space-y-2 rounded-lg bg-background/80 p-3 shadow-soft backdrop-blur">
-        <div className="h-2.5 w-16 rounded-full" style={{ background: `oklch(0.55 0.18 ${hue})` }} />
-        <div className="h-3.5 w-3/4 rounded bg-foreground/70" />
-        <div className="h-2 w-2/3 rounded-full bg-muted-foreground/30" />
-        <div className="grid grid-cols-3 gap-1.5 pt-1">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="h-9 rounded-md bg-secondary" />
-          ))}
-        </div>
-      </div>
-      <span className="mt-3 inline-block text-xs font-semibold text-foreground/60">{name}</span>
-    </div>
-  );
-}
-
 export function PortfolioSection() {
   return (
-    <section id="tood" className="section-pad bg-secondary/50">
+    <section id="tood" className="section-pad bg-secondary/30">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Portfoolio"
-          title="Tehtud projektid, mis näitavad erinevaid oskusi"
+          title="Tehtud projektid"
+          subtitle="Reaalsed lehed, mitte näidised. Iga projekt näitab erinevat lahendust."
         />
-        <RevealGroup className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
             <RevealItem key={p.name}>
-              <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-brand">
-                <Mockup name={p.domain} hue={p.hue} />
-                <div className="flex flex-1 flex-col px-1 pt-4">
-                  <h3 className="flex items-center gap-1.5 text-lg font-semibold">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-brand/30 hover:shadow-brand"
+              >
+                {/* Browser chrome */}
+                <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-2">
+                  <span className="h-2 w-2 rounded-full bg-rose-400/55" />
+                  <span className="h-2 w-2 rounded-full bg-amber-400/55" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-400/55" />
+                  <div className="ml-2 flex h-4 flex-1 items-center rounded-sm bg-background/70 px-2">
+                    <span className="text-[9px] text-muted-foreground/55">{p.domain}</span>
+                  </div>
+                </div>
+
+                {/* Screenshot */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="h-44 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <span
+                    className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold"
+                    style={{ background: p.accentBg, color: p.accentColor }}
+                  >
+                    {p.category}
+                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/8">
+                    <div className="flex items-center gap-1.5 rounded-full bg-background/90 px-3.5 py-2 text-xs font-semibold opacity-0 shadow-soft backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Vaata lehte
+                    </div>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-bold leading-snug transition-colors duration-200 group-hover:text-brand">
                     {p.name}
-                    <ArrowUpRight className="h-4 w-4 text-brand opacity-0 transition-opacity group-hover:opacity-100" />
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.description}</p>
-                  <div className="mt-4 rounded-xl bg-accent/60 p-3">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+
+                  <div
+                    className="mt-4 rounded-xl p-3.5"
+                    style={{ background: p.accentBg }}
+                  >
+                    <p
+                      className="mb-1 text-[10px] font-bold uppercase tracking-widest"
+                      style={{ color: p.accentColor }}
+                    >
                       Mida see tõestab
                     </p>
-                    <p className="mt-1 text-sm text-foreground/80">{p.proof}</p>
+                    <p className="text-xs leading-relaxed text-foreground/72">{p.proof}</p>
                   </div>
-                  <Button asChild variant="heroOutline" className="mt-4 w-full">
-                    <a href={p.url} target="_blank" rel="noopener noreferrer">
-                      Vaata lehte <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
                 </div>
-              </div>
+              </a>
             </RevealItem>
           ))}
         </RevealGroup>

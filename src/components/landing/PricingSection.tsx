@@ -1,169 +1,116 @@
-import { Check } from "lucide-react";
+import { Check, ArrowRight, Clock, Shield } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
-import { RevealGroup, RevealItem } from "./Reveal";
+import { Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
-const packages = [
-  {
-    name: "Kodulehe kiirstart",
-    price: 300,
-    best: "Ettevõtetele, kes vajavad puhast ja professionaalset ühelehelist kodulehte.",
-    items: [
-      "Üheleheline koduleht",
-      "Teenuste/pitch struktuur",
-      "Mobiilisõbralik disain",
-      "Kontakti CTA",
-      "Põhiline SEO struktuur",
-      "1–2 parandusringi",
-    ],
-    popular: false,
-  },
-  {
-    name: "Digitaalne kohalolu",
-    price: 449,
-    best: "Ettevõtetele, kes soovivad, et ka sotsiaalmeedia näeks aktiivne ja usaldusväärne välja.",
-    items: [
-      "Kõik, mis Kodulehe kiirstardis",
-      "Sotsiaalmeedia kontode seadistus",
-      "9 pildipostitust",
-      "1 turundusvideo stock footage'i ja voiceoveriga",
-    ],
-    popular: false,
-  },
-  {
-    name: "Täielik stardipakett",
-    price: 499,
-    best: "Koduleht, sotsiaalmeedia, esimene videosisu ja käivitatud reklaamid — kõik koos.",
-    items: [
-      "Koduleht",
-      "Sotsiaalmeedia seadistus",
-      "9 pildipostitust",
-      "3 turundusvideot stock footage'i ja voiceoveriga",
-      "Reklaamikonto seadistus ja esimene kampaania",
-      "Põhilised loovmaterjalid",
-    ],
-    popular: true,
-  },
-  {
-    name: "Premium stardipakett",
-    price: 649,
-    best: "Ettevõtetele, kes soovivad originaalfilmitud sisu autentsete kaadritega.",
-    items: [
-      "Kõik, mis Täielikus stardipaketis",
-      "Originaalvideo filmimine ettevõttes",
-      "3 originaalset lühikest turundusvideot",
-      "Autentsemad visuaalid kodulehele ja sotsiaalmeediasse",
-    ],
-    popular: false,
-  },
+const included = [
+  "Üheleheline professionaalne koduleht",
+  "Selge struktuur ja teenuste tutvustus",
+  "Professionaalne copywriting — tekstid kirjutan mina",
+  "Mobiilisõbralik disain kõikidele ekraanidele",
+  "Kontaktivorm — päringud otse sinu e-mailile",
+  "Google Maps integratsioon",
+  "Basic SEO — meta andmed, pealkirjad, struktuur",
+  "Google otsingukonsooli seadistus",
+  "1–2 parandusringi",
+];
+
+const guarantees = [
+  { icon: Clock, text: "Valmis 7 tööpäevaga" },
+  { icon: Shield, text: "1–2 parandusringi sees" },
+  { icon: Check, text: "Domeen ja hosting eraldi" },
 ];
 
 export function PricingSection() {
   return (
-    <section id="hinnad" className="section-pad">
-      <div className="mx-auto max-w-6xl px-5">
+    <section id="hind" className="section-pad bg-secondary/40">
+      <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
-          eyebrow="Hinnad"
-          title="Läbipaistvad hinnad alustavale ettevõttele"
-          subtitle="Sa ei pea ootama kolme müügikõnet, et teada saada, kas koduleht maksab 300€ või 3000€."
+          eyebrow="Hind"
+          title="Läbipaistev hind. Üks pakett. Kõik sees."
+          subtitle="Sa ei pea ootama kolme müügikõnet, et teada saada, palju koduleht maksab."
         />
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:items-start">
-          {packages.map((p) => (
-            <RevealItem key={p.name} className="h-full">
-              {p.popular ? (
-                <PopularCard pkg={p} />
-              ) : (
-                <RegularCard pkg={p} />
-              )}
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        <Reveal className="mt-14">
+          <div className="overflow-hidden rounded-3xl border border-brand/30 shadow-brand">
+            {/* Top gradient bar */}
+            <div
+              className="h-1.5 w-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--brand), color-mix(in oklab, var(--brand) 60%, oklch(0.6 0.18 200)))",
+              }}
+            />
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          Kõik paketid sisaldavad kuni 2 parandusringi. Domeen ja hosting eraldi.
-        </p>
+            <div className="grid lg:grid-cols-[1fr_1.1fr]">
+              {/* Left — price + inclusions */}
+              <div className="border-b border-border bg-card p-8 md:p-10 lg:border-b-0 lg:border-r">
+                <span className="inline-block rounded-full border border-brand/20 bg-brand/8 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-brand">
+                  Kodulehe pakett
+                </span>
+
+                <div className="mt-6 flex items-end gap-1.5">
+                  <span className="text-6xl font-extrabold tracking-tighter leading-none">400</span>
+                  <span className="mb-2 text-2xl font-bold text-muted-foreground">€</span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Ühekordne makse. Peidetud kulusid pole.
+                </p>
+
+                <div className="mt-8 space-y-3">
+                  {included.map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
+                        <Check className="h-3 w-3 text-brand" />
+                      </span>
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right — image + CTA */}
+              <div className="flex flex-col">
+                <div className="relative flex-1 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=85&auto=format&fit=crop"
+                    alt="Professionaalne töö"
+                    className="h-52 w-full object-cover object-center lg:h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/20 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-card/10" />
+                </div>
+
+                <div className="bg-card p-8 md:p-10">
+                  <p className="text-balance text-lg font-semibold leading-snug">
+                    "Eesmärk ei ole lubada garanteeritud kliente — vaid teha nii, et kui inimene teie ettevõtet otsib, leiab ta midagi korralikku."
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    {guarantees.map((g) => (
+                      <span
+                        key={g.text}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1.5 text-xs font-semibold text-muted-foreground"
+                      >
+                        <g.icon className="h-3.5 w-3.5 text-brand" />
+                        {g.text}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Button asChild variant="hero" size="xl" className="mt-7 w-full rounded-xl font-semibold">
+                    <a href="#kontakt">
+                      Tahan kodulehe <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <p className="mt-3 text-center text-xs text-muted-foreground">
+                    Vormi täitmine ei kohusta sind millekski.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
-  );
-}
-
-type Pkg = (typeof packages)[0];
-
-function RegularCard({ pkg: p }: { pkg: Pkg }) {
-  return (
-    <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30">
-      <div>
-        <h3 className="text-[0.9rem] font-semibold text-muted-foreground">{p.name}</h3>
-        <div className="mt-3 flex items-end gap-0.5">
-          <span className="text-[2.4rem] font-extrabold tracking-tight leading-none">{p.price}</span>
-          <span className="mb-1 ml-0.5 text-lg font-bold text-muted-foreground">€</span>
-        </div>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.best}</p>
-      </div>
-      <div className="my-5 h-px bg-border" />
-      <ul className="flex-1 space-y-3">
-        {p.items.map((it) => (
-          <li key={it} className="flex items-start gap-2.5 text-sm">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-            <span className="text-foreground/80">{it}</span>
-          </li>
-        ))}
-      </ul>
-      <Button asChild variant="heroOutline" className="mt-6 w-full rounded-xl font-semibold">
-        <a href="#kontakt">Valin selle paketi</a>
-      </Button>
-    </div>
-  );
-}
-
-function PopularCard({ pkg: p }: { pkg: Pkg }) {
-  return (
-    <div className="relative flex h-full flex-col rounded-2xl p-px shadow-brand">
-      {/* Gradient border */}
-      <div
-        className="absolute inset-0 rounded-2xl"
-        style={{
-          background:
-            "linear-gradient(145deg, var(--brand), color-mix(in oklab, var(--brand) 60%, oklch(0.6 0.18 200)))",
-        }}
-      />
-      <div className="relative flex h-full flex-col rounded-[calc(1rem-1px)] bg-card p-6">
-        {/* Badge */}
-        <span
-          className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-4 py-1 text-[0.7rem] font-bold uppercase tracking-widest text-brand-foreground"
-          style={{
-            background:
-              "linear-gradient(90deg, var(--brand), color-mix(in oklab, var(--brand) 65%, oklch(0.6 0.18 200)))",
-          }}
-        >
-          Populaarseim valik
-        </span>
-
-        <div>
-          <h3 className="text-[0.9rem] font-semibold text-brand">{p.name}</h3>
-          <div className="mt-3 flex items-end gap-0.5">
-            <span className="text-[2.8rem] font-extrabold tracking-tight leading-none">{p.price}</span>
-            <span className="mb-1.5 ml-0.5 text-xl font-bold text-muted-foreground">€</span>
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.best}</p>
-        </div>
-        <div className="my-5 h-px bg-border" />
-        <ul className="flex-1 space-y-3">
-          {p.items.map((it) => (
-            <li key={it} className="flex items-start gap-2.5 text-sm">
-              <span className="mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-brand/15">
-                <Check className="h-2.5 w-2.5 text-brand" />
-              </span>
-              <span className="font-medium">{it}</span>
-            </li>
-          ))}
-        </ul>
-        <Button asChild variant="hero" className="mt-6 w-full rounded-xl font-semibold">
-          <a href="#kontakt">Valin selle paketi</a>
-        </Button>
-      </div>
-    </div>
   );
 }

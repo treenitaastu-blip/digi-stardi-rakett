@@ -15,6 +15,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const trustLines = [
+  "7 päevaga valmis",
+  "Avalikud hinnad — 400€ kõik sees",
+  "Tekstid kirjutan mina",
+];
+
 export function ContactSection() {
   const [sent, setSent] = useState(false);
   const [service, setService] = useState("");
@@ -32,35 +38,49 @@ export function ContactSection() {
       <div className="mx-auto max-w-5xl px-5">
         <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-            {/* Left copy */}
+            {/* Left — brand side */}
             <div
               className="relative flex flex-col justify-center p-8 md:p-10"
               style={{
                 background:
-                  "linear-gradient(160deg, var(--brand), color-mix(in oklab, var(--brand) 70%, oklch(0.3 0.1 262)))",
+                  "linear-gradient(155deg, var(--brand), color-mix(in oklab, var(--brand) 68%, oklch(0.3 0.1 262)))",
               }}
             >
+              {/* Decorative circles */}
+              <div
+                aria-hidden
+                className="absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-10"
+                style={{ background: "white" }}
+              />
+              <div
+                aria-hidden
+                className="absolute -bottom-16 -left-8 h-48 w-48 rounded-full opacity-[0.06]"
+                style={{ background: "white" }}
+              />
+
               <Reveal>
-                <h2 className="text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
-                  Tahad, et sinu uus ettevõte näeks internetis usaldusväärne välja?
+                <h2 className="relative text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
+                  Tahad, et sinu ettevõte näeks internetis usaldusväärne välja?
                 </h2>
-                <p className="mt-4 text-brand-foreground/85">
-                  Saada oma ettevõtte nimi ja kirjuta, kas vajad ainult kodulehte või kogu
-                  digitaalset stardipaketti.
+                <p className="relative mt-4 text-sm leading-relaxed text-brand-foreground/80">
+                  Saada oma ettevõtte nimi ja kirjuta lühidalt, millega tegeled. Vastan tavaliselt
+                  ühe tööpäeva jooksul.
                 </p>
-                <ul className="mt-6 space-y-2.5">
-                  {["Avalikud hinnad", "Kiire ja selge protsess", "Ilma agentuuri hinnata"].map(
-                    (x) => (
-                      <li key={x} className="flex items-center gap-2 text-sm text-brand-foreground/90">
-                        <CheckCircle2 className="h-4 w-4" /> {x}
-                      </li>
-                    ),
-                  )}
+                <ul className="relative mt-7 space-y-3">
+                  {trustLines.map((x) => (
+                    <li
+                      key={x}
+                      className="flex items-center gap-2.5 text-sm font-medium text-brand-foreground/90"
+                    >
+                      <CheckCircle2 className="h-4 w-4 shrink-0" />
+                      {x}
+                    </li>
+                  ))}
                 </ul>
               </Reveal>
             </div>
 
-            {/* Right form */}
+            {/* Right — form */}
             <div className="p-8 md:p-10">
               {sent ? (
                 <motion.div
@@ -72,10 +92,11 @@ export function ContactSection() {
                     <CheckCircle2 className="h-7 w-7" />
                   </span>
                   <h3 className="mt-4 text-xl font-semibold">Aitäh! Päring on saadetud.</h3>
-                  <p className="mt-2 text-muted-foreground">
-                    Võtan sinuga peagi ühendust ja arutame su ettevõtte stardipaketi.
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Võtan sinuga peagi ühendust ja arutame, milline koduleht sinu ettevõttele
+                    kõige paremini sobib.
                   </p>
-                  <Button variant="heroOutline" className="mt-6" onClick={() => setSent(false)}>
+                  <Button variant="heroOutline" className="mt-6 rounded-xl" onClick={() => setSent(false)}>
                     Saada uus päring
                   </Button>
                 </motion.div>
@@ -90,26 +111,28 @@ export function ContactSection() {
                     <Field id="telefon" label="Telefon" type="tel" />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="teenus">Mis teenust vajad?</Label>
+                    <Label htmlFor="teenus">Mis sind huvitab?</Label>
                     <Select value={service} onValueChange={setService}>
                       <SelectTrigger id="teenus">
-                        <SelectValue placeholder="Vali teenus" />
+                        <SelectValue placeholder="Vali..." />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="koduleht">Koduleht</SelectItem>
-                        <SelectItem value="kohalolu">Digitaalne kohalolu</SelectItem>
-                        <SelectItem value="taielik">Täielik stardipakett</SelectItem>
-                        <SelectItem value="premium">Premium stardipakett</SelectItem>
-                        <SelectItem value="eitea">Ei tea veel</SelectItem>
+                        <SelectItem value="koduleht">Koduleht (400€)</SelectItem>
+                        <SelectItem value="vaata">Tahan enne rohkem infot</SelectItem>
+                        <SelectItem value="eitea">Ei tea veel täpselt</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="sonum">Sõnum</Label>
-                    <Textarea id="sonum" rows={4} placeholder="Räägi lühidalt oma ettevõttest" />
+                    <Label htmlFor="sonum">Kirjelda oma ettevõtet lühidalt</Label>
+                    <Textarea
+                      id="sonum"
+                      rows={4}
+                      placeholder="Ettevõtte nimi, millega tegeled, piirkond..."
+                    />
                   </div>
-                  <Button type="submit" variant="hero" size="xl" className="w-full">
-                    Küsi pakkumist <Send className="h-4 w-4" />
+                  <Button type="submit" variant="hero" size="xl" className="w-full rounded-xl font-semibold">
+                    Saada päring <Send className="h-4 w-4" />
                   </Button>
                   <p className="text-center text-xs text-muted-foreground">
                     Vormi täitmine ei kohusta sind millekski.
