@@ -37,18 +37,19 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32"
+      className="relative flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
     >
       <HeroBackground bgY={bgY} />
 
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        {/* ── Visual (top on mobile) ── */}
-        <motion.div style={{ y: visualY }} className="order-1 lg:order-2">
-          <HeroVisual />
-        </motion.div>
+      <div className="mx-auto w-full max-w-6xl px-5">
+        <div className="grid items-center gap-10 lg:block lg:text-center">
+          {/* ── Visual (mobile/tablet only — scroll cards replace it on desktop) ── */}
+          <motion.div style={{ y: visualY }} className="order-1 lg:hidden">
+            <HeroVisual />
+          </motion.div>
 
-        {/* ── Copy ── */}
-        <motion.div style={{ y: copyY }} className="order-2 lg:order-1">
+          {/* ── Copy ── */}
+          <motion.div style={{ y: copyY }} className="order-2 lg:mx-auto lg:max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,7 +77,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.14 }}
-            className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground"
+            className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground lg:mx-auto"
           >
             Veebileht koos müügitekstide ja SEO-ga. Valmis 7 tööpäevaga, fikseeritud hinnaga{" "}
             <span className="font-semibold text-foreground">400 €.</span>
@@ -86,7 +87,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-7 grid max-w-[480px] grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2"
+            className="mt-7 grid max-w-[480px] grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:hidden"
           >
             {included.map((t) => (
               <li key={t} className="flex items-center gap-2.5 text-sm font-medium text-foreground/80">
@@ -102,13 +103,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.26 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
+            className="mt-9 flex flex-col gap-3 sm:flex-row lg:justify-center"
           >
             <Button
               variant="hero"
               size="xl"
               onClick={openQuiz}
-              className="rounded-xl font-semibold tracking-tight"
+              className="font-semibold tracking-tight"
             >
               Telli koduleht <ArrowRight className="h-4 w-4" />
             </Button>
@@ -116,12 +117,16 @@ export function Hero() {
               asChild
               variant="heroOutline"
               size="xl"
-              className="rounded-xl font-semibold tracking-tight"
+              className="font-semibold tracking-tight"
             >
               <a href="#tood">Vaata töid</a>
             </Button>
           </motion.div>
-        </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Fan stage — desktop only. The fixed ScrollCards overlay fans out here. */}
+        <div aria-hidden className="hidden lg:block lg:h-[clamp(300px,40vh,440px)]" />
       </div>
     </section>
   );

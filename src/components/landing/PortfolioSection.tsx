@@ -59,7 +59,11 @@ const projects = [
 
 export function PortfolioSection() {
   return (
-    <section id="tood" className="section-pad bg-secondary/30">
+    <section
+      id="tood"
+      data-section="cards-anchor"
+      className="section-pad bg-secondary/30 lg:pt-[clamp(380px,42vh,520px)]"
+    >
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Tööd"

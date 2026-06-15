@@ -17,6 +17,9 @@ import { StickyCta } from "@/components/landing/StickyCta";
 import { Footer } from "@/components/landing/Footer";
 import { QuizProvider } from "@/components/landing/QuizContext";
 import { QuizModal } from "@/components/landing/QuizModal";
+import { PageBackdrop } from "@/components/landing/PageBackdrop";
+import { ScrollCards } from "@/components/landing/scroll-cards/ScrollCards";
+import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,17 +45,21 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const pageRef = useRef<HTMLDivElement>(null);
+
   return (
     <QuizProvider>
-      <div className="min-h-screen bg-background">
+      <div ref={pageRef} className="relative min-h-screen bg-background">
+        <PageBackdrop />
+        <ScrollCards containerRef={pageRef} />
         <Navbar />
         <main>
           <Hero />
+          <PortfolioSection />
           <StatsBand />
           <ProblemSection />
           <SolutionSection />
           <ProcessSection />
-          <PortfolioSection />
           <AudienceSection />
           <TestimonialsSection />
           <PricingSection />
