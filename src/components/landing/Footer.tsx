@@ -23,7 +23,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <a href="#top" aria-label="Digitaalne Stardipakett">
+            <a href="#top" aria-label="Lehekoda">
               <Wordmark className="text-[1.15rem]" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
@@ -82,7 +82,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {year} Digitaalne Stardipakett
+            © {year} Lehekoda
           </p>
           <p className="text-xs text-muted-foreground">Veebilehed Eesti ettevõtetele</p>
         </div>

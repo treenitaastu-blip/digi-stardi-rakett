@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Digitaalne Stardipakett" },
+      { title: "Lehekoda" },
       {
         name: "description",
         content:
           "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
       },
-      { property: "og:title", content: "Digitaalne Stardipakett" },
+      { property: "og:title", content: "Lehekoda" },
       {
         property: "og:description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Digitaalne Stardipakett" },
+      { name: "twitter:title", content: "Lehekoda" },
       {
         name: "twitter:description",
         content:

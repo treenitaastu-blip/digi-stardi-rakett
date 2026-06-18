@@ -36,7 +36,7 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" aria-label="Digitaalne Stardipakett" className="shrink-0">
+        <a href="#top" aria-label="Lehekoda" className="shrink-0">
           <Logo />
         </a>
 

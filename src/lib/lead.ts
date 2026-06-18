@@ -26,8 +26,8 @@ export type LeadInput = {
 export async function submitLead(input: LeadInput): Promise<void> {
   const payload = {
     access_key: WEB3FORMS_ACCESS_KEY,
-    subject: "Uus päring — Digitaalne Stardipakett",
-    from_name: "Digitaalne Stardipakett",
+    subject: "Uus päring — Lehekoda",
+    from_name: "Lehekoda",
     to: RECIPIENT,
     nimi: input.nimi,
     ettevote: input.ettevote || "—",

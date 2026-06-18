@@ -47,15 +47,13 @@ export function Wordmark({
         className,
       )}
     >
-      Digitaalne{" "}
-      <span className={tone === "onBrand" ? "" : "text-gradient-brand"}>Stardipakett</span>
+      Lehe
+      <span className={tone === "onBrand" ? "" : "text-gradient-brand"}>koda</span>
     </span>
   );
 }
 
-/**
- * Full lockup: brand mark + wordmark. Used in the navbar.
- */
+/** Wordmark-only logo lockup (alias for navbar and other surfaces). */
 export function Logo({
   className,
   tone = "default",
@@ -63,10 +61,5 @@ export function Logo({
   className?: string;
   tone?: "default" | "onBrand";
 }) {
-  return (
-    <span className={cn("inline-flex items-center gap-2", className)}>
-      <BrandMark className="h-[1.35rem] w-[1.35rem]" />
-      <Wordmark tone={tone} />
-    </span>
-  );
+  return <Wordmark className={className} tone={tone} />;
 }

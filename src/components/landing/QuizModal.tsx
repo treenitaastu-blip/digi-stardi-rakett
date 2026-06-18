@@ -257,7 +257,7 @@ export function QuizModal() {
           {/* Top bar */}
           <div className="flex items-center justify-between px-5 pt-6 md:px-10">
             <span className="font-display text-sm font-bold">
-              Digitaalne <span className="text-gradient-brand">Stardipakett</span>
+              Lehe<span className="text-gradient-brand">koda</span>
             </span>
             <button
               type="button"

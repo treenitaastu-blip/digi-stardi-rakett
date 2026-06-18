@@ -24,7 +24,7 @@ import { useRef } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Koduleht 7 päevaga, 400 € | Digitaalne Stardipakett" },
+      { title: "Koduleht 7 päevaga, 400 € | Lehekoda" },
       {
         name: "description",
         content:
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Koduleht 7 päevaga, 400 € | Digitaalne Stardipakett",
+        content: "Koduleht 7 päevaga, 400 € | Lehekoda",
       },
       {
         property: "og:description",
