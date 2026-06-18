@@ -1,0 +1,63 @@
+# Lehekoda
+
+> Professionaalne ühe-lehe koduleht Eesti väikeettevõttele. Müügitekstid, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäevaga.
+
+Lehekoda (https://lehekoda.ee) aitab väikeettevõtetel saada usaldusväärse veebikohalolu ilma agentuuri hinnata ja bürokraatiata.
+
+## Teenus
+
+- Ühe-lehe koduleht koos müügitekstide kirjutamisega
+- SEO baasseadistus ja Google Search Console
+- Google Maps integratsioon
+- Mobiilidisain ja kontaktivorm
+- Fikseeritud hind: 400 € (ühekordne makse)
+- Tarne: 7 tööpäeva
+- Kuni kaks parandusringi hinna sees
+
+## Kellele sobib
+
+Ehitus, remont, iluteenused, autoteenused, terviseteenused ja teised kohalikud teenusepakkujad, kes vajavad selget tutvustuslehte.
+
+## Kellele ei sobi
+
+E-pood, kasutajakontod, broneerimissüsteemid ja mitme alamlehega mahukad projektid — need on eraldi tellimus.
+
+## Protsess
+
+1. Tellimisankeet — ettevõtte info
+2. Struktuur ja müügitekstid
+3. Disain ja esiversioon (3–4 tööpäeva)
+4. Tagasiside ja parandused
+5. Avaldamine
+
+## Portfoolio
+
+- https://carrypeace.com — e-pood
+- https://treenitaastu.ee — terviseteenus
+- https://treenitaastu.app — veebirakendus
+- https://centivo.ee — ehitus
+
+## Lehe sektsioonid
+
+- [Avaleht](https://lehekoda.ee/): peamine tutvustus ja CTA
+- [Pakett](https://lehekoda.ee/#mida-saad): mis on hinna sees
+- [Tööd](https://lehekoda.ee/#tood): valminud projektid
+- [Protsess](https://lehekoda.ee/#protsess): kuidas tellimine käib
+- [Hind](https://lehekoda.ee/#hind): 400 € fikseeritud pakett
+- [KKK](https://lehekoda.ee/#kkk): vastused enne tellimist
+- [Kontakt](https://lehekoda.ee/#kontakt): päringu vorm
+
+## Kontakt
+
+- Veeb: https://lehekoda.ee
+- E-post: henri@blimeyofficial.com
+- Päring: https://lehekoda.ee/#kontakt
+
+## Keeled
+
+- Eesti keel (et)
+
+## Meta
+
+- Sitemap: https://lehekoda.ee/sitemap.xml
+- Robots: https://lehekoda.ee/robots.txt

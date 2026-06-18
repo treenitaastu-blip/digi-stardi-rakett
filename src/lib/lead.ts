@@ -1,3 +1,5 @@
+import { SITE } from "./site";
+
 /**
  * Web3Forms access key. The key is safe to expose client-side.
  * Override locally via VITE_WEB3FORMS_KEY.
@@ -26,8 +28,8 @@ export type LeadInput = {
 export async function submitLead(input: LeadInput): Promise<void> {
   const payload = {
     access_key: WEB3FORMS_ACCESS_KEY,
-    subject: "Uus päring — Lehekoda",
-    from_name: "Lehekoda",
+    subject: `Uus päring — ${SITE.name}`,
+    from_name: SITE.name,
     to: RECIPIENT,
     nimi: input.nimi,
     ettevote: input.ettevote || "—",

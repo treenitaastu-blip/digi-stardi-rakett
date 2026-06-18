@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportError } from "../lib/error-reporting";
+import { SITE } from "../lib/site";
+import { globalSeoMeta } from "../lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -77,26 +79,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lehekoda" },
-      {
-        name: "description",
-        content:
-          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
-      },
-      { property: "og:title", content: "Lehekoda" },
-      {
-        property: "og:description",
-        content:
-          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Lehekoda" },
-      {
-        name: "twitter:description",
-        content:
-          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
-      },
+      { title: SITE.name },
+      ...globalSeoMeta(),
     ],
     links: [
       { rel: "icon", type: "image/png", href: "/favicon.png" },

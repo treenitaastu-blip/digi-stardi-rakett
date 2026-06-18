@@ -1,0 +1,19 @@
+{
+  "name": "Lehekoda",
+  "short_name": "Lehekoda",
+  "description": "Professionaalne koduleht väikeettevõttele. Müügitekstid, SEO ja mobiilidisain. Fikseeritud hind 400 €.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "et",
+  "background_color": "#f6f5f3",
+  "theme_color": "#5b5bd6",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

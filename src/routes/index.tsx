@@ -19,27 +19,14 @@ import { QuizProvider } from "@/components/landing/QuizContext";
 import { QuizModal } from "@/components/landing/QuizModal";
 import { PageBackdrop } from "@/components/landing/PageBackdrop";
 import { ScrollCards } from "@/components/landing/scroll-cards/ScrollCards";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { homeJsonLdGraph, homePageLinks, homePageMeta } from "@/lib/seo";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Koduleht 7 päevaga, 400 € | Lehekoda" },
-      {
-        name: "description",
-        content:
-          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
-      },
-      {
-        property: "og:title",
-        content: "Koduleht 7 päevaga, 400 € | Lehekoda",
-      },
-      {
-        property: "og:description",
-        content:
-          "Professionaalne ühe-lehe koduleht väikeettevõttele. Copywriting, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
-      },
-    ],
+    meta: homePageMeta(),
+    links: homePageLinks(),
   }),
   component: Index,
 });
@@ -49,6 +36,7 @@ function Index() {
 
   return (
     <QuizProvider>
+      <JsonLd data={homeJsonLdGraph()} />
       <div ref={pageRef} className="relative min-h-screen bg-background">
         <PageBackdrop />
         <ScrollCards containerRef={pageRef} />
