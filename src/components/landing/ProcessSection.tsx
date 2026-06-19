@@ -8,7 +8,7 @@ const steps = [
   },
   {
     title: "Teeme lehe",
-    body: "Paneme struktuuri paika, kirjutame müügitekstid ja valmistame disaini. Kuni kaks parandusringi on hinna sees.",
+    body: "Paneme struktuuri paika, kirjutame müügitekstid ja valmistame disaini. 6 kuud tasuta muudatusi on hinna sees.",
   },
   {
     title: "Avaldame",

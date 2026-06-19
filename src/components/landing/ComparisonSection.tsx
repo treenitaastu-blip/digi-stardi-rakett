@@ -1,3 +1,4 @@
+import { useCallback, useRef, useState } from "react";
 import { Check, X } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
@@ -14,7 +15,62 @@ const rows = [
   { label: "Omand", us: "Leht kuulub sulle", them: "Tihti seotud kuupaketiga" },
 ];
 
+function ComparisonCard({ row }: { row: (typeof rows)[number] }) {
+  return (
+    <article className="flex h-full snap-center flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+      <div className="border-b border-border bg-secondary/50 px-4 py-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {row.label}
+        </p>
+      </div>
+      <div className="border-b border-border bg-brand-muted/40 px-4 py-3.5">
+        <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-brand">
+          Lehekoda
+        </p>
+        <div className="flex items-start gap-2">
+          <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+          <p className="text-sm font-medium leading-snug text-foreground">{row.us}</p>
+        </div>
+      </div>
+      <div className="px-4 py-3.5">
+        <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+          Teised
+        </p>
+        <div className="flex items-start gap-2">
+          <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-destructive/10">
+            <X className="h-3.5 w-3.5 text-destructive" />
+          </span>
+          <p className="text-sm leading-snug text-muted-foreground">{row.them}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function ComparisonSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const updateActiveIndex = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-comparison-card]");
+    if (!card) return;
+    const gap = 12;
+    const step = card.offsetWidth + gap;
+    const index = Math.round(el.scrollLeft / step);
+    setActiveIndex(Math.min(Math.max(index, 0), rows.length - 1));
+  }, []);
+
+  const scrollToIndex = (index: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-comparison-card]");
+    if (!card) return;
+    const gap = 12;
+    el.scrollTo({ left: index * (card.offsetWidth + gap), behavior: "smooth" });
+  };
+
   return (
     <section id="vordlus" className="section-pad bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
@@ -77,8 +133,8 @@ export function ComparisonSection() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-start gap-2.5">
-                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-muted">
-                          <X className="h-3 w-3 text-muted-foreground" />
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-destructive/10">
+                          <X className="h-3 w-3 text-destructive" />
                         </span>
                         <span className="text-sm leading-snug text-muted-foreground">
                           {row.them}
@@ -91,38 +147,39 @@ export function ComparisonSection() {
             </table>
           </div>
 
-          {/* Mobile cards */}
-          <div className="space-y-3 md:hidden">
-            {rows.map((row) => (
-              <div
-                key={row.label}
-                className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft"
-              >
-                <div className="border-b border-border bg-secondary/50 px-4 py-3">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {row.label}
-                  </p>
+          {/* Mobile — horizontal carousel */}
+          <div className="md:hidden">
+            <div
+              ref={scrollRef}
+              onScroll={updateActiveIndex}
+              className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              aria-label="Võrdlus karussell"
+            >
+              {rows.map((row) => (
+                <div
+                  key={row.label}
+                  data-comparison-card
+                  className="w-[min(85vw,320px)] shrink-0 snap-center"
+                >
+                  <ComparisonCard row={row} />
                 </div>
-                <div className="border-b border-border bg-brand-muted/40 px-4 py-3.5">
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-brand">
-                    Lehekoda
-                  </p>
-                  <div className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                    <p className="text-sm font-medium leading-snug text-foreground">{row.us}</p>
-                  </div>
-                </div>
-                <div className="px-4 py-3.5">
-                  <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    Teised
-                  </p>
-                  <div className="flex items-start gap-2">
-                    <X className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                    <p className="text-sm leading-snug text-muted-foreground">{row.them}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="mt-4 flex items-center justify-center gap-1.5" aria-hidden>
+              {rows.map((row, i) => (
+                <button
+                  key={row.label}
+                  type="button"
+                  aria-label={`Kuva ${row.label}`}
+                  onClick={() => scrollToIndex(i)}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    i === activeIndex ? "w-5 bg-brand" : "w-1.5 bg-border",
+                  )}
+                />
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>

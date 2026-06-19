@@ -33,8 +33,8 @@ export function ProblemSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Probleem"
-          title="Kui klient sind Google'ist ei leia, valib ta kellegi teise"
-          subtitle="Sa ei vaja kallist agentuuri. Sul on vaja lehte, kust klient saab kohe aru, mida pakud, miks sind usaldada ja kuidas sinuga ühendust võtta."
+          title="Klient otsib sind Google'ist enne, kui ta helistab"
+          subtitle="Kui ta leiab ainult Facebooki, vana lehe või mitte midagi, liigub ta kiiresti edasi. Korralik koduleht aitab jätta kindla ja usaldusväärse esmamulje."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">

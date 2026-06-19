@@ -11,12 +11,12 @@ const included = [
   "Google Maps asukohaga",
   "SEO baasseadistus",
   "Google Search Console",
-  "Kuni kaks parandusringi",
+  "6 kuud tasuta muudatusi",
 ];
 
 const guarantees = [
   { icon: Clock, text: "7 tööpäeva" },
-  { icon: RefreshCw, text: "Kuni 2 parandust" },
+  { icon: RefreshCw, text: "6 kuud tasuta muudatusi" },
   { icon: Globe, text: "Domeen ja hosting eraldi" },
 ];
 
