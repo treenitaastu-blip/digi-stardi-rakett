@@ -6,8 +6,8 @@ export function Logo({ className }: { className?: string }) {
     <img
       src="/logo-lehekoda.png"
       alt="Lehekoda"
-      width={140}
-      height={28}
+      width={126}
+      height={42}
       className={cn("h-7 w-auto mix-blend-screen", className)}
     />
   );
