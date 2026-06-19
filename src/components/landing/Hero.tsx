@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
+import { HeroCircuitPattern } from "./HeroCircuitPattern";
 
 const included = [
   "Sa ei pea ise tekste kirjutama",
@@ -156,6 +157,9 @@ function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
   return (
     <motion.div style={{ y: bgY }} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       <div className="bg-grid absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
+      <div className="absolute inset-0 text-brand opacity-[0.09] [mask-image:radial-gradient(90%_75%_at_50%_30%,black_15%,transparent_80%)]">
+        <HeroCircuitPattern className="h-full w-full" />
+      </div>
     </motion.div>
   );
 }
