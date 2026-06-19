@@ -10,14 +10,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
 import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
 
 const heroPillClass = "h-12 rounded-full px-6 font-semibold tracking-tight";
 
 export function Hero() {
-  const { openQuiz } = useQuiz();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -84,12 +82,14 @@ export function Hero() {
             <div className="flex flex-col items-stretch gap-3 lg:hidden">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
                 <Button
+                  asChild
                   variant="hero"
                   size="xl"
-                  onClick={openQuiz}
                   className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")}
                 >
-                  Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                  <a href="#kontakt">
+                    Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                  </a>
                 </Button>
                 <HeroPriceBadge className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")} />
               </div>
@@ -107,12 +107,14 @@ export function Hero() {
             {/* Desktop — Vaata töid täpselt CTA ja hinna vahel */}
             <div className="mx-auto hidden w-full max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-x-6 lg:grid">
               <Button
+                asChild
                 variant="hero"
                 size="xl"
-                onClick={openQuiz}
                 className={cn(heroPillClass, "justify-self-end")}
               >
-                Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                <a href="#kontakt">
+                  Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
 
               <Button

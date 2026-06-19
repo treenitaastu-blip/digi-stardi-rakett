@@ -42,7 +42,9 @@ export function Navbar() {
       >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
         <a href="#top" aria-label="Lehekoda" className="shrink-0">
-          <Logo />
+          <span className="inline-flex rounded-lg bg-black px-2 py-1 md:bg-transparent md:p-0">
+            <Logo className="opacity-100 mix-blend-normal md:mix-blend-screen" />
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
