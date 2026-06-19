@@ -8,12 +8,12 @@ const CARD = 200; // desktop tile size (px)
 
 /** Fan layout offsets relative to the hero centre point. */
 const FAN = [
-  { x: -430, y: 22, rotate: -16, scale: 0.84 },
-  { x: -256, y: 6, rotate: -9, scale: 0.9 },
-  { x: -86, y: -2, rotate: -3, scale: 0.97 },
-  { x: 86, y: -2, rotate: 3, scale: 0.97 },
-  { x: 256, y: 6, rotate: 9, scale: 0.9 },
-  { x: 430, y: 22, rotate: 16, scale: 0.84 },
+  { x: -430, y: 38, rotate: -16, scale: 0.84 },
+  { x: -256, y: 22, rotate: -9, scale: 0.9 },
+  { x: -86, y: 14, rotate: -3, scale: 0.97 },
+  { x: 86, y: 14, rotate: 3, scale: 0.97 },
+  { x: 256, y: 22, rotate: 9, scale: 0.9 },
+  { x: 430, y: 38, rotate: 16, scale: 0.84 },
 ];
 
 const N = FAN.length;
@@ -58,7 +58,11 @@ export function ScrollCards({ containerRef }: { containerRef: RefObject<HTMLDivE
       if (!container || !anchor || scrollable <= 0) return;
       const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
       const lp = Math.min(0.92, Math.max(0.05, anchorTop / scrollable));
-      const heroRowY = Math.min(vh * 0.78, vh - 110);
+      const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage"]');
+      const stageRect = stage?.getBoundingClientRect();
+      const heroRowY = stageRect
+        ? stageRect.top + stageRect.height * 0.34
+        : Math.min(vh * 0.88, vh - 64);
       setGeo({ vw, vh, lp, heroRowY, ready: true });
     };
     measure();

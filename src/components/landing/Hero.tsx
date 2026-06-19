@@ -46,7 +46,11 @@ export function Hero() {
           </motion.div>
 
           {/* ── Copy ── */}
-          <motion.div style={{ y: copyY }} className="order-2 lg:mx-auto lg:max-w-3xl">
+          <motion.div
+            style={{ y: copyY }}
+            className="order-2 lg:mx-auto lg:max-w-3xl"
+            data-hero-copy
+          >
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,7 +137,11 @@ export function Hero() {
         </div>
 
         {/* Fan stage — desktop only. The fixed ScrollCards overlay fans out here. */}
-        <div aria-hidden className="hidden lg:block lg:h-[clamp(300px,40vh,440px)]" />
+        <div
+          data-hero-cards-stage
+          aria-hidden
+          className="hidden lg:mt-14 lg:block lg:h-[clamp(400px,48vh,540px)]"
+        />
       </div>
     </section>
   );
