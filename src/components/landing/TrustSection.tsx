@@ -10,8 +10,8 @@ const trust = [
   },
   {
     icon: Target,
-    title: "Disain, mis viib kontaktini",
-    body: "Iga element teenib üht eesmärki: selgitada pakkumine ja tuua päring.",
+    title: "Leht ei ole ainult ilus - see aitab kliendil ühendust võtta",
+    body: "Iga osa aitab kliendil aru saada, mida pakud, ja teeb ühenduse võtmise lihtsaks.",
   },
   {
     icon: PenLine,
@@ -41,8 +41,8 @@ export function TrustSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Miks meie"
-          title="Põhjused, miks meiega koostööd teha"
-          subtitle="Professionaalne tulemus ilma agentuuri hinna ja bürokraatiata."
+          title="Miks see on lihtsam kui tavaline kodulehe tellimine"
+          subtitle="Saad korraliku tulemuse ilma suure agentuuri hinna, pikkade koosolekute ja segase protsessita."
         />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {trust.map((t) => (

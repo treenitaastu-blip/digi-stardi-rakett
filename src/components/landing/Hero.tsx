@@ -16,9 +16,9 @@ import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 
 const included = [
-  "Müügitekstid valmis kirjutatud",
+  "Sa ei pea ise tekste kirjutama",
   "Laitmatu mobiilivaade",
-  "Google'is leitav (SEO)",
+  "Aitame teha lehe Google'is leitavaks",
   "Kontaktivorm postkasti",
 ];
 
@@ -79,8 +79,8 @@ export function Hero() {
             transition={{ duration: 0.65, delay: 0.14 }}
             className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground lg:mx-auto"
           >
-            Veebileht koos müügitekstide ja SEO-ga. Valmis 7 tööpäevaga, fikseeritud hinnaga{" "}
-            <span className="font-semibold text-foreground">400 €.</span>
+            Korralik koduleht 7 päevaga. Kirjutame tekstid ise, paneme lehe mobiilis tööle ja
+            teeme selle Google'i jaoks valmis.
           </motion.p>
 
           <motion.ul

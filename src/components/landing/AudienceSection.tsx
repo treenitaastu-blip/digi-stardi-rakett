@@ -17,8 +17,8 @@ export function AudienceSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Kellele"
-          title="Loodud väikeettevõttele ja alustajale"
-          subtitle="Kui klient teid enne otsust Google'ist või sotsiaalmeediast kontrollib, töötab korralik koduleht teie kasuks."
+          title="Sobib ettevõtjale, kes tahab kiirelt korralikku kodulehte"
+          subtitle="Kui klient enne helistamist sind Google'ist vaatab, peaks ta nägema ettevõtet, mida saab usaldada."
         />
         <RevealGroup className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {audience.map((a) => (

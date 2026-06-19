@@ -27,7 +27,7 @@ export function PricingSection() {
         <SectionHeading
           eyebrow="Hind"
           title="Üks pakett. Üks hind. Null üllatusi."
-          subtitle="Hind on siin, mustvalgel. Müügikõnet pole vaja."
+          subtitle="Hind on kohe näha. Saad enne ühendust võtmist aru, millega arvestada."
         />
 
         <Reveal className="mt-14">
@@ -65,8 +65,8 @@ export function PricingSection() {
                   className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"
                 />
                 <p className="relative text-balance text-lg font-semibold leading-snug text-brand-foreground">
-                  &bdquo;Garanteeritud kliente keegi lubada ei saa. Lubame selle, et kui teid
-                  otsitakse, leiab klient korraliku ja usaldusväärse esmamulje.&rdquo;
+                  &bdquo;Me ei luba, et koduleht toob kohe kümneid kliente. Lubame, et kui klient sind
+                  kontrollib, jätab su ettevõte korraliku ja usaldusväärse mulje.&rdquo;
                 </p>
 
                 <div className="relative mt-7">

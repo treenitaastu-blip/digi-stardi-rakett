@@ -4,26 +4,26 @@ import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
 
 const structurePoints = [
-  "Pakkumine ja pealkiri kohe ekraani ülaosas",
+  "Kõige olulisem info kohe esimesel ekraanil",
   "Teenused ja hinnainfo arusaadavalt esitatud",
-  "Selge tegevuskutse, mis suunab kontakti võtma",
+  "Selge nupp või vorm, kust klient saab kohe ühendust võtta",
 ];
 
 const smallFeatures = [
   {
     icon: Smartphone,
-    title: "Laitmatu mobiilivaade",
-    body: "Enamik külastajaid tuleb telefonist. Leht töötab veatult igas seadmes.",
+    title: "Leht näeb telefonis korralik välja",
+    body: "Paljud kliendid vaatavad sind telefonist. Leht peab olema kiire, selge ja mugav kasutada.",
   },
   {
     icon: Search,
-    title: "Google'is leitav",
-    body: "SEO baasseadistus ja Search Console, et kliendid teid otsingust leiaksid.",
+    title: "Teeme lehe Google'i jaoks korda",
+    body: "Paneme paika esmased Google'i seadistused, et leht oleks otsingus paremini leitav.",
   },
   {
     icon: Mail,
     title: "Kontaktivorm",
-    body: "Päringud jõuavad otse teie postkasti. Lihtne kliendile, kiire teile.",
+    body: "Klient täidab vormi ja päring tuleb otse sinu e-mailile.",
   },
 ];
 
@@ -33,8 +33,8 @@ export function SolutionSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Pakett"
-          title="Kõik, mida ettevõte veebis vajab, ühes paketis"
-          subtitle="Fikseeritud hind 400 €. Ei tunnitasusid ega üllatusarveid. Paketis on kõik allolev."
+          title="Kõik vajalik koduleheks - ilma et peaksid ise nuputama"
+          subtitle="Üks hind, selge sisu ja ei mingeid üllatusarveid. Sina annad info, meie teeme lehe valmis."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-6">
@@ -44,9 +44,9 @@ export function SolutionSection() {
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand">
                 <LayoutTemplate className="h-5 w-5" />
               </span>
-              <h3 className="mt-5 text-lg font-bold">Selge, müügile suunatud struktuur</h3>
+              <h3 className="mt-5 text-lg font-bold">Leht on üles ehitatud nii, et klient jõuaks päringuni</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Klient mõistab kümne sekundiga, millega tegelete ja miks valida just teid.
+                Klient saab kiiresti aru, mida sa pakud, kus sa tegutsed ja miks sinuga ühendust võtta.
               </p>
               <ul className="mt-5 space-y-2.5">
                 {structurePoints.map((p) => (
@@ -67,10 +67,10 @@ export function SolutionSection() {
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand">
                 <FileText className="h-5 w-5" />
               </span>
-              <h3 className="mt-5 text-lg font-bold">Müügitekstid valmis kirjutatud</h3>
+              <h3 className="mt-5 text-lg font-bold">Kirjutame tekstid sinu eest</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Saadate ettevõtte info, meie kirjutame veenvad tekstid. Eraldi tekstikirjutajat pole
-                vaja.
+                Sina räägid meile, mida teed. Meie paneme selle lihtsasse ja usaldust tekitavasse
+                teksti.
               </p>
               <div className="mt-5 rounded-xl border border-border bg-secondary/40 p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand">

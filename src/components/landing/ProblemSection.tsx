@@ -5,18 +5,18 @@ import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 const problems = [
   {
     icon: SearchX,
-    title: "Google ei leia teid",
-    body: "Kui teid otsingust ei leita, valib klient esimese konkurendi, teid nägemata.",
+    title: "Klient otsib sind Google'ist, aga ei leia korralikku infot",
+    body: "Kui sind ei leita, ei saa klient sind isegi kaaluda. Ta võtab ühendust sellega, kes on nähtav.",
   },
   {
     icon: ShieldAlert,
-    title: "Facebook ei asenda kodulehte",
-    body: "Sotsiaalmeedia toob tähelepanu, koduleht toob usalduse. Tõsine klient kontrollib teid enne otsust.",
+    title: "Facebookist üksi ei piisa",
+    body: "Klient võib sind Facebookis näha, aga enne otsust tahab ta näha korralikku infot, teenuseid ja kontakte ühes kohas.",
   },
   {
     icon: History,
-    title: "Vananenud leht kahjustab mainet",
-    body: "Poolik või aastatetagune leht jätab mulje, et ettevõte ei tegutse enam.",
+    title: "Vana või poolik leht tekitab kahtlust",
+    body: "Kui leht näeb vana välja, võib klient mõelda, et ettevõte ei tegutse enam või ei ole usaldusväärne.",
   },
 ];
 
@@ -33,8 +33,8 @@ export function ProblemSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Probleem"
-          title="Nõrk veebikohalolu maksab teile kliente"
-          subtitle="Suurt agentuuriprojekti pole vaja. Vaja on selget vastust kolmele küsimusele: millega tegelete, miks teid usaldada ja kuidas ühendust võtta."
+          title="Kui klient sind Google'ist ei leia, valib ta kellegi teise"
+          subtitle="Sa ei vaja kallist agentuuri. Sul on vaja lehte, kust klient saab kohe aru, mida pakud, miks sind usaldada ja kuidas sinuga ühendust võtta."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -66,7 +66,7 @@ export function ProblemSection() {
                 Stardipaketiga
               </p>
               <h3 className="mt-2 max-w-xl text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
-                Klient leiab teid, mõistab pakkumist ja võtab ühendust.
+                Klient leiab sind, saab aru mida pakud ja teab kohe kuhu kirjutada
               </h3>
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {after.map((t) => (

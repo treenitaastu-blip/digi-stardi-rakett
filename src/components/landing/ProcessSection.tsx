@@ -3,28 +3,16 @@ import { SectionHeading } from "./SectionHeading";
 
 const steps = [
   {
-    title: "Tellimisankeet",
-    body: "Saadate ettevõtte info: nimi, teenused, kontakt ja piirkond.",
+    title: "Saadad info",
+    body: "Täidad lühikese ankeedi: ettevõtte nimi, teenused, kontakt ja piirkond.",
   },
   {
-    title: "Struktuur ja tekstid",
-    body: "Paneme paika lehe ülesehituse ja kirjutame müügitekstid.",
+    title: "Teeme lehe",
+    body: "Paneme struktuuri paika, kirjutame müügitekstid ja valmistame disaini. Kuni kaks parandusringi on hinna sees.",
   },
   {
-    title: "Disain ja esiversioon",
-    body: "Mõne tööpäevaga valmib täielik esiversioon koos disainiga.",
-  },
-  {
-    title: "Teie tagasiside",
-    body: "Vaatate lehe üle ja annate märku, mida soovite muuta.",
-  },
-  {
-    title: "Parandused",
-    body: "Teeme soovitud muudatused. Kuni kaks ringi on hinna sees.",
-  },
-  {
-    title: "Avaldamine",
-    body: "Leht läheb töösse. Link on valmis klientidele ja reklaamile.",
+    title: "Avaldame",
+    body: "Leht läheb töösse. Link on valmis klientidele, Google'ile ja reklaamile.",
   },
 ];
 
@@ -34,18 +22,18 @@ export function ProcessSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Protsess"
-          title="Tellimusest valmis leheni kuue sammuga"
-          subtitle="Lihtne ja kiire töövoog ilma pikkade koosolekute ja bürokraatiata."
+          title="Kuidas koduleht valmis saab"
+          subtitle="Lihtne protsess. Ei pikki koosolekuid ega tehnilist segadust."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3">
           {steps.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-soft-lg"
             >
               <span
