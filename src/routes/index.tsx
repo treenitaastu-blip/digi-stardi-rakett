@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { StatsBand } from "@/components/landing/StatsBand";
+import { ComparisonSection } from "@/components/landing/ComparisonSection";
 import { ProblemSection } from "@/components/landing/ProblemSection";
 import { SolutionSection } from "@/components/landing/SolutionSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
@@ -45,6 +46,7 @@ function Index() {
           <Hero />
           <PortfolioSection />
           <StatsBand />
+          <ComparisonSection />
           <ProblemSection />
           <SolutionSection />
           <ProcessSection />
