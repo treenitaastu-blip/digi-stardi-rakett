@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { Wordmark } from "./Logo";
+import { Logo } from "./Logo";
 
 const nav = [
   { href: "#mida-saad", label: "Pakett" },
@@ -24,7 +24,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="#top" aria-label="Lehekoda">
-              <Wordmark className="text-[1.15rem]" />
+              <Logo className="h-8" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Professionaalne koduleht Eesti väikeettevõttele. Müügitekstid, SEO ja mobiilivaade.

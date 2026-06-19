@@ -14,6 +14,8 @@ import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
 import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
 
+const heroPillClass = "h-12 rounded-full px-6 font-semibold tracking-tight";
+
 export function Hero() {
   const { openQuiz } = useQuiz();
   const ref = useRef<HTMLDivElement>(null);
@@ -29,7 +31,7 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative isolate flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
+      className="relative isolate flex min-h-[90vh] items-center overflow-hidden pb-16 pt-32 md:pt-36 lg:min-h-screen lg:items-start lg:pt-40"
     >
       <div aria-hidden className="absolute inset-0 bg-secondary" />
       <HeroBackground bgY={bgY} />
@@ -85,18 +87,18 @@ export function Hero() {
                   variant="hero"
                   size="xl"
                   onClick={openQuiz}
-                  className="font-semibold tracking-tight sm:flex-1 sm:max-w-xs"
+                  className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")}
                 >
                   Küsi pakkumist <ArrowRight className="h-4 w-4" />
                 </Button>
-                <HeroPriceBadge className="sm:flex-1 sm:justify-center" />
+                <HeroPriceBadge className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")} />
               </div>
 
               <Button
                 asChild
                 variant="heroOutline"
                 size="xl"
-                className="w-full font-semibold tracking-tight sm:mx-auto sm:w-auto"
+                className={cn(heroPillClass, "w-full sm:mx-auto sm:w-auto")}
               >
                 <a href="#tood">Vaata töid</a>
               </Button>
@@ -108,7 +110,7 @@ export function Hero() {
                 variant="hero"
                 size="xl"
                 onClick={openQuiz}
-                className="justify-self-end font-semibold tracking-tight"
+                className={cn(heroPillClass, "justify-self-end")}
               >
                 Küsi pakkumist <ArrowRight className="h-4 w-4" />
               </Button>
@@ -117,12 +119,12 @@ export function Hero() {
                 asChild
                 variant="heroOutline"
                 size="xl"
-                className="justify-self-center font-semibold tracking-tight"
+                className={cn(heroPillClass, "justify-self-center")}
               >
                 <a href="#tood">Vaata töid</a>
               </Button>
 
-              <HeroPriceBadge className="justify-self-start" />
+              <HeroPriceBadge className={cn(heroPillClass, "justify-self-start")} />
             </div>
           </motion.div>
           </motion.div>
@@ -143,15 +145,14 @@ function HeroPriceBadge({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "inline-flex items-center justify-center gap-2.5 rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft",
-        "lg:rounded-full lg:px-4 lg:py-2 lg:shadow-none",
+        "inline-flex items-center justify-center gap-2.5 border border-border bg-card shadow-soft lg:shadow-none",
         className,
       )}
     >
-      <p className="font-display shrink-0 text-[1.75rem] font-bold leading-none tracking-tight text-foreground lg:text-lg">
+      <p className="font-display shrink-0 text-lg font-bold leading-none tracking-tight text-foreground">
         399€
       </p>
-      <div className="flex shrink-0 items-center gap-2 whitespace-nowrap text-xs leading-tight lg:text-[0.7rem]">
+      <div className="flex shrink-0 items-center gap-2 whitespace-nowrap text-xs leading-none">
         <span className="text-muted-foreground">ühekordne hind</span>
         <span className="text-muted-foreground/40" aria-hidden>
           ·

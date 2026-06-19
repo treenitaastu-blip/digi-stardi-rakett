@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AnnouncementBar } from "./AnnouncementBar";
 import { Logo } from "./Logo";
 import { useQuiz } from "./QuizContext";
 
@@ -29,14 +30,16 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border/70 bg-background/80 backdrop-blur-xl"
-          : "bg-transparent",
-      )}
-    >
+    <div className="fixed inset-x-0 top-0 z-50">
+      <AnnouncementBar />
+      <header
+        className={cn(
+          "relative transition-all duration-300",
+          scrolled
+            ? "border-b border-border/70 bg-background/80 backdrop-blur-xl"
+            : "bg-transparent",
+        )}
+      >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
         <a href="#top" aria-label="Lehekoda" className="shrink-0">
           <Logo />
@@ -98,6 +101,7 @@ export function Navbar() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </div>
   );
 }

@@ -93,7 +93,7 @@ export function homeJsonLdGraph(): Record<string, unknown> {
         "@id": orgId,
         name: SITE.name,
         url: SITE.url,
-        logo: absoluteUrl("/favicon.png"),
+        logo: absoluteUrl("/logo-lehekoda.png"),
         email: SITE.email,
         areaServed: { "@type": "Country", name: "Estonia" },
       },
