@@ -1,13 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
-
-const nav = [
-  { href: "#mida-saad", label: "Pakett" },
-  { href: "#tood", label: "Tööd" },
-  { href: "#protsess", label: "Protsess" },
-  { href: "#hind", label: "Hind" },
-  { href: "#kkk", label: "KKK" },
-];
+import { siteNavLinks } from "@/lib/nav";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -17,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]">
           {/* Brand */}
           <div>
-            <a href="#top" aria-label="Lehekoda">
+            <a href="/" aria-label="Lehekoda">
               <Logo className="h-8" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
@@ -25,7 +18,7 @@ export function Footer() {
               Valmis 7 tööpäevaga, fikseeritud hinnaga 399 €.
             </p>
             <a
-              href="#kontakt"
+              href="/#kontakt"
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand/80"
             >
               Küsi pakkumist <ArrowUpRight className="h-4 w-4" />
@@ -38,7 +31,7 @@ export function Footer() {
               Leht
             </p>
             <ul className="mt-4 space-y-2.5">
-              {nav.map((l) => (
+              {siteNavLinks.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}

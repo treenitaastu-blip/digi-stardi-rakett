@@ -249,3 +249,62 @@
 @utility text-highlight {
   color: var(--highlight);
 }
+
+@layer components {
+  .blog-prose {
+    color: var(--foreground);
+
+    & > * + * {
+      margin-top: 1.25rem;
+    }
+
+    & h2 {
+      margin-top: 2.5rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+    }
+
+    & p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: color-mix(in oklab, var(--foreground) 82%, transparent);
+    }
+
+    & ul {
+      margin-top: 0.75rem;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    & li {
+      position: relative;
+      padding-left: 1.35rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: color-mix(in oklab, var(--foreground) 82%, transparent);
+    }
+
+    & li + li {
+      margin-top: 0.5rem;
+    }
+
+    & li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      height: 0.4rem;
+      width: 0.4rem;
+      border-radius: 9999px;
+      background: var(--brand);
+    }
+
+    & strong {
+      font-weight: 700;
+      color: var(--foreground);
+    }
+  }
+}

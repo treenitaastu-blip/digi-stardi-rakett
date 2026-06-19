@@ -5,14 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { Logo } from "./Logo";
-
-const links = [
-  { href: "#mida-saad", label: "Pakett" },
-  { href: "#tood", label: "Tööd" },
-  { href: "#protsess", label: "Protsess" },
-  { href: "#hind", label: "Hind" },
-  { href: "#kkk", label: "KKK" },
-];
+import { siteNavLinks } from "@/lib/nav";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,12 +32,12 @@ export function Navbar() {
         )}
       >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" aria-label="Lehekoda" className="-ml-1 shrink-0 md:ml-0">
+        <a href="/" aria-label="Lehekoda" className="-ml-1 shrink-0 md:ml-0">
           <Logo />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
+          {siteNavLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -62,7 +55,7 @@ export function Navbar() {
             asChild
             className="hidden rounded-xl md:inline-flex"
           >
-            <a href="#kontakt">Küsi pakkumist</a>
+            <a href="/#kontakt">Küsi pakkumist</a>
           </Button>
           <button
             aria-label="Menüü"
@@ -83,7 +76,7 @@ export function Navbar() {
       {open && (
         <div className="border-t border-border bg-background/95 px-5 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-1">
-            {links.map((l) => (
+            {siteNavLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -94,7 +87,7 @@ export function Navbar() {
               </a>
             ))}
             <Button variant="hero" className="mt-2 rounded-xl" asChild>
-              <a href="#kontakt" onClick={() => setOpen(false)}>
+              <a href="/#kontakt" onClick={() => setOpen(false)}>
                 Küsi pakkumist
               </a>
             </Button>

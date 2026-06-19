@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogiIndexRouteImport } from './routes/blogi/index'
+import { Route as BlogiSlugRouteImport } from './routes/blogi/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogiIndexRoute = BlogiIndexRouteImport.update({
+  id: '/blogi/',
+  path: '/blogi/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogiSlugRoute = BlogiSlugRouteImport.update({
+  id: '/blogi/$slug',
+  path: '/blogi/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blogi/$slug': typeof BlogiSlugRoute
+  '/blogi/': typeof BlogiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blogi/$slug': typeof BlogiSlugRoute
+  '/blogi': typeof BlogiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blogi/$slug': typeof BlogiSlugRoute
+  '/blogi/': typeof BlogiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/blogi/$slug' | '/blogi/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/blogi/$slug' | '/blogi'
+  id: '__root__' | '/' | '/blogi/$slug' | '/blogi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogiSlugRoute: typeof BlogiSlugRoute
+  BlogiIndexRoute: typeof BlogiIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogi/': {
+      id: '/blogi/'
+      path: '/blogi'
+      fullPath: '/blogi/'
+      preLoaderRoute: typeof BlogiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogi/$slug': {
+      id: '/blogi/$slug'
+      path: '/blogi/$slug'
+      fullPath: '/blogi/$slug'
+      preLoaderRoute: typeof BlogiSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogiSlugRoute: BlogiSlugRoute,
+  BlogiIndexRoute: BlogiIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
