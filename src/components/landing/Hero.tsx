@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
+import { HeroAnimatedSubtitle, HeroStaticSubtitle } from "./HeroAnimatedSubtitle";
 
 const included = [
   "Sa ei pea ise tekste kirjutama",
@@ -35,11 +36,12 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[90vh] items-center overflow-hidden bg-secondary pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
+      className="relative isolate flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
     >
+      <div aria-hidden className="absolute inset-0 bg-secondary" />
       <HeroBackground bgY={bgY} />
 
-      <div className="mx-auto w-full max-w-6xl px-5">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
         <div className="grid items-center gap-10 lg:block lg:text-center">
           {/* ── Visual (mobile/tablet only — scroll cards replace it on desktop) ── */}
           <motion.div style={{ y: visualY }} className="order-1 lg:hidden">
@@ -75,14 +77,9 @@ export function Hero() {
             <span className="text-brand">kliendi usalduse</span>
           </motion.h1>
 
-          <div className="mt-5 max-w-[480px] space-y-1.5 text-[1.05rem] leading-snug text-muted-foreground lg:mx-auto">
-            <p>
-              Korralik koduleht <span className="font-semibold text-highlight">7 päevaga</span>.
-            </p>
-            <p>Kirjutame tekstid ise.</p>
-            <p>Paneme mobiili tööle.</p>
-            <p>Teeme Google&apos;i jaoks valmis.</p>
-          </div>
+          <HeroStaticSubtitle className="mt-5 max-w-[480px] space-y-1.5 lg:mx-auto lg:hidden" />
+
+          <HeroAnimatedSubtitle className="mt-5 hidden max-w-[480px] lg:mx-auto lg:block" />
 
           <motion.ul
             initial={{ opacity: 0, y: 18 }}
@@ -155,10 +152,14 @@ export function Hero() {
 
 function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
   return (
-    <motion.div style={{ y: bgY }} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+    <motion.div
+      style={{ y: bgY }}
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0"
+    >
       <div className="bg-grid absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
-      <div className="absolute inset-0 text-brand opacity-[0.09] [mask-image:radial-gradient(90%_75%_at_50%_30%,black_15%,transparent_80%)]">
-        <HeroCircuitPattern className="h-full w-full" />
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_120%_100%_at_50%_35%,black_50%,transparent_100%)]">
+        <HeroCircuitPattern className="h-full w-full opacity-100" />
       </div>
     </motion.div>
   );
