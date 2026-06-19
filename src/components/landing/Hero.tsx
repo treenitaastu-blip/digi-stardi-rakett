@@ -5,9 +5,6 @@ import {
   Check,
   Search,
   Star,
-  Code2,
-  Braces,
-  Terminal,
   ShieldCheck,
   Zap,
   Tag,
@@ -37,7 +34,7 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[90vh] items-center overflow-hidden pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
+      className="relative flex min-h-[90vh] items-center overflow-hidden bg-secondary pb-16 pt-28 md:pt-32 lg:min-h-screen lg:items-start"
     >
       <HeroBackground bgY={bgY} />
 
@@ -70,7 +67,7 @@ export function Hero() {
             className="mt-6 text-balance text-[2.6rem] font-bold leading-[1.03] md:text-[3.25rem] lg:text-[3.7rem]"
           >
             Koduleht, mis võidab{" "}
-            <span className="text-gradient-brand">kliendi usalduse</span>
+            <span className="text-brand">kliendi usalduse</span>
           </motion.h1>
 
           <motion.p
@@ -79,8 +76,9 @@ export function Hero() {
             transition={{ duration: 0.65, delay: 0.14 }}
             className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground lg:mx-auto"
           >
-            Korralik koduleht 7 päevaga. Kirjutame tekstid ise, paneme lehe mobiilis tööle ja
-            teeme selle Google'i jaoks valmis.
+            Korralik koduleht <span className="font-semibold text-highlight">7 päevaga</span>.
+            Kirjutame tekstid ise, paneme lehe mobiilis tööle ja teeme selle Google'i jaoks
+            valmis.
           </motion.p>
 
           <motion.ul
@@ -91,8 +89,8 @@ export function Hero() {
           >
             {included.map((t) => (
               <li key={t} className="flex items-center gap-2.5 text-sm font-medium text-foreground/80">
-                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
-                  <Check className="h-3 w-3 text-brand" />
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
+                  <Check className="h-3 w-3 text-success" />
                 </span>
                 {t}
               </li>
@@ -135,44 +133,7 @@ export function Hero() {
 function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
   return (
     <motion.div style={{ y: bgY }} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-      {/* Ambient orbs */}
-      <motion.div
-        className="absolute -right-20 -top-24 h-[26rem] w-[26rem] rounded-full opacity-50 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, color-mix(in oklab, var(--brand-2) 30%, transparent), transparent 70%)",
-        }}
-        animate={{ x: [0, 30, 0], y: [0, 24, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -left-24 top-1/3 h-[22rem] w-[22rem] rounded-full opacity-40 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, color-mix(in oklab, var(--brand) 26%, transparent), transparent 70%)",
-        }}
-        animate={{ x: [0, -24, 0], y: [0, -20, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Tech grid */}
-      <div className="bg-grid absolute inset-0 opacity-[0.6] [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
-
-      {/* Floating code glyphs */}
-      {[
-        { Icon: Code2, cls: "left-[8%] top-[24%]", d: 0 },
-        { Icon: Braces, cls: "right-[12%] top-[16%]", d: 1.2 },
-        { Icon: Terminal, cls: "left-[18%] bottom-[18%]", d: 2.1 },
-      ].map(({ Icon, cls, d }, i) => (
-        <motion.div
-          key={i}
-          className={`absolute hidden text-brand/15 lg:block ${cls}`}
-          animate={{ y: [0, -16, 0], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: d }}
-        >
-          <Icon className="h-9 w-9" />
-        </motion.div>
-      ))}
+      <div className="bg-grid absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]" />
     </motion.div>
   );
 }
@@ -201,7 +162,7 @@ function HeroVisual() {
 
           {/* Website preview — sample landing hero with real copy */}
           <div className="relative overflow-hidden rounded-xl border border-border">
-            <div className="bg-brand-gradient relative px-5 py-6">
+            <div className="bg-brand relative px-5 py-6">
               <div
                 aria-hidden
                 className="bg-dots pointer-events-none absolute inset-0 opacity-[0.15]"
@@ -266,14 +227,14 @@ function HeroVisual() {
           transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border border-border bg-card shadow-soft-lg sm:-right-6 sm:w-28"
         >
-          <div className="bg-brand-gradient px-2 py-2.5">
+          <div className="bg-brand px-2 py-2.5">
             <p className="font-display text-[7px] font-bold text-white">Mardi Ehitus</p>
             <p className="mt-1 text-[8px] font-bold leading-tight text-white">Ehitus ja remont</p>
           </div>
           <div className="space-y-1.5 p-2">
             <div className="h-1.5 w-3/4 rounded-full bg-foreground/30" />
             <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/25" />
-            <div className="bg-brand-gradient grid h-5 w-full place-items-center rounded-md">
+            <div className="bg-brand grid h-5 w-full place-items-center rounded-md">
               <span className="text-[6px] font-bold text-white">Küsi pakkumist</span>
             </div>
           </div>

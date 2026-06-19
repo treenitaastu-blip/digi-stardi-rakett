@@ -16,7 +16,7 @@ const rows = [
 
 export function ComparisonSection() {
   return (
-    <section id="vordlus" className="section-pad bg-secondary/30">
+    <section id="vordlus" className="section-pad bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Meie vs Teised"
@@ -38,7 +38,7 @@ export function ComparisonSection() {
                   </th>
                   <th
                     scope="col"
-                    className="bg-brand-gradient w-[39%] px-6 py-4 text-sm font-bold text-brand-foreground"
+                    className="bg-brand w-[39%] px-6 py-4 text-sm font-bold text-brand-foreground"
                   >
                     Lehekoda
                   </th>
@@ -65,10 +65,10 @@ export function ComparisonSection() {
                     >
                       {row.label}
                     </th>
-                    <td className="bg-brand/6 border-x border-brand/10 px-6 py-4">
+                    <td className="border-x border-border bg-brand-muted/40 px-6 py-4">
                       <div className="flex items-start gap-2.5">
-                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/15">
-                          <Check className="h-3 w-3 text-brand" />
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
+                          <Check className="h-3 w-3 text-success" />
                         </span>
                         <span className="text-sm font-medium leading-snug text-foreground">
                           {row.us}
@@ -103,12 +103,12 @@ export function ComparisonSection() {
                     {row.label}
                   </p>
                 </div>
-                <div className="bg-brand/6 border-b border-brand/10 px-4 py-3.5">
+                <div className="border-b border-border bg-brand-muted/40 px-4 py-3.5">
                   <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-brand">
                     Lehekoda
                   </p>
                   <div className="flex items-start gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                     <p className="text-sm font-medium leading-snug text-foreground">{row.us}</p>
                   </div>
                 </div>

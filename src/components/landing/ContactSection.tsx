@@ -12,7 +12,7 @@ import { submitLead, RECIPIENT } from "@/lib/lead";
 
 const trustLines = [
   { icon: Clock, text: "Tarne 7 tööpäevaga" },
-  { icon: Tag, text: "Fikseeritud hind 400 €" },
+  { icon: Tag, text: "Fikseeritud hind 399 €" },
   { icon: FileText, text: "Müügitekstid ja SEO kaasas" },
 ];
 
@@ -76,7 +76,7 @@ export function ContactSection() {
         <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
             {/* Left — brand side */}
-            <div className="bg-brand-gradient relative flex flex-col justify-center p-8 md:p-10">
+            <div className="bg-brand relative flex flex-col justify-center p-8 md:p-10">
               <div
                 aria-hidden
                 className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"

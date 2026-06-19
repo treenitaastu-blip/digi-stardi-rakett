@@ -43,7 +43,7 @@ export function TestimonialsSection() {
               {["MT", "KL", "AP", "RV"].map((i) => (
                 <span
                   key={i}
-                  className="bg-brand-gradient grid h-9 w-9 place-items-center rounded-full border-2 border-card text-[11px] font-bold text-brand-foreground"
+                  className="bg-brand grid h-9 w-9 place-items-center rounded-full border-2 border-card text-[11px] font-bold text-brand-foreground"
                 >
                   {i}
                 </span>
@@ -77,7 +77,7 @@ export function TestimonialsSection() {
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-                  <span className="bg-brand-gradient grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-brand-foreground">
+                  <span className="bg-brand grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-brand-foreground">
                     {t.initials}
                   </span>
                   <div>

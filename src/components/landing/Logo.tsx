@@ -48,7 +48,7 @@ export function Wordmark({
       )}
     >
       Lehe
-      <span className={tone === "onBrand" ? "" : "text-gradient-brand"}>koda</span>
+      <span className={tone === "onBrand" ? "" : "text-brand"}>koda</span>
     </span>
   );
 }

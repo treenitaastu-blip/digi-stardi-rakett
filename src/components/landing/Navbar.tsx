@@ -73,7 +73,7 @@ export function Navbar() {
 
       {/* Scroll progress bar */}
       <motion.div
-        className="bg-brand-gradient absolute bottom-0 left-0 h-0.5 w-full origin-left"
+        className="bg-brand absolute bottom-0 left-0 h-0.5 w-full origin-left"
         style={{ scaleX: progress, opacity: scrolled ? 1 : 0 }}
       />
 

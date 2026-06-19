@@ -22,7 +22,7 @@ const guarantees = [
 
 export function PricingSection() {
   return (
-    <section id="hind" className="section-pad bg-secondary/30">
+    <section id="hind" className="section-pad bg-secondary">
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
           eyebrow="Hind"
@@ -39,7 +39,7 @@ export function PricingSection() {
 
                 <div className="mt-6 flex items-end gap-2">
                   <span className="font-display text-6xl font-bold tracking-tight leading-none">
-                    400&nbsp;€
+                    399&nbsp;€
                   </span>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -49,8 +49,8 @@ export function PricingSection() {
                 <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
                   {included.map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
-                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
-                        <Check className="h-3 w-3 text-brand" />
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
+                        <Check className="h-3 w-3 text-success" />
                       </span>
                       <span className="text-sm leading-snug">{item}</span>
                     </div>
@@ -59,7 +59,7 @@ export function PricingSection() {
               </div>
 
               {/* Right — brand panel + CTA */}
-              <div className="bg-brand-gradient relative flex flex-col justify-between overflow-hidden p-8 md:p-10">
+              <div className="bg-brand relative flex flex-col justify-between overflow-hidden p-8 md:p-10">
                 <div
                   aria-hidden
                   className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"

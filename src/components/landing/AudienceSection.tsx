@@ -13,7 +13,7 @@ const audience = [
 
 export function AudienceSection() {
   return (
-    <section id="kellele" className="section-pad bg-secondary/30">
+    <section id="kellele" className="section-pad bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Kellele"

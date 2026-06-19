@@ -29,7 +29,7 @@ const smallFeatures = [
 
 export function SolutionSection() {
   return (
-    <section id="mida-saad" className="section-pad bg-secondary/30">
+    <section id="mida-saad" className="section-pad bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Pakett"
@@ -51,8 +51,8 @@ export function SolutionSection() {
               <ul className="mt-5 space-y-2.5">
                 {structurePoints.map((p) => (
                   <li key={p} className="flex items-start gap-2.5 text-sm font-medium text-foreground/85">
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand/12">
-                      <Check className="h-3 w-3 text-brand" />
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
+                      <Check className="h-3 w-3 text-success" />
                     </span>
                     {p}
                   </li>

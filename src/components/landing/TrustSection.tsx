@@ -21,7 +21,7 @@ const trust = [
   {
     icon: Eye,
     title: "Hind ette teada",
-    body: "400 € fikseeritud. Täpne summa on teada juba enne tellimist.",
+    body: "399 € fikseeritud. Täpne summa on teada juba enne tellimist.",
   },
   {
     icon: Zap,

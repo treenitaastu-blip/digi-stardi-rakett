@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 const stats = [
   { end: 7, suffix: "", label: "tööpäeva tarne" },
-  { end: 400, suffix: " €", label: "fikseeritud hind" },
+  { end: 399, suffix: " €", label: "fikseeritud hind" },
   { end: 5, suffix: "+", label: "aastat kogemust" },
   { end: 100, suffix: "%", label: "mobiilne" },
 ];
@@ -44,7 +44,7 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
 
 export function StatsBand() {
   return (
-    <section className="border-y border-border bg-secondary/30">
+    <section className="border-y border-border bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
         <dl className="grid grid-cols-2 divide-x divide-y divide-border/70 sm:grid-cols-4 sm:divide-y-0">
           {stats.map((s, i) => (

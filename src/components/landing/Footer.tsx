@@ -18,7 +18,7 @@ const works = [
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-border bg-secondary/30">
+    <footer className="border-t border-border bg-secondary">
       <div className="mx-auto max-w-6xl px-5 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
@@ -28,7 +28,7 @@ export function Footer() {
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Professionaalne koduleht Eesti väikeettevõttele. Müügitekstid, SEO ja mobiilivaade.
-              Valmis 7 tööpäevaga, fikseeritud hinnaga 400 €.
+              Valmis 7 tööpäevaga, fikseeritud hinnaga 399 €.
             </p>
           </div>
 

@@ -10,7 +10,7 @@ import {
 
 export function FaqSection() {
   return (
-    <section id="kkk" className="section-pad bg-secondary/30">
+    <section id="kkk" className="section-pad bg-secondary">
       <div className="mx-auto max-w-3xl px-5">
         <SectionHeading eyebrow="KKK" title="Vastused enne tellimist" />
         <Reveal className="mt-12">

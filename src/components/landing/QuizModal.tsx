@@ -248,7 +248,7 @@ export function QuizModal() {
           {/* Progress bar */}
           <div className="absolute inset-x-0 top-0 h-1.5 bg-secondary">
             <motion.div
-              className="bg-brand-gradient h-full"
+              className="bg-brand h-full"
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             />
@@ -257,7 +257,7 @@ export function QuizModal() {
           {/* Top bar */}
           <div className="flex items-center justify-between px-5 pt-6 md:px-10">
             <span className="font-display text-sm font-bold">
-              Lehe<span className="text-gradient-brand">koda</span>
+              Lehe<span className="text-brand">koda</span>
             </span>
             <button
               type="button"

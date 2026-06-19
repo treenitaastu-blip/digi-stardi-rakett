@@ -62,7 +62,7 @@ export function PortfolioSection() {
     <section
       id="tood"
       data-section="cards-anchor"
-      className="section-pad bg-secondary/30 lg:pt-[clamp(380px,42vh,520px)]"
+      className="section-pad bg-secondary lg:pt-[clamp(380px,42vh,520px)]"
     >
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
@@ -134,7 +134,7 @@ export function PortfolioSection() {
 
         {/* CTA band */}
         <Reveal className="mt-6">
-          <div className="bg-brand-gradient relative flex flex-col items-center justify-between gap-4 overflow-hidden rounded-2xl p-6 shadow-glow sm:flex-row md:p-8">
+          <div className="bg-brand relative flex flex-col items-center justify-between gap-4 overflow-hidden rounded-2xl p-6 shadow-soft sm:flex-row md:p-8">
             <div
               aria-hidden
               className="bg-dots pointer-events-none absolute inset-0 opacity-[0.12]"

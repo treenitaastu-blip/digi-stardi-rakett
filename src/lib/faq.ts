@@ -1,7 +1,7 @@
 export const faqs = [
   {
     q: "Mis saab domeenist ja hostingust?",
-    a: "Need ei kuulu 400 € sisse, sest kestavad aastast aastasse ja sõltuvad valitud lahendusest. Aitame need valida ja seadistada. Tavaliselt jääb kulu 10–20 € aastas.",
+    a: "Need ei kuulu 399 € sisse, sest kestavad aastast aastasse ja sõltuvad valitud lahendusest. Aitame need valida ja seadistada. Tavaliselt jääb kulu 10–20 € aastas.",
   },
   {
     q: "Kas tekstid on kaasas?",

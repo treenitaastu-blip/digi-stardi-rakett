@@ -6,14 +6,14 @@ export const SITE = {
   lang: "et",
   locale: "et_EE",
   tagline: "Veebilehed Eesti ettevõtetele",
-  title: "Koduleht 7 päevaga, 400 € | Lehekoda",
+  title: "Koduleht 7 päevaga, 399 € | Lehekoda",
   description:
-    "Professionaalne ühe-lehe koduleht väikeettevõttele. Müügitekstid, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 400 €, tarne 7 tööpäeva.",
+    "Professionaalne ühe-lehe koduleht väikeettevõttele. Müügitekstid, SEO, Google Maps ja mobiilidisain. Fikseeritud hind 399 €, tarne 7 tööpäeva.",
   email: "henri@blimeyofficial.com",
-  price: 400,
+  price: 399,
   priceCurrency: "EUR",
   deliveryDays: 7,
-  themeColor: "#5b5bd6",
+  themeColor: "#2563EB",
 } as const;
 
 export function absoluteUrl(path = "/"): string {

@@ -123,7 +123,7 @@ export function homeJsonLdGraph(): Record<string, unknown> {
         description: SITE.description,
         url: SITE.url,
         image: absoluteUrl("/favicon.png"),
-        priceRange: "€400",
+        priceRange: "€399",
         areaServed: { "@type": "Country", name: "Estonia" },
         provider: { "@id": orgId },
         offers: {
