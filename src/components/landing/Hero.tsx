@@ -115,12 +115,17 @@ export function Hero() {
                 Küsi pakkumist <ArrowRight className="h-4 w-4" />
               </Button>
 
-              <div className="rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft sm:w-auto">
-                <p className="font-display text-[1.75rem] font-bold leading-none tracking-tight text-foreground">
+              <div className="rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft sm:w-auto lg:inline-flex lg:items-center lg:gap-2.5 lg:rounded-full lg:px-4 lg:py-2 lg:shadow-none">
+                <p className="font-display text-[1.75rem] font-bold leading-none tracking-tight text-foreground lg:text-lg">
                   399€
                 </p>
-                <p className="mt-1.5 text-xs text-muted-foreground">ühekordne hind</p>
-                <p className="mt-0.5 text-xs font-semibold text-success">0€ kuutasu</p>
+                <div className="lg:flex lg:items-center lg:gap-2 lg:text-[0.7rem] lg:leading-tight">
+                  <p className="mt-1.5 text-xs text-muted-foreground lg:mt-0">ühekordne hind</p>
+                  <span className="hidden text-muted-foreground/40 lg:inline" aria-hidden>
+                    ·
+                  </span>
+                  <p className="mt-0.5 text-xs font-semibold text-success lg:mt-0">0€ kuutasu</p>
+                </div>
               </div>
             </div>
 

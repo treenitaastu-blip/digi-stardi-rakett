@@ -58,7 +58,7 @@ export function ScrollCards({ containerRef }: { containerRef: RefObject<HTMLDivE
       if (!container || !anchor || scrollable <= 0) return;
       const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
       const lp = Math.min(0.92, Math.max(0.05, anchorTop / scrollable));
-      const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage"]');
+      const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage]');
       const stageRect = stage?.getBoundingClientRect();
       const heroRowY = stageRect
         ? stageRect.top + stageRect.height * 0.34
