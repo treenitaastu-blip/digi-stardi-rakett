@@ -75,7 +75,7 @@ export function Footer() {
               href="#kontakt"
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand/80"
             >
-              Telli koduleht <ArrowUpRight className="h-4 w-4" />
+              Küsi pakkumist <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
         </div>

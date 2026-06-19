@@ -243,7 +243,7 @@ export function QuizModal() {
           className="fixed inset-0 z-[60] flex flex-col bg-background"
           role="dialog"
           aria-modal="true"
-          aria-label="Telli koduleht – küsimustik"
+          aria-label="Küsi pakkumist – küsimustik"
         >
           {/* Progress bar */}
           <div className="absolute inset-x-0 top-0 h-1.5 bg-secondary">

@@ -83,13 +83,14 @@ export function ContactSection() {
               />
               <Reveal>
                 <span className="relative inline-block rounded-full bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-widest text-brand-foreground">
-                  Telli koduleht
+                  Küsi pakkumist
                 </span>
                 <h2 className="relative mt-4 text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
                   Valmis professionaalseks esmamuljeks?
                 </h2>
-                <p className="relative mt-4 text-sm leading-relaxed text-brand-foreground/85">
-                  Vastake paarile küsimusele. Saadame personaalse vastuse ühe tööpäeva jooksul.
+                <p className="relative mt-4 space-y-1 text-sm leading-snug text-brand-foreground/85">
+                  <span className="block">Paar küsimust.</span>
+                  <span className="block">Vastame ühe tööpäeva jooksul.</span>
                 </p>
                 <ul className="relative mt-7 space-y-3">
                   {trustLines.map((x) => (

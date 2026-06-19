@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
+import { useQuiz } from "./QuizContext";
 
 const links = [
   { href: "#mida-saad", label: "Pakett" },
@@ -14,6 +15,7 @@ const links = [
 ];
 
 export function Navbar() {
+  const { openQuiz } = useQuiz();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -54,12 +56,12 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <Button
-            asChild
             variant="hero"
             size="default"
+            onClick={openQuiz}
             className="hidden rounded-xl md:inline-flex"
           >
-            <a href="#kontakt">Telli koduleht</a>
+            Küsi pakkumist
           </Button>
           <button
             aria-label="Menüü"
@@ -90,10 +92,8 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Button asChild variant="hero" className="mt-2 rounded-xl">
-              <a href="#kontakt" onClick={() => setOpen(false)}>
-                Telli koduleht
-              </a>
+            <Button variant="hero" className="mt-2 rounded-xl" onClick={() => { setOpen(false); openQuiz(); }}>
+              Küsi pakkumist
             </Button>
           </div>
         </div>

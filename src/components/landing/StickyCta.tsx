@@ -46,11 +46,10 @@ export function StickyCta() {
             onClick={openQuiz}
             className="w-full font-semibold"
           >
-            Võta ühendust <ArrowRight className="h-4 w-4" />
+            Küsi pakkumist <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="mt-2 text-center text-xs leading-snug text-muted-foreground">
-            Vastamine võtab umbes 1 minuti. Kirjuta, millist lehte või digilahendust sinu
-            ettevõttel vaja on.
+            Vastamine võtab umbes 1 minuti.
           </p>
         </motion.div>
       )}

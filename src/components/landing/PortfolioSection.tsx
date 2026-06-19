@@ -148,7 +148,7 @@ export function PortfolioSection() {
               className="relative shrink-0 rounded-xl bg-white font-semibold text-brand hover:bg-white/90"
             >
               <a href="#kontakt">
-                Telli koduleht <ArrowRight className="h-4 w-4" />
+                Küsi pakkumist <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
           </div>

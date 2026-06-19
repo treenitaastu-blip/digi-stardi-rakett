@@ -70,16 +70,14 @@ export function Hero() {
             <span className="text-brand">kliendi usalduse</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.14 }}
-            className="mt-5 max-w-[480px] text-[1.08rem] leading-relaxed text-muted-foreground lg:mx-auto"
-          >
-            Korralik koduleht <span className="font-semibold text-highlight">7 päevaga</span>.
-            Kirjutame tekstid ise, paneme lehe mobiilis tööle ja teeme selle Google'i jaoks
-            valmis.
-          </motion.p>
+          <div className="mt-5 max-w-[480px] space-y-1.5 text-[1.05rem] leading-snug text-muted-foreground lg:mx-auto">
+            <p>
+              Korralik koduleht <span className="font-semibold text-highlight">7 päevaga</span>.
+            </p>
+            <p>Kirjutame tekstid ise.</p>
+            <p>Paneme mobiili tööle.</p>
+            <p>Teeme Google&apos;i jaoks valmis.</p>
+          </div>
 
           <motion.ul
             initial={{ opacity: 0, y: 18 }}
@@ -101,21 +99,32 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.26 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row lg:justify-center"
+            className="mt-9 flex flex-col items-stretch gap-3 lg:items-center"
           >
-            <Button
-              variant="hero"
-              size="xl"
-              onClick={openQuiz}
-              className="font-semibold tracking-tight"
-            >
-              Telli koduleht <ArrowRight className="h-4 w-4" />
-            </Button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch lg:justify-center">
+              <Button
+                variant="hero"
+                size="xl"
+                onClick={openQuiz}
+                className="font-semibold tracking-tight sm:flex-1 sm:max-w-xs lg:flex-none"
+              >
+                Küsi pakkumist <ArrowRight className="h-4 w-4" />
+              </Button>
+
+              <div className="rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft sm:w-auto">
+                <p className="font-display text-[1.75rem] font-bold leading-none tracking-tight text-foreground">
+                  399€
+                </p>
+                <p className="mt-1.5 text-xs text-muted-foreground">ühekordne hind</p>
+                <p className="mt-0.5 text-xs font-semibold text-success">0€ kuutasu</p>
+              </div>
+            </div>
+
             <Button
               asChild
               variant="heroOutline"
               size="xl"
-              className="font-semibold tracking-tight"
+              className="w-full font-semibold tracking-tight sm:w-auto lg:mx-auto"
             >
               <a href="#tood">Vaata töid</a>
             </Button>
