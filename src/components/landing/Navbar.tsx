@@ -41,9 +41,9 @@ export function Navbar() {
         )}
       >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" aria-label="Lehekoda" className="shrink-0">
-          <span className="inline-flex rounded-lg bg-black px-2 py-1 md:bg-transparent md:p-0">
-            <Logo className="opacity-100 mix-blend-normal md:mix-blend-screen" />
+        <a href="#top" aria-label="Lehekoda" className="-ml-1 shrink-0 md:ml-0">
+          <span className="inline-flex rounded-lg bg-black py-1 pl-0 pr-1.5 md:bg-transparent md:p-0">
+            <Logo className="h-8 w-auto opacity-100 mix-blend-normal md:h-9 md:mix-blend-screen" />
           </span>
         </a>
 

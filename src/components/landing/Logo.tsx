@@ -8,7 +8,7 @@ export function Logo({ className }: { className?: string }) {
       alt="Lehekoda"
       width={126}
       height={42}
-      className={cn("h-7 w-auto mix-blend-screen", className)}
+      className={cn("h-8 w-auto mix-blend-screen md:h-9", className)}
     />
   );
 }
