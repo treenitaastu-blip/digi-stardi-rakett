@@ -18,11 +18,12 @@ const LINES: { id: string; content: ReactNode }[] = [
 ];
 
 const N = LINES.length;
-const ROTATE_MS = 2000;
-const ROTATE_DURATION = 1;
+const ROW_COUNT = N + 3;
 const SLOT_H = 38;
+const HOLD_MS = 2400;
+const SLIDE_S = 0.85;
 
-const rotateEase = [0.42, 0, 0.2, 1] as const;
+const slideEase = [0.42, 0, 0.2, 1] as const;
 const checkEase = [0.16, 1, 0.3, 1] as const;
 
 function lineAtRow(row: number) {
@@ -35,7 +36,13 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
   const inView = useInView(ref, { amount: 0.45 });
   const [step, setStep] = useState(0);
   const [ready, setReady] = useState(false);
-  const [instant, setInstant] = useState(false);
+  const [skipTransition, setSkipTransition] = useState(false);
+  const stepRef = useRef(0);
+  const resettingRef = useRef(false);
+
+  useEffect(() => {
+    stepRef.current = step;
+  }, [step]);
 
   useEffect(() => {
     if (!inView || reduceMotion) {
@@ -47,20 +54,31 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
   }, [inView, reduceMotion]);
 
   useEffect(() => {
-    if (!ready || reduceMotion) return;
-    const id = setInterval(() => {
-      setStep((s) => (s < N ? s + 1 : s));
-    }, ROTATE_MS);
-    return () => clearInterval(id);
-  }, [ready, reduceMotion]);
+    if (!ready || reduceMotion || skipTransition) return;
 
-  const slideTransition = instant ? { duration: 0 } : { duration: ROTATE_DURATION, ease: rotateEase };
+    const timer = setTimeout(() => {
+      setStep((s) => {
+        const next = Math.min(s + 1, N);
+        stepRef.current = next;
+        return next;
+      });
+    }, HOLD_MS);
 
-  const handleAnimationComplete = () => {
-    if (step < N) return;
-    setInstant(true);
+    return () => clearTimeout(timer);
+  }, [ready, step, skipTransition, reduceMotion]);
+
+  const handleSlideComplete = () => {
+    if (stepRef.current !== N || resettingRef.current) return;
+
+    resettingRef.current = true;
+    setSkipTransition(true);
     setStep(0);
-    requestAnimationFrame(() => setInstant(false));
+    stepRef.current = 0;
+
+    requestAnimationFrame(() => {
+      setSkipTransition(false);
+      resettingRef.current = false;
+    });
   };
 
   if (reduceMotion) {
@@ -71,7 +89,9 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
     );
   }
 
-  const rowCount = step + 6;
+  const slideTransition = skipTransition
+    ? { duration: 0 }
+    : { duration: SLIDE_S, ease: slideEase };
 
   return (
     <div
@@ -86,18 +106,19 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
           style={{ height: SLOT_H * 3, maxWidth: "26rem" }}
         >
           <motion.div
+            initial={false}
             animate={{ y: -step * SLOT_H }}
             transition={slideTransition}
-            onAnimationComplete={handleAnimationComplete}
+            onAnimationComplete={handleSlideComplete}
           >
-            {Array.from({ length: rowCount }, (_, index) => {
-              const line = lineAtRow(index);
-              const isCenter = index === step + 1;
-              const isSecondary = index === step || index === step + 2;
+            {Array.from({ length: ROW_COUNT }, (_, row) => {
+              const line = lineAtRow(row);
+              const isCenter = row === step + 1;
+              const isSecondary = row === step || row === step + 2;
 
               return (
                 <div
-                  key={index}
+                  key={row}
                   className="flex items-center justify-center gap-2.5 px-1"
                   style={{ height: SLOT_H }}
                 >
@@ -108,8 +129,8 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
                       opacity: isCenter ? 1 : 0,
                     }}
                     transition={{
-                      duration: isCenter ? 0.7 : 0.2,
-                      delay: isCenter ? 0.35 : 0,
+                      duration: skipTransition ? 0 : isCenter ? 0.65 : 0.2,
+                      delay: isCenter && !skipTransition ? 0.3 : 0,
                       ease: checkEase,
                     }}
                     aria-hidden={!isCenter}
@@ -121,7 +142,11 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
 
                   <motion.p
                     animate={{ scale: isCenter ? 1 : 0.96 }}
-                    transition={instant ? { duration: 0 } : { duration: ROTATE_DURATION, ease: rotateEase }}
+                    transition={
+                      skipTransition
+                        ? { duration: 0 }
+                        : { duration: SLIDE_S, ease: slideEase }
+                    }
                     className={cn(
                       "text-center leading-snug",
                       isCenter

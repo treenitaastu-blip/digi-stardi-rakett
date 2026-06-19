@@ -172,9 +172,9 @@ function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
       aria-hidden
       className="pointer-events-none absolute inset-0 z-0"
     >
-      <div className="bg-grid absolute inset-0 opacity-[0.22] [mask-image:radial-gradient(75%_55%_at_50%_42%,black,transparent)]" />
-      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_85%_75%_at_50%_45%,black_20%,transparent_72%)]">
-        <HeroCircuitPattern className="h-full w-full opacity-[0.85] md:opacity-100" />
+      <div className="bg-grid absolute inset-0 opacity-[0.14] [mask-image:radial-gradient(70%_58%_at_50%_42%,black,transparent)]" />
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_72%_62%_at_50%_44%,transparent_36%,black_100%)]">
+        <HeroCircuitPattern className="h-full w-full opacity-90" />
       </div>
     </motion.div>
   );
