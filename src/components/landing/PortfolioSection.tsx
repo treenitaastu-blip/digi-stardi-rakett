@@ -1,11 +1,4 @@
-import {
-  ShoppingCart,
-  HeartPulse,
-  AppWindow,
-  HardHat,
-  ExternalLink,
-  ArrowRight,
-} from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
@@ -15,8 +8,8 @@ const projects = [
     name: "CarryPeace.com",
     domain: "carrypeace.com",
     url: "https://carrypeace.com",
+    image: "/portfolio/carrypeace.png",
     category: "E-pood",
-    icon: ShoppingCart,
     description: "Rahvusvaheline e-pood ühele tootele.",
     proof: "Usaldust loov tooteleht, reklaamiks sobiv maandumisleht ja SEO-le ehitatud sisu.",
     accentColor: "oklch(0.48 0.2 262)",
@@ -26,8 +19,8 @@ const projects = [
     name: "Treenitaastu.ee",
     domain: "treenitaastu.ee",
     url: "https://treenitaastu.ee",
+    image: "/portfolio/treenitaastu.png",
     category: "Terviseteenus",
-    icon: HeartPulse,
     description: "Tervise- ja treeningteenuse koduleht.",
     proof: "Selge teenuse tutvustus, usaldust loovad tekstid ja professionaalne esmamulje.",
     accentColor: "oklch(0.45 0.18 160)",
@@ -37,8 +30,8 @@ const projects = [
     name: "Treenitaastu.app",
     domain: "treenitaastu.app",
     url: "https://treenitaastu.app",
+    image: "/portfolio/treenitaastu-app.png",
     category: "Veebirakendus",
-    icon: AppWindow,
     description: "Terviklik veebirakendus kasutajatele.",
     proof: "Kasutajakontod, treeningloogika ja sujuv kasutuskogemus.",
     accentColor: "oklch(0.48 0.2 280)",
@@ -48,8 +41,8 @@ const projects = [
     name: "Centivo.ee",
     domain: "centivo.ee",
     url: "https://centivo.ee",
+    image: "/portfolio/centivo.png",
     category: "Ehitus",
-    icon: HardHat,
     description: "Ehitus- ja siseviimistlusettevõtte leht.",
     proof: "Teenuste selge esitlus ja päringule suunatud ülesehitus.",
     accentColor: "oklch(0.48 0.15 55)",
@@ -91,20 +84,18 @@ export function PortfolioSection() {
                   <ExternalLink className="h-3 w-3 text-muted-foreground/40 transition-colors group-hover:text-brand" />
                 </div>
 
-                {/* Icon panel */}
-                <div
-                  className="relative flex items-center gap-4 px-6 py-7"
-                  style={{ background: p.accentBg }}
-                >
+                {/* Screenshot */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
+                  <img
+                    src={p.image}
+                    alt={`${p.name} kodulehe eelvaade`}
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span
-                    className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-background/70 shadow-soft transition-transform duration-300 group-hover:scale-110"
+                    className="absolute left-4 top-4 rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide shadow-soft backdrop-blur-sm"
                     style={{ color: p.accentColor }}
-                  >
-                    <p.icon className="h-7 w-7" />
-                  </span>
-                  <span
-                    className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide"
-                    style={{ background: "var(--background)", color: p.accentColor }}
                   >
                     {p.category}
                   </span>

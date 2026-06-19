@@ -40,7 +40,6 @@ function Index() {
       <JsonLd data={homeJsonLdGraph()} />
       <div ref={pageRef} className="relative min-h-screen bg-background">
         <PageBackdrop />
-        <ScrollCards containerRef={pageRef} />
         <Navbar />
         <main>
           <Hero />
@@ -57,6 +56,7 @@ function Index() {
           <FaqSection />
           <ContactSection />
         </main>
+        <ScrollCards containerRef={pageRef} />
         <Footer />
         <StickyCta />
         <QuizModal />

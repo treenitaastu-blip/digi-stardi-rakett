@@ -60,29 +60,35 @@ export function ScrollCards({ containerRef }: { containerRef: RefObject<HTMLDivE
       const lp = Math.min(0.92, Math.max(0.05, anchorTop / scrollable));
       const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage]');
       const stageRect = stage?.getBoundingClientRect();
-      const heroRowY = stageRect
-        ? stageRect.top + stageRect.height * 0.34
-        : Math.min(vh * 0.88, vh - 64);
+      if (!stageRect || stageRect.height < 80) return;
+      const heroRowY = stageRect.top + stageRect.height * 0.34;
       setGeo({ vw, vh, lp, heroRowY, ready: true });
     };
     measure();
     window.addEventListener("resize", measure);
-    // Re-measure once fonts/layout settle.
-    const t = setTimeout(measure, 400);
+    window.addEventListener("load", measure);
+    const t1 = setTimeout(measure, 400);
+    const t2 = setTimeout(measure, 1200);
+    const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage]');
+    const ro = stage ? new ResizeObserver(measure) : null;
+    ro?.observe(stage!);
     return () => {
       window.removeEventListener("resize", measure);
-      clearTimeout(t);
+      window.removeEventListener("load", measure);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      ro?.disconnect();
     };
   }, [containerRef]);
 
-  if (isMobile || !geo.ready) return null;
+  if (isMobile || !geo.ready || geo.heroRowY <= 0) return null;
 
   // Locked wrapper: fixed while animating, absolute once cascade is reached.
   return (
     <LockedWrapper scrollYProgress={scrollYProgress} geo={geo}>
       {cards.map((card, i) => (
         <ScrollCard
-          key={`${card.id}-${geo.vw}x${Math.round(geo.lp * 100)}`}
+          key={`${card.id}-${geo.vw}-${Math.round(geo.heroRowY)}-${Math.round(geo.lp * 100)}`}
           scrollYProgress={scrollYProgress}
           geo={geo}
           index={i}
@@ -115,7 +121,7 @@ function LockedWrapper({
   return (
     <div
       aria-hidden
-      className="pointer-events-none z-20 hidden lg:block"
+      className="pointer-events-none z-30 hidden lg:block"
       style={
         locked
           ? { position: "absolute", top: topPx, left: 0, right: 0, height: 0 }
