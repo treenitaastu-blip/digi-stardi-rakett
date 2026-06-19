@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { Logo } from "./Logo";
-import { useQuiz } from "./QuizContext";
 
 const links = [
   { href: "#mida-saad", label: "Pakett" },
@@ -16,7 +15,6 @@ const links = [
 ];
 
 export function Navbar() {
-  const { openQuiz } = useQuiz();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -61,10 +59,10 @@ export function Navbar() {
           <Button
             variant="hero"
             size="default"
-            onClick={openQuiz}
+            asChild
             className="hidden rounded-xl md:inline-flex"
           >
-            Küsi pakkumist
+            <a href="#kontakt">Küsi pakkumist</a>
           </Button>
           <button
             aria-label="Menüü"
@@ -95,8 +93,10 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Button variant="hero" className="mt-2 rounded-xl" onClick={() => { setOpen(false); openQuiz(); }}>
-              Küsi pakkumist
+            <Button variant="hero" className="mt-2 rounded-xl" asChild>
+              <a href="#kontakt" onClick={() => setOpen(false)}>
+                Küsi pakkumist
+              </a>
             </Button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Toaster } from "@/components/ui/sonner";
+import { lazy, Suspense, useRef } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { StatsBand } from "@/components/landing/StatsBand";
@@ -9,20 +9,33 @@ import { SolutionSection } from "@/components/landing/SolutionSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
 import { PortfolioSection } from "@/components/landing/PortfolioSection";
 import { AudienceSection } from "@/components/landing/AudienceSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { PricingSection } from "@/components/landing/PricingSection";
-import { TrustSection } from "@/components/landing/TrustSection";
-import { FaqSection } from "@/components/landing/FaqSection";
-import { ContactSection } from "@/components/landing/ContactSection";
 import { StickyCta } from "@/components/landing/StickyCta";
 import { Footer } from "@/components/landing/Footer";
-import { QuizProvider } from "@/components/landing/QuizContext";
-import { QuizModal } from "@/components/landing/QuizModal";
 import { PageBackdrop } from "@/components/landing/PageBackdrop";
-import { ScrollCards } from "@/components/landing/scroll-cards/ScrollCards";
+import { DeferredScrollCards } from "@/components/landing/DeferredScrollCards";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { homeJsonLdGraph, homePageLinks, homePageMeta } from "@/lib/seo";
-import { useRef } from "react";
+
+const TestimonialsSection = lazy(() =>
+  import("@/components/landing/TestimonialsSection").then((m) => ({
+    default: m.TestimonialsSection,
+  })),
+);
+const PricingSection = lazy(() =>
+  import("@/components/landing/PricingSection").then((m) => ({ default: m.PricingSection })),
+);
+const TrustSection = lazy(() =>
+  import("@/components/landing/TrustSection").then((m) => ({ default: m.TrustSection })),
+);
+const FaqSection = lazy(() =>
+  import("@/components/landing/FaqSection").then((m) => ({ default: m.FaqSection })),
+);
+const ContactSection = lazy(() =>
+  import("@/components/landing/ContactSection").then((m) => ({ default: m.ContactSection })),
+);
+const Toaster = lazy(() =>
+  import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,12 +49,15 @@ function Index() {
   const pageRef = useRef<HTMLDivElement>(null);
 
   return (
-    <QuizProvider>
+    <>
       <JsonLd data={homeJsonLdGraph()} />
+      <a href="#main-content" className="skip-link">
+        Liigu põhisisu juurde
+      </a>
       <div ref={pageRef} className="relative min-h-screen bg-background">
         <PageBackdrop />
         <Navbar />
-        <main>
+        <main id="main-content">
           <Hero />
           <PortfolioSection />
           <StatsBand />
@@ -50,18 +66,21 @@ function Index() {
           <SolutionSection />
           <ProcessSection />
           <AudienceSection />
-          <TestimonialsSection />
-          <PricingSection />
-          <TrustSection />
-          <FaqSection />
-          <ContactSection />
+          <Suspense fallback={null}>
+            <TestimonialsSection />
+            <PricingSection />
+            <TrustSection />
+            <FaqSection />
+            <ContactSection />
+          </Suspense>
         </main>
-        <ScrollCards containerRef={pageRef} />
+        <DeferredScrollCards containerRef={pageRef} />
         <Footer />
         <StickyCta />
-        <QuizModal />
-        <Toaster />
+        <Suspense fallback={null}>
+          <Toaster />
+        </Suspense>
       </div>
-    </QuizProvider>
+    </>
   );
 }

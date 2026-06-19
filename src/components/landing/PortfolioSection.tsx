@@ -10,7 +10,7 @@ const projects = [
     name: "CarryPeace.com",
     domain: "carrypeace.com",
     url: "https://carrypeace.com",
-    image: "/portfolio/carrypeace.png",
+    image: "/portfolio/carrypeace.webp",
     category: "E-pood",
     description: "Rahvusvaheline e-pood ühele tootele.",
     proof: "Usaldust loov tooteleht, reklaamiks sobiv maandumisleht ja SEO-le ehitatud sisu.",
@@ -21,7 +21,7 @@ const projects = [
     name: "Treenitaastu.ee",
     domain: "treenitaastu.ee",
     url: "https://treenitaastu.ee",
-    image: "/portfolio/treenitaastu.png",
+    image: "/portfolio/treenitaastu.webp",
     category: "Terviseteenus",
     description: "Tervise- ja treeningteenuse koduleht.",
     proof: "Selge teenuse tutvustus, usaldust loovad tekstid ja professionaalne esmamulje.",
@@ -32,7 +32,7 @@ const projects = [
     name: "Treenitaastu.app",
     domain: "treenitaastu.app",
     url: "https://treenitaastu.app",
-    image: "/portfolio/treenitaastu-app.png",
+    image: "/portfolio/treenitaastu-app.webp",
     category: "Veebirakendus",
     description: "Terviklik veebirakendus kasutajatele.",
     proof: "Kasutajakontod, treeningloogika ja sujuv kasutuskogemus.",
@@ -43,7 +43,7 @@ const projects = [
     name: "Centivo.ee",
     domain: "centivo.ee",
     url: "https://centivo.ee",
-    image: "/portfolio/centivo.png",
+    image: "/portfolio/centivo.webp",
     category: "Ehitus",
     description: "Ehitus- ja siseviimistlusettevõtte leht.",
     proof: "Teenuste selge esitlus ja päringule suunatud ülesehitus.",
@@ -82,6 +82,9 @@ function PortfolioCard({ project: p }: { project: (typeof projects)[number] }) {
         <img
           src={p.image}
           alt={`${p.name} kodulehe eelvaade`}
+          width={1024}
+          height={640}
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 320px"
           className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
           decoding="async"

@@ -17,7 +17,7 @@ export type LeadInput = {
   telefon?: string;
   huvitab?: string[];
   sonum?: string;
-  /** Where the lead came from, e.g. "Hero küsimustik" or "Kontaktivorm". */
+  /** Where the lead came from, e.g. "Kontaktivorm". */
   allikas?: string;
 };
 

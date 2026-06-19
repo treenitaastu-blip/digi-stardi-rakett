@@ -19,7 +19,9 @@ type LinkTag = {
   hrefLang?: string;
 };
 
-const OG_IMAGE = absoluteUrl("/favicon.png");
+const OG_IMAGE = absoluteUrl("/logo-lehekoda.webp");
+const OG_IMAGE_WIDTH = "300";
+const OG_IMAGE_HEIGHT = "100";
 
 function verificationMeta(): MetaTag[] {
   const tags: MetaTag[] = [];
@@ -38,8 +40,10 @@ export function homeSocialMeta(): MetaTag[] {
     { property: "og:title", content: SITE.title },
     { property: "og:description", content: SITE.description },
     { property: "og:image", content: OG_IMAGE },
+    { property: "og:image:width", content: OG_IMAGE_WIDTH },
+    { property: "og:image:height", content: OG_IMAGE_HEIGHT },
     { property: "og:image:alt", content: `${SITE.name} — ${SITE.tagline}` },
-    { name: "twitter:card", content: "summary" },
+    { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: SITE.title },
     { name: "twitter:description", content: SITE.description },
     { name: "twitter:image", content: OG_IMAGE },
@@ -62,11 +66,7 @@ export function globalSeoMeta(): MetaTag[] {
 }
 
 export function homePageMeta(): MetaTag[] {
-  return [
-    { title: SITE.title },
-    { name: "description", content: SITE.description },
-    ...homeSocialMeta(),
-  ];
+  return [{ title: SITE.title }, ...homeSocialMeta()];
 }
 
 export function homePageLinks(): LinkTag[] {
@@ -75,6 +75,7 @@ export function homePageLinks(): LinkTag[] {
     { rel: "alternate", href: absoluteUrl("/"), hrefLang: "et" },
     { rel: "alternate", href: absoluteUrl("/"), hrefLang: "x-default" },
     { rel: "manifest", href: "/manifest.webmanifest" },
+    { rel: "alternate", type: "text/plain", href: "/llms.txt", title: "LLMs" },
   ];
 }
 
@@ -93,7 +94,7 @@ export function homeJsonLdGraph(): Record<string, unknown> {
         "@id": orgId,
         name: SITE.name,
         url: SITE.url,
-        logo: absoluteUrl("/logo-lehekoda.png"),
+        logo: absoluteUrl("/logo-lehekoda.webp"),
         email: SITE.email,
         areaServed: { "@type": "Country", name: "Estonia" },
       },
@@ -122,7 +123,7 @@ export function homeJsonLdGraph(): Record<string, unknown> {
         name: `${SITE.name} — koduleht väikeettevõttele`,
         description: SITE.description,
         url: SITE.url,
-        image: absoluteUrl("/favicon.png"),
+        image: absoluteUrl("/logo-lehekoda.webp"),
         priceRange: "€399",
         areaServed: { "@type": "Country", name: "Estonia" },
         provider: { "@id": orgId },

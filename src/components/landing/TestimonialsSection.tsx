@@ -8,42 +8,42 @@ const testimonials = [
       "Hinna ja kvaliteedi suhe on väga hea. Sain korraliku lehe kiiresti valmis ja ei pidanud ise tekstidega vaeva nägema. Soovitasin tuttavale ka.",
     name: "Martin Järvi",
     role: "Ehitus ja remont",
-    avatar: "/testimonials/martin-jarvi.png",
+    avatar: "/testimonials/martin-jarvi.webp",
   },
   {
     quote:
       "Väga lihtne ja arusaadav protsess. Andsin oma info ette ja sain vastu kodulehe, mis näeb palju professionaalsem välja kui enne.",
     name: "Karin Meitel",
     role: "Iluteenused",
-    avatar: "/testimonials/karin-meitel.png",
+    avatar: "/testimonials/karin-meitel.webp",
   },
   {
     quote:
       "Kindlasti üks parimaid pakkumisi, mida leidsin. Hind oli selge, töö sai kiiresti tehtud ja tulemus jäi korralik.",
     name: "Rasmus Klaasing",
     role: "Autoteenused",
-    avatar: "/testimonials/rasmus-klaasing.png",
+    avatar: "/testimonials/rasmus-klaasing.webp",
   },
   {
     quote:
       "Mulle meeldis, et kõik oli algusest peale selge. Ei olnud mingit keerulist juttu - saatsin info, nemad panid lehe kokku.",
     name: "Laura Kask",
     role: "Puhastus ja heakord",
-    avatar: "/testimonials/laura-kask.png",
+    avatar: "/testimonials/laura-kask.webp",
   },
   {
     quote:
       "Leht sai valmis kiiremini kui ootasin. Kontaktvorm töötab ja klientidel on nüüd lihtsam mind leida.",
     name: "Siim Peterson",
     role: "Torutööd",
-    avatar: "/testimonials/siim-peterson.png",
+    avatar: "/testimonials/siim-peterson.webp",
   },
   {
     quote:
       "Tekstid olid suureks abiks, sest ma ei osanud ise hästi sõnastada, mida lehele kirjutada. Tulemus jäi puhas ja usaldusväärne.",
     name: "Evelin Kiir",
     role: "Tervis ja teraapia",
-    avatar: "/testimonials/evelin-kiir.png",
+    avatar: "/testimonials/evelin-kiir.webp",
   },
 ];
 
@@ -65,9 +65,11 @@ export function TestimonialsSection() {
                 <img
                   key={t.name}
                   src={t.avatar}
-                  alt=""
+                  alt={`${t.name}, ${t.role}`}
                   width={36}
                   height={36}
+                  loading="lazy"
+                  decoding="async"
                   className="h-9 w-9 rounded-full border-2 border-card object-cover"
                 />
               ))}
@@ -102,9 +104,11 @@ export function TestimonialsSection() {
                 <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
                   <img
                     src={t.avatar}
-                    alt=""
+                    alt={`${t.name}, ${t.role}`}
                     width={40}
                     height={40}
+                    loading="lazy"
+                    decoding="async"
                     className="h-10 w-10 shrink-0 rounded-full object-cover"
                   />
                   <div>
