@@ -60,8 +60,8 @@ export function PortfolioSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           eyebrow="Tööd"
-          title="Projektid, mis on päriselt töös"
-          subtitle="Avaldatud lehed erinevates valdkondades, mitte näidismaketid."
+          title="Valik tehtud töödest"
+          subtitle="Mõned näited tehtud projektidest erinevates valdkondades."
         />
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -78,10 +78,16 @@ export function PortfolioSection() {
                   <span className="h-2 w-2 rounded-full bg-rose-400/55" />
                   <span className="h-2 w-2 rounded-full bg-amber-400/55" />
                   <span className="h-2 w-2 rounded-full bg-emerald-400/55" />
-                  <div className="ml-2 flex h-4 flex-1 items-center rounded-sm bg-background/70 px-2">
-                    <span className="text-[9px] text-muted-foreground/55">{p.domain}</span>
+                  <div className="ml-2 flex min-w-0 flex-1 items-center gap-2 rounded-sm bg-background/70 px-2 py-0.5">
+                    <span className="truncate text-[9px] text-muted-foreground/55">{p.domain}</span>
+                    <span
+                      className="shrink-0 rounded-full px-2 py-0.5 text-[8px] font-bold uppercase tracking-wide"
+                      style={{ color: p.accentColor, background: "var(--background)" }}
+                    >
+                      {p.category}
+                    </span>
                   </div>
-                  <ExternalLink className="h-3 w-3 text-muted-foreground/40 transition-colors group-hover:text-brand" />
+                  <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground/40 transition-colors group-hover:text-brand" />
                 </div>
 
                 {/* Screenshot */}
@@ -93,12 +99,6 @@ export function PortfolioSection() {
                     loading="lazy"
                     decoding="async"
                   />
-                  <span
-                    className="absolute left-4 top-4 rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide shadow-soft backdrop-blur-sm"
-                    style={{ color: p.accentColor }}
-                  >
-                    {p.category}
-                  </span>
                 </div>
 
                 {/* Body */}
