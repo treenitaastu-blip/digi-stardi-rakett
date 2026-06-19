@@ -9,6 +9,7 @@ import {
   Tag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
 import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
@@ -75,40 +76,54 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.26 }}
-            className="mt-9 flex flex-col items-stretch gap-3 lg:items-center"
+            className="mt-9"
           >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch lg:justify-center">
+            {/* Mobile + tablet */}
+            <div className="flex flex-col items-stretch gap-3 lg:hidden">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+                <Button
+                  variant="hero"
+                  size="xl"
+                  onClick={openQuiz}
+                  className="font-semibold tracking-tight sm:flex-1 sm:max-w-xs"
+                >
+                  Küsi pakkumist <ArrowRight className="h-4 w-4" />
+                </Button>
+                <HeroPriceBadge className="sm:flex-1 sm:justify-center" />
+              </div>
+
+              <Button
+                asChild
+                variant="heroOutline"
+                size="xl"
+                className="w-full font-semibold tracking-tight sm:mx-auto sm:w-auto"
+              >
+                <a href="#tood">Vaata töid</a>
+              </Button>
+            </div>
+
+            {/* Desktop — Vaata töid täpselt CTA ja hinna vahel */}
+            <div className="mx-auto hidden w-full max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-x-6 lg:grid">
               <Button
                 variant="hero"
                 size="xl"
                 onClick={openQuiz}
-                className="font-semibold tracking-tight sm:flex-1 sm:max-w-xs lg:flex-none"
+                className="justify-self-end font-semibold tracking-tight"
               >
                 Küsi pakkumist <ArrowRight className="h-4 w-4" />
               </Button>
 
-              <div className="rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft sm:w-auto lg:inline-flex lg:items-center lg:gap-2.5 lg:rounded-full lg:px-4 lg:py-2 lg:shadow-none">
-                <p className="font-display text-[1.75rem] font-bold leading-none tracking-tight text-foreground lg:text-lg">
-                  399€
-                </p>
-                <div className="lg:flex lg:items-center lg:gap-2 lg:text-[0.7rem] lg:leading-tight">
-                  <p className="mt-1.5 text-xs text-muted-foreground lg:mt-0">ühekordne hind</p>
-                  <span className="hidden text-muted-foreground/40 lg:inline" aria-hidden>
-                    ·
-                  </span>
-                  <p className="mt-0.5 text-xs font-semibold text-success lg:mt-0">0€ kuutasu</p>
-                </div>
-              </div>
-            </div>
+              <Button
+                asChild
+                variant="heroOutline"
+                size="xl"
+                className="justify-self-center font-semibold tracking-tight"
+              >
+                <a href="#tood">Vaata töid</a>
+              </Button>
 
-            <Button
-              asChild
-              variant="heroOutline"
-              size="xl"
-              className="w-full font-semibold tracking-tight sm:w-auto lg:mx-auto"
-            >
-              <a href="#tood">Vaata töid</a>
-            </Button>
+              <HeroPriceBadge className="justify-self-start" />
+            </div>
           </motion.div>
           </motion.div>
         </div>
@@ -121,6 +136,29 @@ export function Hero() {
         />
       </div>
     </section>
+  );
+}
+
+function HeroPriceBadge({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center justify-center gap-2.5 rounded-2xl border border-border bg-card px-5 py-3.5 shadow-soft",
+        "lg:rounded-full lg:px-4 lg:py-2 lg:shadow-none",
+        className,
+      )}
+    >
+      <p className="font-display shrink-0 text-[1.75rem] font-bold leading-none tracking-tight text-foreground lg:text-lg">
+        399€
+      </p>
+      <div className="flex shrink-0 items-center gap-2 whitespace-nowrap text-xs leading-tight lg:text-[0.7rem]">
+        <span className="text-muted-foreground">ühekordne hind</span>
+        <span className="text-muted-foreground/40" aria-hidden>
+          ·
+        </span>
+        <span className="font-semibold text-success">0€ kuutasu</span>
+      </div>
+    </div>
   );
 }
 
