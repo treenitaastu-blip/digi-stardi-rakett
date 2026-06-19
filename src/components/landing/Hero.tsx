@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import {
   ArrowRight,
-  Check,
   Search,
   Star,
   ShieldCheck,
@@ -13,13 +12,6 @@ import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
 import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
-
-const included = [
-  "Sa ei pea ise tekste kirjutama",
-  "Laitmatu mobiilivaade",
-  "Aitame teha lehe Google'is leitavaks",
-  "Kontaktivorm postkasti",
-];
 
 export function Hero() {
   const { openQuiz } = useQuiz();
@@ -78,22 +70,6 @@ export function Hero() {
           </motion.h1>
 
           <HeroAnimatedSubtitle className="mx-auto mt-5 max-w-[480px]" />
-
-          <motion.ul
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-7 grid max-w-[480px] grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:hidden"
-          >
-            {included.map((t) => (
-              <li key={t} className="flex items-center gap-2.5 text-sm font-medium text-foreground/80">
-                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
-                  <Check className="h-3 w-3 text-success" />
-                </span>
-                {t}
-              </li>
-            ))}
-          </motion.ul>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}

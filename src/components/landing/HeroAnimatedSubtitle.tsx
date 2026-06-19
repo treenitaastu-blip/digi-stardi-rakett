@@ -8,13 +8,13 @@ const LINES: { id: string; content: ReactNode }[] = [
     id: "speed",
     content: (
       <>
-        Korralik koduleht <span className="font-semibold text-highlight">7 päevaga</span>.
+        Valmis <span className="font-semibold text-highlight">7 päevaga</span>.
       </>
     ),
   },
   { id: "copy", content: "Kirjutame tekstid ise." },
   { id: "mobile", content: "Laitmatu igas ekraanis." },
-  { id: "seo", content: "Teeme Google'i jaoks valmis." },
+  { id: "seo", content: "Google'i jaoks valmis." },
 ];
 
 const N = LINES.length;
@@ -78,7 +78,7 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
       ref={ref}
       className={className}
       aria-live="polite"
-      aria-label="Korralik koduleht 7 päevaga. Kirjutame tekstid ise. Laitmatu igas ekraanis. Teeme Google'i jaoks valmis."
+      aria-label="Valmis 7 päevaga. Kirjutame tekstid ise. Laitmatu igas ekraanis. Google'i jaoks valmis."
     >
       <div className="rounded-2xl border border-border/80 bg-card/55 px-5 py-3.5 shadow-soft backdrop-blur-[2px] sm:px-6 sm:py-4">
         <div
