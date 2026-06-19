@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useQuiz } from "./QuizContext";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
-import { HeroAnimatedSubtitle, HeroStaticSubtitle } from "./HeroAnimatedSubtitle";
+import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
 
 const included = [
   "Sa ei pea ise tekste kirjutama",
@@ -77,9 +77,7 @@ export function Hero() {
             <span className="text-brand">kliendi usalduse</span>
           </motion.h1>
 
-          <HeroStaticSubtitle className="mt-5 max-w-[480px] space-y-1.5 lg:mx-auto lg:hidden" />
-
-          <HeroAnimatedSubtitle className="mt-5 hidden max-w-[480px] lg:mx-auto lg:block" />
+          <HeroAnimatedSubtitle className="mx-auto mt-5 max-w-[480px]" />
 
           <motion.ul
             initial={{ opacity: 0, y: 18 }}
