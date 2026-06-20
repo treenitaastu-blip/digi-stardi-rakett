@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { lazy, Suspense, useRef } from "react";
+import { useRef } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { StatsBand } from "@/components/landing/StatsBand";
@@ -21,10 +21,7 @@ import { PageBackdrop } from "@/components/landing/PageBackdrop";
 import { DeferredScrollCards } from "@/components/landing/DeferredScrollCards";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { homeJsonLdGraph, homePageLinks, homePageMeta } from "@/lib/seo";
-
-const Toaster = lazy(() =>
-  import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
-);
+import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,9 +62,7 @@ function Index() {
         <DeferredScrollCards containerRef={pageRef} />
         <Footer />
         <StickyCta />
-        <Suspense fallback={null}>
-          <Toaster />
-        </Suspense>
+        <Toaster />
       </div>
     </>
   );

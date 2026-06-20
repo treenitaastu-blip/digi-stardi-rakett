@@ -11,6 +11,11 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportError } from "../lib/error-reporting";
+import {
+  installChunkReloadHandler,
+  isChunkLoadErrorMessage,
+  reloadOnceForStaleChunk,
+} from "../lib/chunk-reload";
 import { SITE } from "../lib/site";
 import { globalSeoMeta } from "../lib/seo";
 
@@ -41,6 +46,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
   useEffect(() => {
     reportError(error, { boundary: "tanstack_root_error_component" });
+    if (isChunkLoadErrorMessage(error.message)) {
+      reloadOnceForStaleChunk();
+    }
   }, [error]);
 
   return (
@@ -119,6 +127,10 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    installChunkReloadHandler();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

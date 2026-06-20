@@ -35,7 +35,7 @@ export function Hero() {
       <HeroBackground bgY={bgY} />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
-        <div className="grid items-center gap-10 lg:block lg:text-center">
+        <div className="grid items-center gap-10 text-center lg:block">
           {/* ── Visual (mobile/tablet only — static, no scroll animation) ── */}
           <div className="order-1 lg:hidden">
             <HeroVisual />
@@ -44,7 +44,7 @@ export function Hero() {
           {/* ── Copy ── */}
           <motion.div
             style={{ y: copyY }}
-            className="order-2 lg:mx-auto lg:max-w-3xl"
+            className="order-2 mx-auto max-w-3xl"
             data-hero-copy
           >
           <motion.div
