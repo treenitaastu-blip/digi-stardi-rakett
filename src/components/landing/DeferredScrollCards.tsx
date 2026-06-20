@@ -1,16 +1,11 @@
-import { lazy, Suspense, useEffect, useState, type RefObject } from "react";
-import { useIdleMount } from "@/lib/useIdleMount";
-
-const ScrollCards = lazy(() =>
-  import("./scroll-cards/ScrollCards").then((m) => ({ default: m.ScrollCards })),
-);
+import { useEffect, useState, type RefObject } from "react";
+import { ScrollCards } from "./scroll-cards/ScrollCards";
 
 export function DeferredScrollCards({
   containerRef,
 }: {
   containerRef: RefObject<HTMLDivElement | null>;
 }) {
-  const idleReady = useIdleMount(true, 3000);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -21,11 +16,7 @@ export function DeferredScrollCards({
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  if (!idleReady || !isDesktop) return null;
+  if (!isDesktop) return null;
 
-  return (
-    <Suspense fallback={null}>
-      <ScrollCards containerRef={containerRef} />
-    </Suspense>
-  );
+  return <ScrollCards containerRef={containerRef} />;
 }

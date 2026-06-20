@@ -22,13 +22,13 @@ const MID = (N - 1) / 2;
 const SHELF = {
   scale: 0.78,
   gap: 138,
-  centerY: 250, // relative to the locked wrapper origin (section top)
+  centerY: 250,
 };
 
 type Geo = {
   vw: number;
   vh: number;
-  lp: number; // lock progress (0..1)
+  lp: number;
   heroRowY: number;
   ready: boolean;
 };
@@ -36,8 +36,10 @@ type Geo = {
 export function ScrollCards({ containerRef }: { containerRef: RefObject<HTMLDivElement | null> }) {
   const [geo, setGeo] = useState<Geo>({ vw: 0, vh: 0, lp: 0.4, heroRowY: 0, ready: false });
   const [isMobile, setIsMobile] = useState(false);
+  const fanRowYRef = useRef(0);
+  const lockScrollYRef = useRef<number | null>(null);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
@@ -49,121 +51,101 @@ export function ScrollCards({ containerRef }: { containerRef: RefObject<HTMLDivE
       const mobile = vw < 1024;
       setIsMobile(mobile);
       if (mobile) {
+        fanRowYRef.current = 0;
         setGeo({ vw, vh, lp: 0.4, heroRowY: 0, ready: false });
         return;
       }
+
       const container = containerRef.current;
       const anchor = document.querySelector<HTMLElement>('[data-section="cards-anchor"]');
       const scrollable = document.documentElement.scrollHeight - vh;
       if (!container || !anchor || scrollable <= 0) return;
+
       const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
       const lp = Math.min(0.92, Math.max(0.05, anchorTop / scrollable));
       const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage]');
       const stageRect = stage?.getBoundingClientRect();
       if (!stageRect || stageRect.height < 80) return;
-      const heroRowY = stageRect.top + stageRect.height * 0.34;
-      setGeo({ vw, vh, lp, heroRowY, ready: true });
+
+      // Viewport Y captured near page top — stable reference for fixed positioning.
+      const viewportFanRow = stageRect.top + stageRect.height * 0.34;
+      if (fanRowYRef.current === 0 || window.scrollY < 50) {
+        fanRowYRef.current = viewportFanRow;
+      }
+
+      const heroRowY = fanRowYRef.current;
+      setGeo((prev) => {
+        if (
+          prev.ready &&
+          prev.vw === vw &&
+          prev.vh === vh &&
+          Math.abs(prev.lp - lp) < 0.002 &&
+          Math.abs(prev.heroRowY - heroRowY) < 1
+        ) {
+          return prev;
+        }
+        return { vw, vh, lp, heroRowY, ready: true };
+      });
     };
+
     measure();
     window.addEventListener("resize", measure);
     window.addEventListener("load", measure);
     const t1 = setTimeout(measure, 400);
     const t2 = setTimeout(measure, 1200);
-    const stage = document.querySelector<HTMLElement>('[data-hero-cards-stage]');
-    const ro = stage ? new ResizeObserver(measure) : null;
-    ro?.observe(stage!);
     return () => {
       window.removeEventListener("resize", measure);
       window.removeEventListener("load", measure);
       clearTimeout(t1);
       clearTimeout(t2);
-      ro?.disconnect();
     };
   }, [containerRef]);
 
+  useEffect(() => {
+    const syncLock = (p: number) => {
+      if (p >= geo.lp - 0.001) {
+        if (lockScrollYRef.current === null) {
+          lockScrollYRef.current = window.scrollY;
+        }
+      } else {
+        lockScrollYRef.current = null;
+      }
+    };
+    syncLock(scrollYProgress.get());
+    return scrollYProgress.on("change", syncLock);
+  }, [scrollYProgress, geo.lp]);
+
   if (isMobile || !geo.ready || geo.heroRowY <= 0) return null;
 
-  // Locked wrapper: fixed while animating, absolute once cascade is reached.
   return (
-    <LockedWrapper scrollYProgress={scrollYProgress} geo={geo}>
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-30 hidden lg:block">
       {cards.map((card, i) => (
         <ScrollCard
-          key={`${card.id}-${geo.vw}-${Math.round(geo.heroRowY)}-${Math.round(geo.lp * 100)}`}
+          key={card.id}
           scrollYProgress={scrollYProgress}
+          scrollY={scrollY}
+          lockScrollYRef={lockScrollYRef}
           geo={geo}
           index={i}
         >
           <CardFace card={card} />
         </ScrollCard>
       ))}
-    </LockedWrapper>
-  );
-}
-
-function LockedWrapper({
-  scrollYProgress,
-  geo,
-  children,
-}: {
-  scrollYProgress: MotionValue<number>;
-  geo: Geo;
-  children: React.ReactNode;
-}) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const lockedRef = useRef(false);
-
-  const scrollable = typeof window !== "undefined" ? document.documentElement.scrollHeight - geo.vh : 0;
-  const topPx = geo.lp * scrollable;
-
-  useEffect(() => {
-    const el = wrapperRef.current;
-    if (!el) return;
-
-    const applyLocked = (shouldLock: boolean) => {
-      if (shouldLock) {
-        el.style.position = "absolute";
-        el.style.inset = "auto";
-        el.style.top = `${topPx}px`;
-        el.style.left = "0";
-        el.style.right = "0";
-        el.style.height = "0";
-      } else {
-        el.style.position = "fixed";
-        el.style.inset = "0";
-        el.style.top = "auto";
-        el.style.left = "auto";
-        el.style.right = "auto";
-        el.style.height = "auto";
-      }
-    };
-
-    return scrollYProgress.on("change", (v) => {
-      const shouldLock = v >= geo.lp - 0.001;
-      if (shouldLock === lockedRef.current) return;
-      lockedRef.current = shouldLock;
-      applyLocked(shouldLock);
-    });
-  }, [scrollYProgress, geo.lp, topPx]);
-
-  return (
-    <div
-      ref={wrapperRef}
-      aria-hidden
-      className="pointer-events-none z-30 hidden lg:block"
-      style={{ position: "fixed", inset: 0 }}
-    >
-      {children}
     </div>
   );
 }
 
 function ScrollCard({
   scrollYProgress,
+  scrollY,
+  lockScrollYRef,
   geo,
   index,
   children,
 }: {
   scrollYProgress: MotionValue<number>;
+  scrollY: MotionValue<number>;
+  lockScrollYRef: RefObject<number | null>;
   geo: Geo;
   index: number;
   children: React.ReactNode;
@@ -174,32 +156,39 @@ function ScrollCard({
   const p1 = lp * 0.34;
   const p2 = lp * 0.64;
 
-  // Centre points (card centre) for each phase.
   const fanCx = vw / 2 + slot.x;
   const fanCy = heroRowY + slot.y;
   const stackCx = vw / 2;
   const stackCy = vh / 2;
-  // Shelf: centred fanned row in the section's top stage.
   const shelfStartCx = vw / 2 - MID * SHELF.gap;
   const endCx = shelfStartCx + index * SHELF.gap;
-  const endCy = SHELF.centerY + Math.abs(index - MID) * 6; // slight downward arc at the ends
+  const endCy = SHELF.centerY + Math.abs(index - MID) * 6;
   const endRotate = (index - MID) * 3.2;
-  // Centre cards sit on top of their neighbours.
   const zIndex = 10 + Math.round(N - Math.abs(index - MID));
 
-  // Convert centre points to top-left offsets (card is positioned at 0,0 then translated).
-  const x = useTransform(
+  const baseX = useTransform(
     scrollYProgress,
     [0, p1, p2, lp],
     [fanCx, stackCx, stackCx, endCx].map((c) => c - CARD / 2),
     { clamp: true },
   );
-  const y = useTransform(
+  const baseY = useTransform(
     scrollYProgress,
     [0, p1, p2, lp],
     [fanCy, stackCy, endCy, endCy].map((c) => c - CARD / 2),
     { clamp: true },
   );
+
+  // After the shelf phase, scroll cards with the page instead of toggling fixed/absolute.
+  const x = baseX;
+  const y = useTransform([baseY, scrollY, scrollYProgress], ([by, sy, p]) => {
+    const lockY = lockScrollYRef.current;
+    if (p >= lp && lockY !== null) {
+      return by - (sy - lockY);
+    }
+    return by;
+  });
+
   const rotate = useTransform(scrollYProgress, [0, p1, lp], [slot.rotate, 0, endRotate], {
     clamp: true,
   });
@@ -211,9 +200,8 @@ function ScrollCard({
     <motion.div
       className="carousel-gpu-card absolute left-0 top-0 rounded-[1.1rem] shadow-card"
       style={{ x, y, rotate, scale, width: CARD, height: CARD, zIndex }}
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.15 + index * 0.07, ease: smoothEase }}
     >
       {children}
     </motion.div>
