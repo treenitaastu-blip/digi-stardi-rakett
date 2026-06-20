@@ -54,10 +54,10 @@ export function useCarouselIndex(
 }
 
 export const carouselDotClass = (active: boolean) =>
-  active ? "scale-x-[3.33] bg-brand" : "scale-x-100 bg-border";
+  active ? "scale-125 bg-brand" : "bg-border";
 
 export const carouselDotBaseClass =
-  "h-1.5 w-1.5 origin-center rounded-full transition-[transform,background-color] duration-300";
+  "h-1.5 w-1.5 shrink-0 rounded-full transition-[transform,background-color] duration-300";
 
 export const carouselTrackClass =
   "-mx-5 flex snap-x snap-mandatory overflow-x-auto px-5 pb-1 [scrollbar-width:none] [contain:layout] [overscroll-behavior-x:contain] [&::-webkit-scrollbar]:hidden";

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   MessageCircle,
   LayoutTemplate,
@@ -13,6 +14,13 @@ import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
 import { ContactLink } from "./ContactLink";
+import { cn } from "@/lib/utils";
+import {
+  carouselDotBaseClass,
+  carouselDotClass,
+  carouselTrackClass,
+  useCarouselIndex,
+} from "@/lib/useCarouselIndex";
 
 const features = [
   {
@@ -57,7 +65,27 @@ const features = [
   },
 ];
 
+function FeatureCard({ feature }: { feature: (typeof features)[number] }) {
+  const Icon = feature.icon;
+  return (
+    <article className="group flex h-full snap-center flex-col rounded-2xl border border-border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-soft-lg">
+      <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
+        <Icon className="h-5 w-5" />
+      </span>
+      <h3 className="mt-4 text-base font-bold leading-snug">{feature.title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
+    </article>
+  );
+}
+
 export function SolutionSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { activeIndex, updateActiveIndex, scrollToIndex } = useCarouselIndex(scrollRef, {
+    itemCount: features.length,
+    cardSelector: "[data-feature-card]",
+    gap: 12,
+  });
+
   return (
     <section id="mida-saad" className="section-pad bg-secondary">
       <div className="mx-auto max-w-6xl px-5">
@@ -67,19 +95,48 @@ export function SolutionSection() {
           subtitle="Kõik vajalik, et sul oleks korralik koduleht valmis ja kasutuses - ilma kuutasuta."
         />
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((f) => (
-            <RevealItem key={f.title}>
-              <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-soft-lg">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-brand-foreground">
-                  <f.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 text-base font-bold leading-snug">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        <Reveal className="mt-14">
+          {/* Desktop — grid */}
+          <RevealGroup className="hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
+            {features.map((f) => (
+              <RevealItem key={f.title}>
+                <FeatureCard feature={f} />
+              </RevealItem>
+            ))}
+          </RevealGroup>
+
+          {/* Mobile — horizontal carousel */}
+          <div className="md:hidden">
+            <div
+              ref={scrollRef}
+              onScroll={updateActiveIndex}
+              className={cn(carouselTrackClass, "gap-3")}
+              aria-label="Pakett karussell"
+            >
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  data-feature-card
+                  className="w-[min(85vw,320px)] shrink-0 snap-center"
+                >
+                  <FeatureCard feature={f} />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex items-center justify-center gap-1.5" aria-hidden>
+              {features.map((f, i) => (
+                <button
+                  key={f.title}
+                  type="button"
+                  aria-label={`Kuva ${f.title}`}
+                  onClick={() => scrollToIndex(i)}
+                  className={cn(carouselDotBaseClass, carouselDotClass(i === activeIndex))}
+                />
+              ))}
+            </div>
+          </div>
+        </Reveal>
 
         <Reveal className="mt-8">
           <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-brand/25 bg-card p-6 shadow-soft sm:flex-row">
