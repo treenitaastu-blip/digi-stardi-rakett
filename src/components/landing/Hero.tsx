@@ -193,7 +193,7 @@ function HeroVisual({ animateChips }: { animateChips: boolean }) {
         className="relative"
       >
         {/* Browser frame */}
-        <div className="shadow-glow rounded-2xl border border-border bg-card p-3">
+        <div className="rounded-2xl border border-border bg-card p-3 shadow-soft">
           {/* Browser chrome */}
           <div className="flex items-center gap-1.5 px-2 pb-3 pt-1">
             <span className="h-2.5 w-2.5 rounded-full bg-rose-400/50" />
@@ -205,56 +205,59 @@ function HeroVisual({ animateChips }: { animateChips: boolean }) {
             </div>
           </div>
 
-          {/* Website preview — sample landing hero with real copy */}
-          <div className="relative overflow-hidden rounded-xl border border-border">
-            <div className="bg-brand relative px-5 py-6">
-              <div
-                aria-hidden
-                className="bg-dots pointer-events-none absolute inset-0 opacity-[0.15]"
-              />
+          {/* Website preview — white mockup, brand outline */}
+          <div className="relative overflow-hidden rounded-xl border-2 border-brand/25 bg-background">
+            <div className="relative border-b border-brand/10 bg-background px-5 py-6">
               {/* Sample site nav */}
               <div className="relative flex items-center justify-between">
-                <span className="font-display text-[11px] font-bold text-white">Mardi Ehitus</span>
-                <div className="flex items-center gap-2.5 text-[8px] font-medium text-white/75">
+                <span className="font-display text-[11px] font-bold text-foreground">
+                  Mardi Ehitus
+                </span>
+                <div className="flex items-center gap-2.5 text-[8px] font-medium text-muted-foreground">
                   <span>Teenused</span>
                   <span>Tööd</span>
-                  <span>Kontakt</span>
+                  <span className="text-brand">Kontakt</span>
                 </div>
               </div>
               {/* Sample hero copy */}
               <div className="relative mt-5">
-                <p className="font-display text-[15px] font-bold leading-tight text-white">
+                <p className="font-display text-[15px] font-bold leading-tight text-foreground">
                   Ehitus ja remont,
                   <br />
-                  mis kestab.
+                  <span className="text-brand">mis kestab.</span>
                 </p>
-                <p className="mt-1.5 text-[9px] leading-snug text-white/80">
+                <p className="mt-1.5 text-[9px] leading-snug text-muted-foreground">
                   Tallinn ja Harjumaa. 12 aastat kogemust.
                 </p>
                 <div className="mt-3 flex items-center gap-2.5">
-                  <span className="rounded-md bg-white px-2.5 py-1 text-[8px] font-bold text-brand">
+                  <span className="rounded-md border border-brand bg-background px-2.5 py-1 text-[8px] font-bold text-brand">
                     Küsi pakkumist
                   </span>
                   <div className="flex items-center gap-1">
                     <div className="flex">
                       {[0, 1, 2, 3, 4].map((i) => (
-                        <Star key={i} className="h-2 w-2 fill-amber-300 text-amber-300" />
+                        <Star key={i} className="h-2 w-2 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <span className="text-[8px] font-semibold text-white/85">4.9 · 40+ klienti</span>
+                    <span className="text-[8px] font-semibold text-muted-foreground">
+                      4.9 · 40+ klienti
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
             {/* Sample feature row */}
-            <div className="grid grid-cols-3 gap-2 bg-card p-3">
+            <div className="grid grid-cols-3 gap-2 bg-background p-3">
               {[
                 { t: "Garantii", s: "igale tööle", Icon: ShieldCheck },
                 { t: "Kiire algus", s: "1 nädalaga", Icon: Zap },
                 { t: "Tasuta", s: "hinnapakkumine", Icon: Tag },
               ].map((c) => (
-                <div key={c.t} className="rounded-lg border border-border bg-background p-2">
-                  <span className="grid h-3.5 w-3.5 place-items-center rounded-md bg-brand/15 text-brand">
+                <div
+                  key={c.t}
+                  className="rounded-lg border border-brand/15 bg-background p-2"
+                >
+                  <span className="grid h-3.5 w-3.5 place-items-center rounded-md border border-brand/20 bg-brand/5 text-brand">
                     <c.Icon className="h-2.5 w-2.5" />
                   </span>
                   <p className="mt-1.5 text-[9px] font-bold leading-none text-foreground">{c.t}</p>
@@ -270,17 +273,17 @@ function HeroVisual({ animateChips }: { animateChips: boolean }) {
           initial={{ opacity: 0, x: 20, y: 16 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border border-border bg-card shadow-soft-lg sm:-right-6 sm:w-28"
+          className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border-2 border-brand/25 bg-background shadow-soft-lg sm:-right-6 sm:w-28"
         >
-          <div className="bg-brand px-2 py-2.5">
-            <p className="font-display text-[7px] font-bold text-white">Mardi Ehitus</p>
-            <p className="mt-1 text-[8px] font-bold leading-tight text-white">Ehitus ja remont</p>
+          <div className="border-b border-brand/10 bg-background px-2 py-2.5">
+            <p className="font-display text-[7px] font-bold text-foreground">Mardi Ehitus</p>
+            <p className="mt-1 text-[8px] font-bold leading-tight text-brand">Ehitus ja remont</p>
           </div>
-          <div className="space-y-1.5 p-2">
-            <div className="h-1.5 w-3/4 rounded-full bg-foreground/30" />
-            <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/25" />
-            <div className="bg-brand grid h-5 w-full place-items-center rounded-md">
-              <span className="text-[6px] font-bold text-white">Küsi pakkumist</span>
+          <div className="space-y-1.5 bg-background p-2">
+            <div className="h-1.5 w-3/4 rounded-full bg-foreground/20" />
+            <div className="h-1.5 w-1/2 rounded-full bg-muted-foreground/20" />
+            <div className="grid h-5 w-full place-items-center rounded-md border border-brand bg-background">
+              <span className="text-[6px] font-bold text-brand">Küsi pakkumist</span>
             </div>
           </div>
         </motion.div>

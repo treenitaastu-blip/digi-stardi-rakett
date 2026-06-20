@@ -1,9 +1,15 @@
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  carouselDotBaseClass,
+  carouselDotClass,
+  carouselTrackClass,
+  useCarouselIndex,
+} from "@/lib/useCarouselIndex";
 
 const projects = [
   {
@@ -114,27 +120,11 @@ function PortfolioCard({ project: p }: { project: (typeof projects)[number] }) {
 
 export function PortfolioSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const updateActiveIndex = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-portfolio-card]");
-    if (!card) return;
-    const gap = 16;
-    const step = card.offsetWidth + gap;
-    const index = Math.round(el.scrollLeft / step);
-    setActiveIndex(Math.min(Math.max(index, 0), projects.length - 1));
-  }, []);
-
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-portfolio-card]");
-    if (!card) return;
-    const gap = 16;
-    el.scrollTo({ left: index * (card.offsetWidth + gap), behavior: "smooth" });
-  };
+  const { activeIndex, updateActiveIndex, scrollToIndex } = useCarouselIndex(scrollRef, {
+    itemCount: projects.length,
+    cardSelector: "[data-portfolio-card]",
+    gap: 16,
+  });
 
   return (
     <section
@@ -155,7 +145,7 @@ export function PortfolioSection() {
             <div
               ref={scrollRef}
               onScroll={updateActiveIndex}
-              className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className={cn(carouselTrackClass, "gap-4")}
               aria-label="Portfoolio karussell"
             >
               {projects.map((p) => (
@@ -176,10 +166,7 @@ export function PortfolioSection() {
                   type="button"
                   aria-label={`Kuva ${p.name}`}
                   onClick={() => scrollToIndex(i)}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    i === activeIndex ? "w-5 bg-brand" : "w-1.5 bg-border",
-                  )}
+                  className={cn(carouselDotBaseClass, carouselDotClass(i === activeIndex))}
                 />
               ))}
             </div>

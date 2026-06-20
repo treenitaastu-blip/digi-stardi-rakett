@@ -25,6 +25,8 @@ const SLIDE_S = 0.85;
 
 const slideEase = [0.42, 0, 0.2, 1] as const;
 const checkEase = [0.16, 1, 0.3, 1] as const;
+const checkEaseCss = "cubic-bezier(0.16, 1, 0.3, 1)";
+const slideEaseCss = "cubic-bezier(0.42, 0, 0.2, 1)";
 
 function lineAtRow(row: number) {
   return LINES[((row - 1) % N + N) % N];
@@ -93,6 +95,8 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
     ? { duration: 0 }
     : { duration: SLIDE_S, ease: slideEase };
 
+  const slideMs = skipTransition ? 0 : SLIDE_S * 1000;
+
   return (
     <div
       ref={ref}
@@ -102,10 +106,11 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
     >
       <div className="rounded-2xl border border-border/80 bg-card/55 px-5 py-3.5 shadow-soft backdrop-blur-[2px] sm:px-6 sm:py-4">
         <div
-          className="relative mx-auto overflow-hidden"
+          className="carousel-track relative mx-auto overflow-hidden [contain:paint]"
           style={{ height: SLOT_H * 3, maxWidth: "26rem" }}
         >
           <motion.div
+            className="carousel-gpu-strip"
             initial={false}
             animate={{ y: -step * SLOT_H }}
             transition={slideTransition}
@@ -122,42 +127,40 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
                   className="flex items-center justify-center gap-2.5 px-1"
                   style={{ height: SLOT_H }}
                 >
-                  <motion.span
-                    className="grid h-5 w-5 shrink-0 place-items-center"
-                    animate={{
-                      scale: isCenter ? 1 : 0.55,
-                      opacity: isCenter ? 1 : 0,
-                    }}
-                    transition={{
-                      duration: skipTransition ? 0 : isCenter ? 0.65 : 0.2,
-                      delay: isCenter && !skipTransition ? 0.3 : 0,
-                      ease: checkEase,
+                  <span
+                    className={cn(
+                      "grid h-5 w-5 shrink-0 place-items-center transition-[transform,opacity]",
+                      isCenter ? "scale-100 opacity-100" : "scale-[0.55] opacity-0",
+                    )}
+                    style={{
+                      transitionDuration: skipTransition ? "0ms" : isCenter ? "650ms" : "200ms",
+                      transitionDelay: isCenter && !skipTransition ? "300ms" : "0ms",
+                      transitionTimingFunction: checkEaseCss,
                     }}
                     aria-hidden={!isCenter}
                   >
                     <span className="grid h-5 w-5 place-items-center rounded-full bg-success/12">
                       <Check className="h-3 w-3 text-success" />
                     </span>
-                  </motion.span>
+                  </span>
 
-                  <motion.p
-                    animate={{ scale: isCenter ? 1 : 0.96 }}
-                    transition={
-                      skipTransition
-                        ? { duration: 0 }
-                        : { duration: SLIDE_S, ease: slideEase }
-                    }
+                  <p
                     className={cn(
-                      "text-center leading-snug",
+                      "text-center leading-snug transition-transform",
+                      isCenter ? "scale-100" : "scale-[0.96]",
                       isCenter
                         ? "text-[1.02rem] font-medium text-foreground sm:text-[1.08rem]"
                         : isSecondary
                           ? "text-[0.84rem] text-muted-foreground/60 sm:text-[0.88rem]"
                           : "text-[0.84rem] text-muted-foreground/45 sm:text-[0.88rem]",
                     )}
+                    style={{
+                      transitionDuration: `${slideMs}ms`,
+                      transitionTimingFunction: slideEaseCss,
+                    }}
                   >
                     {line.content}
-                  </motion.p>
+                  </p>
                 </div>
               );
             })}

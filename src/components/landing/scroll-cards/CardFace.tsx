@@ -10,7 +10,7 @@ export function CardFace({ card }: { card: CardData }) {
   const tintSoft = `oklch(0.7 0.13 ${card.hue})`;
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden rounded-[1.1rem] bg-card">
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-[1.1rem] bg-card [backface-visibility:hidden] [transform:translateZ(0)]">
       {/* Browser chrome */}
       <div className="flex items-center gap-1.5 border-b border-border/60 bg-secondary/60 px-3 py-2">
         <span className="h-2 w-2 rounded-full bg-foreground/15" />

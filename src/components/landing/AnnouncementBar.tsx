@@ -32,7 +32,7 @@ export function AnnouncementBar() {
         <p className="hidden text-center text-sm font-medium md:block">{FULL_TEXT}</p>
 
         {/* Mobile — one message at a time, horizontal slide */}
-        <div className="relative flex h-5 w-full items-center justify-center overflow-hidden md:hidden">
+        <div className="carousel-track relative flex h-5 w-full items-center justify-center overflow-hidden [contain:paint] md:hidden">
           {reduceMotion ? (
             <p className="text-center text-xs font-medium">{MESSAGES[index]}</p>
           ) : (
@@ -43,7 +43,7 @@ export function AnnouncementBar() {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -48, opacity: 0 }}
                 transition={{ duration: 0.45, ease: [0.42, 0, 0.2, 1] }}
-                className="absolute inset-x-0 text-center text-xs font-medium"
+                className="carousel-gpu-layer absolute inset-x-0 text-center text-xs font-medium"
                 aria-live="polite"
               >
                 {MESSAGES[index]}

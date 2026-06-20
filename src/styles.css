@@ -251,6 +251,30 @@
 }
 
 @layer components {
+  .carousel-track {
+    contain: layout;
+    overscroll-behavior-x: contain;
+  }
+
+  .carousel-gpu-strip {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .carousel-gpu-layer {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .carousel-gpu-card {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    isolation: isolate;
+  }
+
   .blog-prose {
     color: var(--foreground);
 

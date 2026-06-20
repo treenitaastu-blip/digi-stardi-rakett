@@ -1,4 +1,4 @@
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { smoothEase } from "@/lib/motion";
 import { cards } from "./cards";
@@ -109,24 +109,48 @@ function LockedWrapper({
   geo: Geo;
   children: React.ReactNode;
 }) {
-  const [locked, setLocked] = useState(false);
-
-  useEffect(() => {
-    return scrollYProgress.on("change", (v) => setLocked(v >= geo.lp - 0.001));
-  }, [scrollYProgress, geo.lp]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const lockedRef = useRef(false);
 
   const scrollable = typeof window !== "undefined" ? document.documentElement.scrollHeight - geo.vh : 0;
   const topPx = geo.lp * scrollable;
 
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const applyLocked = (shouldLock: boolean) => {
+      if (shouldLock) {
+        el.style.position = "absolute";
+        el.style.inset = "auto";
+        el.style.top = `${topPx}px`;
+        el.style.left = "0";
+        el.style.right = "0";
+        el.style.height = "0";
+      } else {
+        el.style.position = "fixed";
+        el.style.inset = "0";
+        el.style.top = "auto";
+        el.style.left = "auto";
+        el.style.right = "auto";
+        el.style.height = "auto";
+      }
+    };
+
+    return scrollYProgress.on("change", (v) => {
+      const shouldLock = v >= geo.lp - 0.001;
+      if (shouldLock === lockedRef.current) return;
+      lockedRef.current = shouldLock;
+      applyLocked(shouldLock);
+    });
+  }, [scrollYProgress, geo.lp, topPx]);
+
   return (
     <div
+      ref={wrapperRef}
       aria-hidden
       className="pointer-events-none z-30 hidden lg:block"
-      style={
-        locked
-          ? { position: "absolute", top: topPx, left: 0, right: 0, height: 0 }
-          : { position: "fixed", inset: 0 }
-      }
+      style={{ position: "fixed", inset: 0 }}
     >
       {children}
     </div>
@@ -185,7 +209,7 @@ function ScrollCard({
 
   return (
     <motion.div
-      className="absolute left-0 top-0 shadow-card rounded-[1.1rem]"
+      className="carousel-gpu-card absolute left-0 top-0 rounded-[1.1rem] shadow-card"
       style={{ x, y, rotate, scale, width: CARD, height: CARD, zIndex }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

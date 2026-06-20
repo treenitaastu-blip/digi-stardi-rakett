@@ -1,8 +1,14 @@
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { Tag, PenLine, Clock, LayoutGrid, RefreshCw, CircleCheck } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { cn } from "@/lib/utils";
+import {
+  carouselDotBaseClass,
+  carouselDotClass,
+  carouselTrackClass,
+  useCarouselIndex,
+} from "@/lib/useCarouselIndex";
 
 const trust = [
   {
@@ -52,27 +58,11 @@ function TrustCard({ item }: { item: (typeof trust)[number] }) {
 
 export function TrustSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const updateActiveIndex = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-trust-card]");
-    if (!card) return;
-    const gap = 12;
-    const step = card.offsetWidth + gap;
-    const index = Math.round(el.scrollLeft / step);
-    setActiveIndex(Math.min(Math.max(index, 0), trust.length - 1));
-  }, []);
-
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-trust-card]");
-    if (!card) return;
-    const gap = 12;
-    el.scrollTo({ left: index * (card.offsetWidth + gap), behavior: "smooth" });
-  };
+  const { activeIndex, updateActiveIndex, scrollToIndex } = useCarouselIndex(scrollRef, {
+    itemCount: trust.length,
+    cardSelector: "[data-trust-card]",
+    gap: 12,
+  });
 
   return (
     <section id="usaldus" className="section-pad">
@@ -89,7 +79,7 @@ export function TrustSection() {
             <div
               ref={scrollRef}
               onScroll={updateActiveIndex}
-              className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className={cn(carouselTrackClass, "gap-3")}
               aria-label="Miks meie karussell"
             >
               {trust.map((t) => (
@@ -110,10 +100,7 @@ export function TrustSection() {
                   type="button"
                   aria-label={`Kuva ${t.title}`}
                   onClick={() => scrollToIndex(i)}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    i === activeIndex ? "w-5 bg-brand" : "w-1.5 bg-border",
-                  )}
+                  className={cn(carouselDotBaseClass, carouselDotClass(i === activeIndex))}
                 />
               ))}
             </div>

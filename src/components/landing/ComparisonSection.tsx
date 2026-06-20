@@ -1,8 +1,14 @@
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 import { Check, X } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
+import {
+  carouselDotBaseClass,
+  carouselDotClass,
+  carouselTrackClass,
+  useCarouselIndex,
+} from "@/lib/useCarouselIndex";
 
 const rows = [
   { label: "Kuukulu", us: "0€ kuus", them: "25€+ kuus" },
@@ -49,27 +55,11 @@ function ComparisonCard({ row }: { row: (typeof rows)[number] }) {
 
 export function ComparisonSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const updateActiveIndex = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-comparison-card]");
-    if (!card) return;
-    const gap = 12;
-    const step = card.offsetWidth + gap;
-    const index = Math.round(el.scrollLeft / step);
-    setActiveIndex(Math.min(Math.max(index, 0), rows.length - 1));
-  }, []);
-
-  const scrollToIndex = (index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-comparison-card]");
-    if (!card) return;
-    const gap = 12;
-    el.scrollTo({ left: index * (card.offsetWidth + gap), behavior: "smooth" });
-  };
+  const { activeIndex, updateActiveIndex, scrollToIndex } = useCarouselIndex(scrollRef, {
+    itemCount: rows.length,
+    cardSelector: "[data-comparison-card]",
+    gap: 12,
+  });
 
   return (
     <section id="vordlus" className="section-pad bg-secondary">
@@ -152,7 +142,7 @@ export function ComparisonSection() {
             <div
               ref={scrollRef}
               onScroll={updateActiveIndex}
-              className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className={cn(carouselTrackClass, "gap-3")}
               aria-label="Võrdlus karussell"
             >
               {rows.map((row) => (
@@ -173,10 +163,7 @@ export function ComparisonSection() {
                   type="button"
                   aria-label={`Kuva ${row.label}`}
                   onClick={() => scrollToIndex(i)}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    i === activeIndex ? "w-5 bg-brand" : "w-1.5 bg-border",
-                  )}
+                  className={cn(carouselDotBaseClass, carouselDotClass(i === activeIndex))}
                 />
               ))}
             </div>
