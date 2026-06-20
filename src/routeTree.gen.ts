@@ -9,10 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeenuseTingimusedRouteImport } from './routes/teenuse-tingimused'
+import { Route as PrivaatsuspoliitikaRouteImport } from './routes/privaatsuspoliitika'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogiIndexRouteImport } from './routes/blogi/index'
 import { Route as BlogiSlugRouteImport } from './routes/blogi/$slug'
 
+const TeenuseTingimusedRoute = TeenuseTingimusedRouteImport.update({
+  id: '/teenuse-tingimused',
+  path: '/teenuse-tingimused',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivaatsuspoliitikaRoute = PrivaatsuspoliitikaRouteImport.update({
+  id: '/privaatsuspoliitika',
+  path: '/privaatsuspoliitika',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +43,74 @@ const BlogiSlugRoute = BlogiSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privaatsuspoliitika': typeof PrivaatsuspoliitikaRoute
+  '/teenuse-tingimused': typeof TeenuseTingimusedRoute
   '/blogi/$slug': typeof BlogiSlugRoute
   '/blogi/': typeof BlogiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privaatsuspoliitika': typeof PrivaatsuspoliitikaRoute
+  '/teenuse-tingimused': typeof TeenuseTingimusedRoute
   '/blogi/$slug': typeof BlogiSlugRoute
   '/blogi': typeof BlogiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/privaatsuspoliitika': typeof PrivaatsuspoliitikaRoute
+  '/teenuse-tingimused': typeof TeenuseTingimusedRoute
   '/blogi/$slug': typeof BlogiSlugRoute
   '/blogi/': typeof BlogiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blogi/$slug' | '/blogi/'
+  fullPaths:
+    | '/'
+    | '/privaatsuspoliitika'
+    | '/teenuse-tingimused'
+    | '/blogi/$slug'
+    | '/blogi/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blogi/$slug' | '/blogi'
-  id: '__root__' | '/' | '/blogi/$slug' | '/blogi/'
+  to:
+    | '/'
+    | '/privaatsuspoliitika'
+    | '/teenuse-tingimused'
+    | '/blogi/$slug'
+    | '/blogi'
+  id:
+    | '__root__'
+    | '/'
+    | '/privaatsuspoliitika'
+    | '/teenuse-tingimused'
+    | '/blogi/$slug'
+    | '/blogi/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PrivaatsuspoliitikaRoute: typeof PrivaatsuspoliitikaRoute
+  TeenuseTingimusedRoute: typeof TeenuseTingimusedRoute
   BlogiSlugRoute: typeof BlogiSlugRoute
   BlogiIndexRoute: typeof BlogiIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/teenuse-tingimused': {
+      id: '/teenuse-tingimused'
+      path: '/teenuse-tingimused'
+      fullPath: '/teenuse-tingimused'
+      preLoaderRoute: typeof TeenuseTingimusedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privaatsuspoliitika': {
+      id: '/privaatsuspoliitika'
+      path: '/privaatsuspoliitika'
+      fullPath: '/privaatsuspoliitika'
+      preLoaderRoute: typeof PrivaatsuspoliitikaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +137,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PrivaatsuspoliitikaRoute: PrivaatsuspoliitikaRoute,
+  TeenuseTingimusedRoute: TeenuseTingimusedRoute,
   BlogiSlugRoute: BlogiSlugRoute,
   BlogiIndexRoute: BlogiIndexRoute,
 }

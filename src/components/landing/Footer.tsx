@@ -2,13 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { ContactLink } from "./ContactLink";
 import { siteNavLinks } from "@/lib/nav";
+import { legalLinks } from "@/lib/legal";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-border bg-secondary">
       <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr]">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr] md:items-start">
           {/* Brand */}
           <div>
             <a href="/" aria-label="Lehekoda">
@@ -25,8 +26,8 @@ export function Footer() {
             </ContactLink>
           </div>
 
-          {/* Nav */}
-          <div>
+          {/* Leht */}
+          <div className="md:text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/70">
               Leht
             </p>
@@ -43,14 +44,25 @@ export function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Legal */}
+          <nav
+            aria-label="Juriidiline info"
+            className="flex flex-col gap-2 md:items-end md:justify-self-end md:text-right"
+          >
+            {legalLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            © {year} Lehekoda
-          </p>
-          <p className="text-xs text-muted-foreground">Veebilehed Eesti ettevõtetele</p>
-        </div>
+        <p className="mt-12 text-center text-xs text-muted-foreground">© {year} Lehekoda</p>
       </div>
     </footer>
   );
