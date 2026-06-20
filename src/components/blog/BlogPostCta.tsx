@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "@/components/landing/ContactLink";
 
 type BlogPostCtaProps = {
   title?: string;
@@ -16,7 +17,7 @@ export function BlogPostCta({
       <h2 className="text-2xl font-bold tracking-tight text-foreground">{title}</h2>
       <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">{text}</p>
       <Button variant="hero" size="lg" className="mt-6 rounded-xl" asChild>
-        <a href="/#kontakt">{buttonLabel}</a>
+        <ContactLink>{buttonLabel}</ContactLink>
       </Button>
     </aside>
   );

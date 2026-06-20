@@ -9,6 +9,8 @@ import { SolutionSection } from "@/components/landing/SolutionSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
 import { PortfolioSection } from "@/components/landing/PortfolioSection";
 import { AudienceSection } from "@/components/landing/AudienceSection";
+import { ContactSection } from "@/components/landing/ContactSection";
+import { HashScrollToContact } from "@/components/landing/HashScrollToContact";
 import { StickyCta } from "@/components/landing/StickyCta";
 import { Footer } from "@/components/landing/Footer";
 import { PageBackdrop } from "@/components/landing/PageBackdrop";
@@ -30,9 +32,6 @@ const TrustSection = lazy(() =>
 const FaqSection = lazy(() =>
   import("@/components/landing/FaqSection").then((m) => ({ default: m.FaqSection })),
 );
-const ContactSection = lazy(() =>
-  import("@/components/landing/ContactSection").then((m) => ({ default: m.ContactSection })),
-);
 const Toaster = lazy(() =>
   import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
 );
@@ -51,6 +50,7 @@ function Index() {
   return (
     <>
       <JsonLd data={homeJsonLdGraph()} />
+      <HashScrollToContact />
       <a href="#main-content" className="skip-link">
         Liigu põhisisu juurde
       </a>
@@ -71,8 +71,8 @@ function Index() {
             <PricingSection />
             <TrustSection />
             <FaqSection />
-            <ContactSection />
           </Suspense>
+          <ContactSection />
         </main>
         <DeferredScrollCards containerRef={pageRef} />
         <Footer />

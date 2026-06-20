@@ -71,7 +71,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="section-pad">
+    <section id="kontakt" className="section-pad scroll-mt-24 [content-visibility:visible]">
       <div className="mx-auto max-w-5xl px-5">
         <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr]">

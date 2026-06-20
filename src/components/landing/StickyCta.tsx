@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "./ContactLink";
 
 export function StickyCta() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,9 +45,9 @@ export function StickyCta() {
             size="xl"
             className="w-full font-semibold"
           >
-            <a href="#kontakt">
+            <ContactLink>
               Küsi pakkumist <ArrowRight className="h-4 w-4" />
-            </a>
+            </ContactLink>
           </Button>
           <p className="mt-2 text-center text-xs leading-snug text-muted-foreground">
             Vastamine võtab umbes 1 minuti.

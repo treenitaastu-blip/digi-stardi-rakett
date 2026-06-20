@@ -2,6 +2,7 @@ import { Check, ArrowRight, Clock, RefreshCw, Globe } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "./ContactLink";
 
 const included = [
   "Üheleheline professionaalne koduleht",
@@ -87,9 +88,9 @@ export function PricingSection() {
                     size="xl"
                     className="mt-6 w-full rounded-xl bg-white font-semibold text-brand hover:bg-white/90"
                   >
-                    <a href="#kontakt">
+                    <ContactLink>
                       Küsi pakkumist <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </ContactLink>
                   </Button>
                   <p className="mt-3 text-center text-xs text-brand-foreground/75">
                     Päringu saatmine ei kohusta millekski.

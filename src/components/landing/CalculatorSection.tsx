@@ -4,6 +4,7 @@ import { Check, Sparkles } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "./ContactLink";
 import { cn } from "@/lib/utils";
 
 type ServiceId = "koduleht" | "videod" | "social" | "postitused" | "reklaam" | "film";
@@ -132,7 +133,7 @@ export function CalculatorSection() {
               </AnimatePresence>
 
               <Button asChild variant="hero" className="mt-5 w-full">
-                <a href="#kontakt">Küsi see pakett</a>
+                <ContactLink>Küsi see pakett</ContactLink>
               </Button>
             </div>
           </div>

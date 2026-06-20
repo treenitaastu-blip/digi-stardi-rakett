@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
+import { ContactLink } from "./ContactLink";
 import { siteNavLinks } from "@/lib/nav";
 
 export function Footer() {
@@ -17,12 +18,11 @@ export function Footer() {
               Professionaalne koduleht Eesti väikeettevõttele. Müügitekstid, SEO ja mobiilivaade.
               Valmis 7 tööpäevaga, fikseeritud hinnaga 399 €.
             </p>
-            <a
-              href="/#kontakt"
+            <ContactLink
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand/80"
             >
               Küsi pakkumist <ArrowUpRight className="h-4 w-4" />
-            </a>
+            </ContactLink>
           </div>
 
           {/* Nav */}

@@ -3,6 +3,7 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "./ContactLink";
 import { cn } from "@/lib/utils";
 import {
   carouselDotBaseClass,
@@ -197,9 +198,9 @@ export function PortfolioSection() {
               size="xl"
               className="relative shrink-0 rounded-xl bg-white font-semibold text-brand hover:bg-white/90"
             >
-              <a href="#kontakt">
+              <ContactLink>
                 Küsi pakkumist <ArrowRight className="h-4 w-4" />
-              </a>
+              </ContactLink>
             </Button>
           </div>
         </Reveal>

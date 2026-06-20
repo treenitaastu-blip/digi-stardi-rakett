@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HeroCircuitPattern } from "./HeroCircuitPattern";
 import { HeroAnimatedSubtitle } from "./HeroAnimatedSubtitle";
+import { ContactLink } from "./ContactLink";
 
 const heroPillClass = "h-12 rounded-full px-6 font-semibold tracking-tight";
 
@@ -90,9 +91,9 @@ export function Hero() {
                   size="xl"
                   className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")}
                 >
-                  <a href="#kontakt">
+                  <ContactLink>
                     Küsi pakkumist <ArrowRight className="h-4 w-4" />
-                  </a>
+                  </ContactLink>
                 </Button>
                 <HeroPriceBadge className={cn(heroPillClass, "sm:flex-1 sm:max-w-xs")} />
               </div>
@@ -115,9 +116,9 @@ export function Hero() {
                 size="xl"
                 className={cn(heroPillClass, "justify-self-end")}
               >
-                <a href="#kontakt">
+                <ContactLink>
                   Küsi pakkumist <ArrowRight className="h-4 w-4" />
-                </a>
+                </ContactLink>
               </Button>
 
               <Button

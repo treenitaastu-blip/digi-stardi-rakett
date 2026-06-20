@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { Logo } from "./Logo";
+import { ContactLink } from "./ContactLink";
 import { siteNavLinks } from "@/lib/nav";
 
 export function Navbar() {
@@ -55,7 +56,7 @@ export function Navbar() {
             asChild
             className="hidden rounded-xl md:inline-flex"
           >
-            <a href="/#kontakt">Küsi pakkumist</a>
+            <ContactLink>Küsi pakkumist</ContactLink>
           </Button>
           <button
             aria-label="Menüü"
@@ -87,9 +88,9 @@ export function Navbar() {
               </a>
             ))}
             <Button variant="hero" className="mt-2 rounded-xl" asChild>
-              <a href="/#kontakt" onClick={() => setOpen(false)}>
+              <ContactLink onClick={() => setOpen(false)}>
                 Küsi pakkumist
-              </a>
+              </ContactLink>
             </Button>
           </div>
         </div>

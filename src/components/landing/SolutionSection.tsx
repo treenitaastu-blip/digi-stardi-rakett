@@ -12,6 +12,7 @@ import {
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem, Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
+import { ContactLink } from "./ContactLink";
 
 const features = [
   {
@@ -87,9 +88,9 @@ export function SolutionSection() {
               muudatusi - kõik hinnas.
             </p>
             <Button asChild variant="hero" className="shrink-0 rounded-xl">
-              <a href="#kontakt">
+              <ContactLink>
                 Küsi pakkumist <ArrowRight className="h-4 w-4" />
-              </a>
+              </ContactLink>
             </Button>
           </div>
         </Reveal>

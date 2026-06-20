@@ -1,5 +1,6 @@
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { ContactLink } from "./ContactLink";
 import { faqs } from "@/lib/faq";
 import {
   Accordion,
@@ -35,9 +36,9 @@ export function FaqSection() {
         <Reveal className="mt-8 text-center">
           <p className="text-sm text-muted-foreground">
             Jäi midagi küsida?{" "}
-            <a href="#kontakt" className="font-semibold text-brand hover:underline">
+            <ContactLink className="font-semibold text-brand hover:underline">
               Kirjutage meile →
-            </a>
+            </ContactLink>
           </p>
         </Reveal>
       </div>
