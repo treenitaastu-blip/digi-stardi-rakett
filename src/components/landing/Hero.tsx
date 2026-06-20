@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useInView, useReducedMotion, type MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import {
   ArrowRight,
   Search,
@@ -18,14 +18,10 @@ const heroPillClass = "h-12 rounded-full px-6 font-semibold tracking-tight";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const heroInView = useInView(ref, { amount: 0.15 });
-  const reduceMotion = useReducedMotion();
-  const animateChips = heroInView && !reduceMotion;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const visualY = useTransform(scrollYProgress, [0, 1], [0, -70]);
   const copyY = useTransform(scrollYProgress, [0, 1], [0, 40]);
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
@@ -40,10 +36,10 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
         <div className="grid items-center gap-10 lg:block lg:text-center">
-          {/* ── Visual (mobile/tablet only — scroll cards replace it on desktop) ── */}
-          <motion.div style={{ y: visualY }} className="order-1 lg:hidden">
-            <HeroVisual animateChips={animateChips} />
-          </motion.div>
+          {/* ── Visual (mobile/tablet only — static, no scroll animation) ── */}
+          <div className="order-1 lg:hidden">
+            <HeroVisual />
+          </div>
 
           {/* ── Copy ── */}
           <motion.div
@@ -184,15 +180,10 @@ function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
   );
 }
 
-function HeroVisual({ animateChips }: { animateChips: boolean }) {
+function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-[440px] lg:max-w-none">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94, y: 28 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-        className="relative"
-      >
+      <div className="relative">
         {/* Browser frame */}
         <div className="rounded-2xl border border-border bg-card p-3 shadow-soft">
           {/* Browser chrome */}
@@ -270,12 +261,7 @@ function HeroVisual({ animateChips }: { animateChips: boolean }) {
         </div>
 
         {/* Mobile preview */}
-        <motion.div
-          initial={{ opacity: 0, x: 20, y: 16 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border-2 border-brand/25 bg-background shadow-soft-lg sm:-right-6 sm:w-28"
-        >
+        <div className="absolute -bottom-9 -right-3 w-24 overflow-hidden rounded-[1.1rem] border-2 border-brand/25 bg-background shadow-soft-lg sm:-right-6 sm:w-28">
           <div className="border-b border-brand/10 bg-background px-2 py-2.5">
             <p className="font-display text-[7px] font-bold text-foreground">Mardi Ehitus</p>
             <p className="mt-1 text-[8px] font-bold leading-tight text-brand">Ehitus ja remont</p>
@@ -287,50 +273,28 @@ function HeroVisual({ animateChips }: { animateChips: boolean }) {
               <span className="text-[6px] font-bold text-brand">Küsi pakkumist</span>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      {/* Google result chip */}
-      <motion.div
-        initial={{ opacity: 0, x: -16 }}
-        animate={{ opacity: 1, x: 0, y: animateChips ? [0, -6, 0] : 0 }}
-        transition={{
-          opacity: { duration: 0.5, delay: 0.7 },
-          x: { duration: 0.5, delay: 0.7 },
-          y: animateChips
-            ? { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.7 }
-            : { duration: 0 },
-        }}
-        className="absolute top-10 hidden max-w-[170px] rounded-xl border border-border bg-card/95 p-3 shadow-soft-lg backdrop-blur-sm lg:-left-10 lg:flex lg:flex-col lg:gap-1.5"
-      >
+      {/* Google result chip — desktop scroll-cards stage only; hidden with HeroVisual on lg+ */}
+      <div className="absolute top-10 hidden max-w-[170px] rounded-xl border border-border bg-card/95 p-3 shadow-soft-lg backdrop-blur-sm lg:-left-10 lg:flex lg:flex-col lg:gap-1.5">
         <span className="text-[9px] font-semibold uppercase tracking-widest text-brand">
           Google otsing
         </span>
         <div className="h-1.5 w-full rounded-full bg-brand/70" />
         <div className="h-1.5 w-4/5 rounded-full bg-muted-foreground/40" />
         <div className="h-1.5 w-2/3 rounded-full bg-muted-foreground/25" />
-      </motion.div>
+      </div>
 
       {/* Rating chip */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.82 }}
-        animate={{ opacity: 1, scale: 1, y: animateChips ? [0, -7, 0] : 0 }}
-        transition={{
-          opacity: { duration: 0.45, delay: 1 },
-          scale: { duration: 0.45, delay: 1 },
-          y: animateChips
-            ? { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            : { duration: 0 },
-        }}
-        className="absolute -right-3 top-1/4 hidden items-center gap-2 rounded-xl border border-border bg-card/95 px-3.5 py-2.5 shadow-soft-lg backdrop-blur-sm lg:-right-7 lg:flex"
-      >
+      <div className="absolute -right-3 top-1/4 hidden items-center gap-2 rounded-xl border border-border bg-card/95 px-3.5 py-2.5 shadow-soft-lg backdrop-blur-sm lg:-right-7 lg:flex">
         <div className="flex">
           {[0, 1, 2, 3, 4].map((i) => (
             <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
           ))}
         </div>
         <span className="text-xs font-semibold">Valmis 7 päevaga</span>
-      </motion.div>
+      </div>
     </div>
   );
 }

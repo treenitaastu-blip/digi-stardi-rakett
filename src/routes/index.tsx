@@ -9,6 +9,10 @@ import { SolutionSection } from "@/components/landing/SolutionSection";
 import { ProcessSection } from "@/components/landing/ProcessSection";
 import { PortfolioSection } from "@/components/landing/PortfolioSection";
 import { AudienceSection } from "@/components/landing/AudienceSection";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { PricingSection } from "@/components/landing/PricingSection";
+import { TrustSection } from "@/components/landing/TrustSection";
+import { FaqSection } from "@/components/landing/FaqSection";
 import { ContactSection } from "@/components/landing/ContactSection";
 import { HashScrollToContact } from "@/components/landing/HashScrollToContact";
 import { StickyCta } from "@/components/landing/StickyCta";
@@ -18,20 +22,6 @@ import { DeferredScrollCards } from "@/components/landing/DeferredScrollCards";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { homeJsonLdGraph, homePageLinks, homePageMeta } from "@/lib/seo";
 
-const TestimonialsSection = lazy(() =>
-  import("@/components/landing/TestimonialsSection").then((m) => ({
-    default: m.TestimonialsSection,
-  })),
-);
-const PricingSection = lazy(() =>
-  import("@/components/landing/PricingSection").then((m) => ({ default: m.PricingSection })),
-);
-const TrustSection = lazy(() =>
-  import("@/components/landing/TrustSection").then((m) => ({ default: m.TrustSection })),
-);
-const FaqSection = lazy(() =>
-  import("@/components/landing/FaqSection").then((m) => ({ default: m.FaqSection })),
-);
 const Toaster = lazy(() =>
   import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
 );
@@ -66,12 +56,10 @@ function Index() {
           <SolutionSection />
           <ProcessSection />
           <AudienceSection />
-          <Suspense fallback={null}>
-            <TestimonialsSection />
-            <PricingSection />
-            <TrustSection />
-            <FaqSection />
-          </Suspense>
+          <TestimonialsSection />
+          <PricingSection />
+          <TrustSection />
+          <FaqSection />
           <ContactSection />
         </main>
         <DeferredScrollCards containerRef={pageRef} />

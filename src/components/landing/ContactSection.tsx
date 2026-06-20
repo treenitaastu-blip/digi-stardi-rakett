@@ -71,7 +71,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="section-pad scroll-mt-24 [content-visibility:visible]">
+    <section id="kontakt" aria-labelledby="kontakt-heading" className="section-pad scroll-mt-24 [content-visibility:visible]">
       <div className="mx-auto max-w-5xl px-5">
         <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
@@ -85,7 +85,7 @@ export function ContactSection() {
                 <span className="relative inline-block rounded-full bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-widest text-brand-foreground">
                   Küsi pakkumist
                 </span>
-                <h2 className="relative mt-4 text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
+                <h2 id="kontakt-heading" className="relative mt-4 text-balance text-2xl font-bold leading-tight text-brand-foreground md:text-3xl">
                   Valmis professionaalseks esmamuljeks?
                 </h2>
                 <p className="relative mt-4 space-y-1 text-sm leading-snug text-brand-foreground/85">
