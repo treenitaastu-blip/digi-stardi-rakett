@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnnouncementBar } from "./AnnouncementBar";
@@ -11,14 +11,14 @@ import { siteNavLinks } from "@/lib/nav";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
+  const { scrollY, scrollYProgress } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    setScrolled(y > 12);
+  });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    setScrolled(window.scrollY > 12);
   }, []);
 
   return (
@@ -68,10 +68,10 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Scroll progress bar */}
+      {/* Scroll progress — direct mapping, no spring (keeps header animations smooth while scrolling) */}
       <motion.div
         className="bg-brand absolute bottom-0 left-0 h-0.5 w-full origin-left"
-        style={{ scaleX: progress, opacity: scrolled ? 1 : 0 }}
+        style={{ scaleX: scrollYProgress, opacity: scrolled ? 1 : 0 }}
       />
 
       {open && (

@@ -22,7 +22,6 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, 40]);
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
   return (
@@ -42,11 +41,7 @@ export function Hero() {
           </div>
 
           {/* ── Copy ── */}
-          <motion.div
-            style={{ y: copyY }}
-            className="order-2 mx-auto max-w-3xl"
-            data-hero-copy
-          >
+          <div className="order-2 mx-auto max-w-3xl" data-hero-copy>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,7 +124,7 @@ export function Hero() {
               <HeroPriceBadge className={cn(heroPillClass, "justify-self-start")} />
             </div>
           </motion.div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Fan stage — desktop only. The fixed ScrollCards overlay fans out here. */}
