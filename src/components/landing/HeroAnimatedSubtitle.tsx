@@ -39,15 +39,6 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
           className="hero-subtitle-viewport carousel-track relative mx-auto overflow-hidden [contain:strict]"
           style={{ height: SLOT_H * 3, maxWidth: "26rem" }}
         >
-          <div
-            className="pointer-events-none absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2.5"
-            aria-hidden
-          >
-            <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
-              <Check className="h-3 w-3 text-success" />
-            </span>
-          </div>
-
           <div className="hero-subtitle-strip">
             {Array.from({ length: ROW_COUNT }, (_, row) => {
               const line = lineAtRow(row);
@@ -57,7 +48,9 @@ export function HeroAnimatedSubtitle({ className }: { className?: string }) {
                   className="flex items-center justify-center gap-2.5 px-1"
                   style={{ height: SLOT_H }}
                 >
-                  <span className="h-5 w-5 shrink-0" aria-hidden />
+                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-success/12">
+                    <Check className="h-3 w-3 text-success" />
+                  </span>
                   <p
                     className={cn(
                       "text-center leading-snug",

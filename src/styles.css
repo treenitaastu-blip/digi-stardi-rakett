@@ -278,6 +278,20 @@
   /* Compositor-driven hero carousels — stay smooth while the page scrolls */
   .hero-subtitle-viewport {
     contain: strict;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 28%,
+      black 72%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 28%,
+      black 72%,
+      transparent 100%
+    );
   }
 
   .hero-subtitle-strip {
