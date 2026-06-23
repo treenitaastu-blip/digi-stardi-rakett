@@ -8,13 +8,14 @@ const founders = [
     role: "tekstid ja struktuur",
     photo: "/team/henri.webp",
     className: "relative z-10 lg:-translate-y-1",
-    photoClassName: "translate-x-[3px] translate-y-[2px]",
+    photoClassName: "object-[center_18%]",
   },
   {
     name: "Jaagup",
     role: "disain ja tehniline teostus",
     photo: "/team/jaagup.webp",
     className: "relative z-0 lg:translate-y-3",
+    photoClassName: "object-[center_20%]",
   },
 ];
 
@@ -49,26 +50,21 @@ function FounderPortrait({
           aria-hidden
           className="absolute inset-0 rounded-full bg-gradient-to-b from-[#DBEAFE] via-[#EFF6FF] to-white shadow-[0_18px_44px_rgba(37,99,235,0.14)]"
         />
+        <div className="absolute inset-[5%] overflow-hidden rounded-full bg-[#EFF6FF]">
+          <img
+            src={photo}
+            alt={`${name} — Lehekoda kaasasutaja`}
+            width={400}
+            height={400}
+            sizes="(min-width: 1024px) 200px, (min-width: 640px) 176px, 42vw"
+            className={cn("h-full w-full object-cover object-center", photoClassName)}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <div
           aria-hidden
-          className="absolute inset-[5%] rounded-full border border-[#BFDBFE]/90 bg-[#F8FAFC]/80"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-[10%] rounded-full bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.95),rgba(239,246,255,0.4)_58%,transparent_100%)]"
-        />
-        <img
-          src={photo}
-          alt={`${name} — Lehekoda kaasasutaja`}
-          width={400}
-          height={400}
-          sizes="(min-width: 1024px) 200px, (min-width: 640px) 176px, 42vw"
-          className={cn(
-            "relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_10px_24px_rgba(15,23,42,0.1)]",
-            photoClassName,
-          )}
-          loading="lazy"
-          decoding="async"
+          className="pointer-events-none absolute inset-[5%] rounded-full border border-[#BFDBFE]/90"
         />
       </div>
       <figcaption className="mt-3.5 text-center lg:text-left">
@@ -128,7 +124,7 @@ export function TrustSection() {
               {/* Mobile 4 · Desktop col 1 */}
               <div className="order-2 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
                 <div className="rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] p-5 lg:p-6">
-                  <div className="mx-auto flex max-w-[360px] items-end justify-center gap-4 sm:max-w-none sm:gap-5 lg:mx-0 lg:justify-start">
+                  <div className="mx-auto flex w-full items-end justify-center gap-4 sm:max-w-none sm:gap-5 lg:mx-0 lg:justify-start">
                     {founders.map((person) => (
                       <FounderPortrait
                         key={person.name}
@@ -136,7 +132,7 @@ export function TrustSection() {
                         role={person.role}
                         photo={person.photo}
                         photoClassName={person.photoClassName}
-                        className={`w-[min(46vw,10.5rem)] sm:w-44 lg:w-[12.5rem] ${person.className}`}
+                        className={`min-w-0 w-[calc(50%-0.5rem)] sm:w-44 lg:w-[12.5rem] ${person.className}`}
                       />
                     ))}
                   </div>

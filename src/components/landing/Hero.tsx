@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import {
   ArrowRight,
   Search,
@@ -17,21 +15,13 @@ import { ContactLink } from "./ContactLink";
 const heroPillClass = "h-12 rounded-full px-6 font-semibold tracking-tight";
 
 export function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-
   return (
     <section
-      ref={ref}
       id="top"
       className="relative isolate flex min-h-[90vh] items-center overflow-hidden pb-16 pt-32 md:pt-36 lg:min-h-screen lg:items-start lg:pt-40"
     >
       <div aria-hidden className="absolute inset-0 bg-secondary" />
-      <HeroBackground bgY={bgY} />
+      <HeroBackground />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
         <div className="grid items-center gap-10 text-center lg:block">
@@ -42,37 +32,19 @@ export function Hero() {
 
           {/* ── Copy ── */}
           <div className="order-2 mx-auto max-w-3xl" data-hero-copy>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="eyebrow"
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
-            </span>
+          <div className="hero-enter hero-enter-delay-1 eyebrow">
+            <span className="inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
             Veebilehed Eesti ettevõtetele
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.07 }}
-            className="mt-6 text-balance text-[2.6rem] font-bold leading-[1.03] md:text-[3.25rem] lg:text-[3.7rem]"
-          >
+          <h1 className="hero-enter hero-enter-delay-2 mt-6 text-balance text-[2.6rem] font-bold leading-[1.03] md:text-[3.25rem] lg:text-[3.7rem]">
             Koduleht, mis võidab{" "}
             <span className="text-brand">kliendi usalduse</span>
-          </motion.h1>
+          </h1>
 
-          <HeroAnimatedSubtitle className="mx-auto mt-5 max-w-[480px]" />
+          <HeroAnimatedSubtitle className="hero-enter hero-enter-delay-3 mx-auto mt-5 max-w-[480px]" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.26 }}
-            className="mt-9"
-          >
+          <div className="hero-enter hero-enter-delay-4 mt-9">
             {/* Mobile + tablet */}
             <div className="flex flex-col items-stretch gap-3 lg:hidden">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
@@ -123,7 +95,7 @@ export function Hero() {
 
               <HeroPriceBadge className={cn(heroPillClass, "justify-self-start")} />
             </div>
-          </motion.div>
+          </div>
           </div>
         </div>
 
@@ -160,18 +132,14 @@ function HeroPriceBadge({ className }: { className?: string }) {
   );
 }
 
-function HeroBackground({ bgY }: { bgY: MotionValue<number> }) {
+function HeroBackground() {
   return (
-    <motion.div
-      style={{ y: bgY }}
-      aria-hidden
-      className="pointer-events-none absolute inset-0 z-0"
-    >
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
       <div className="bg-grid absolute inset-0 opacity-[0.14] [mask-image:radial-gradient(70%_58%_at_50%_42%,black,transparent)]" />
       <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_72%_62%_at_50%_44%,transparent_36%,black_100%)]">
         <HeroCircuitPattern className="h-full w-full opacity-90" />
       </div>
-    </motion.div>
+    </div>
   );
 }
 

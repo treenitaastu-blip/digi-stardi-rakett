@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnnouncementBar } from "./AnnouncementBar";
@@ -11,7 +11,7 @@ import { siteNavLinks } from "@/lib/nav";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 12);
@@ -32,69 +32,63 @@ export function Navbar() {
             : "bg-transparent",
         )}
       >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="/" aria-label="Lehekoda" className="-ml-1 shrink-0 md:ml-0">
-          <Logo />
-        </a>
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
+          <a href="/" aria-label="Lehekoda" className="-ml-1 shrink-0 md:ml-0">
+            <Logo />
+          </a>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {siteNavLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="hero"
-            size="default"
-            asChild
-            className="hidden rounded-xl md:inline-flex"
-          >
-            <ContactLink>Küsi pakkumist</ContactLink>
-          </Button>
-          <button
-            aria-label="Menüü"
-            onClick={() => setOpen((o) => !o)}
-            className="grid h-9 w-9 place-items-center rounded-lg border border-border md:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Scroll progress — direct mapping, no spring (keeps header animations smooth while scrolling) */}
-      <motion.div
-        className="bg-brand absolute bottom-0 left-0 h-0.5 w-full origin-left"
-        style={{ scaleX: scrollYProgress, opacity: scrolled ? 1 : 0 }}
-      />
-
-      {open && (
-        <div className="border-t border-border bg-background/95 px-5 py-4 backdrop-blur-xl md:hidden">
-          <div className="flex flex-col gap-1">
+          <div className="hidden items-center gap-8 md:flex">
             {siteNavLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {l.label}
               </a>
             ))}
-            <Button variant="hero" className="mt-2 rounded-xl" asChild>
-              <ContactLink onClick={() => setOpen(false)}>
-                Küsi pakkumist
-              </ContactLink>
-            </Button>
           </div>
-        </div>
-      )}
+
+          <div className="flex items-center gap-2">
+            <Button
+              variant="hero"
+              size="default"
+              asChild
+              className="hidden rounded-xl md:inline-flex"
+            >
+              <ContactLink>Küsi pakkumist</ContactLink>
+            </Button>
+            <button
+              aria-label="Menüü"
+              onClick={() => setOpen((o) => !o)}
+              className="grid h-9 w-9 place-items-center rounded-lg border border-border md:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </nav>
+
+        {open && (
+          <div className="border-t border-border bg-background/95 px-5 py-4 backdrop-blur-xl md:hidden">
+            <div className="flex flex-col gap-1">
+              {siteNavLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <Button variant="hero" className="mt-2 rounded-xl" asChild>
+                <ContactLink onClick={() => setOpen(false)}>
+                  Küsi pakkumist
+                </ContactLink>
+              </Button>
+            </div>
+          </div>
+        )}
       </header>
     </div>
   );

@@ -275,6 +275,37 @@
     isolation: isolate;
   }
 
+  /* Hero copy — compositor-only entrance (no Framer on the headline) */
+  .hero-enter {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    animation: hero-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .hero-enter-delay-1 {
+    animation-delay: 0.04s;
+  }
+
+  .hero-enter-delay-2 {
+    animation-delay: 0.1s;
+  }
+
+  .hero-enter-delay-3 {
+    animation-delay: 0.16s;
+  }
+
+  .hero-enter-delay-4 {
+    animation-delay: 0.22s;
+  }
+
+  @keyframes hero-enter {
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
   /* Compositor-driven hero carousels — stay smooth while the page scrolls */
   .hero-subtitle-viewport {
     contain: strict;
@@ -297,7 +328,7 @@
   .hero-subtitle-strip {
     will-change: transform;
     backface-visibility: hidden;
-    animation: hero-subtitle-rotate 13s cubic-bezier(0.42, 0, 0.2, 1) infinite;
+    animation: hero-subtitle-rotate 13s cubic-bezier(0.42, 0, 0.2, 1) 0.4s infinite;
   }
 
   .announcement-strip {
@@ -373,6 +404,13 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-enter {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+
     .hero-subtitle-strip,
     .announcement-strip {
       animation: none;
