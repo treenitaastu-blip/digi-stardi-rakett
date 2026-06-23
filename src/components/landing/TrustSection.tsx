@@ -1,18 +1,19 @@
 import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 
 const founders = [
   {
     name: "Henri",
     role: "tekstid ja struktuur",
-    initials: "H",
-    photo: "/team/henri.jpg",
+    photo: "/team/henri.webp",
     className: "relative z-10 lg:-translate-y-1",
+    photoClassName: "translate-x-[3px] translate-y-[2px]",
   },
   {
     name: "Jaagup",
     role: "disain ja tehniline teostus",
-    initials: "J",
+    photo: "/team/jaagup.webp",
     className: "relative z-0 lg:translate-y-3",
   },
 ];
@@ -31,40 +32,44 @@ const trustPills = ["399€", "0€ kuutasu", "7 tööpäeva", "Tekstid hinnas",
 function FounderPortrait({
   name,
   role,
-  initials,
   photo,
+  photoClassName,
   className,
 }: {
   name: string;
   role: string;
-  initials: string;
-  photo?: string;
+  photo: string;
+  photoClassName?: string;
   className?: string;
 }) {
   return (
     <figure className={className}>
-      <div
-        className="overflow-hidden rounded-[28px] border border-[#BFDBFE] bg-[#EFF6FF] shadow-[0_16px_40px_rgba(37,99,235,0.1)]"
-        style={{ aspectRatio: "3 / 4" }}
-      >
-        {photo ? (
-          <img
-            src={photo}
-            alt={`${name} — Lehekoda kaasasutaja`}
-            className="h-full w-full object-cover object-[center_18%]"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-end bg-gradient-to-b from-[#DBEAFE] via-[#EFF6FF] to-[#EFF6FF] px-4 pb-5 pt-8">
-            <span className="grid h-[72px] w-[72px] place-items-center rounded-full border border-[#BFDBFE] bg-white text-2xl font-bold text-[#2563EB] shadow-[0_8px_24px_rgba(37,99,235,0.12)]">
-              {initials}
-            </span>
-            <span className="mt-4 text-[11px] font-medium uppercase tracking-wider text-[#64748B]">
-              Foto tulekul
-            </span>
-          </div>
-        )}
+      <div className="relative mx-auto aspect-square w-full">
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-full bg-gradient-to-b from-[#DBEAFE] via-[#EFF6FF] to-white shadow-[0_18px_44px_rgba(37,99,235,0.14)]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-[5%] rounded-full border border-[#BFDBFE]/90 bg-[#F8FAFC]/80"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-[10%] rounded-full bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.95),rgba(239,246,255,0.4)_58%,transparent_100%)]"
+        />
+        <img
+          src={photo}
+          alt={`${name} — Lehekoda kaasasutaja`}
+          width={400}
+          height={400}
+          sizes="(min-width: 1024px) 200px, (min-width: 640px) 176px, 42vw"
+          className={cn(
+            "relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_10px_24px_rgba(15,23,42,0.1)]",
+            photoClassName,
+          )}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <figcaption className="mt-3.5 text-center lg:text-left">
         <p className="text-base font-bold text-[#0F172A]">{name}</p>
@@ -129,8 +134,8 @@ export function TrustSection() {
                         key={person.name}
                         name={person.name}
                         role={person.role}
-                        initials={person.initials}
                         photo={person.photo}
+                        photoClassName={person.photoClassName}
                         className={`w-[min(46vw,10.5rem)] sm:w-44 lg:w-[12.5rem] ${person.className}`}
                       />
                     ))}
